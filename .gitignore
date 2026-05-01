@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Claude / project tooling
+.claude/
+CLAUDE.md
+
+# Dev artifacts & unused files
+_OLD/
+uploads/
+morpheus-mobile.html
+article_body.png
+article_filled.png
+m7-logo-footer.png

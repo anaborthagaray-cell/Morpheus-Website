@@ -1,0 +1,262 @@
+/* ─────────────────────────────────────────────────────────────
+   MORPHEUS — Colors & Type
+   Dark-first sleep/recovery app. Dark navy surfaces + vivid
+   status accents (green recovery, yellow moderate, red high).
+   ───────────────────────────────────────────────────────────── */
+
+/* Brand Roboto — locally hosted (user-uploaded .ttf files).
+   Poppins (wordmark) + Inter (dense UI) still pulled from Google Fonts —
+   brand upload was Roboto-only. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 100; src: url('../fonts/Roboto-Thin.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 100; src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 200; src: url('../fonts/Roboto-ExtraLight.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 200; src: url('../fonts/Roboto-ExtraLightItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 300; src: url('../fonts/Roboto-Light.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 300; src: url('../fonts/Roboto-LightItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; src: url('../fonts/Roboto-Regular.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 400; src: url('../fonts/Roboto-Italic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 500; src: url('../fonts/Roboto-Medium.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 500; src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 600; src: url('../fonts/Roboto-SemiBold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 600; src: url('../fonts/Roboto-SemiBoldItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 700; src: url('../fonts/Roboto-Bold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 700; src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 800; src: url('../fonts/Roboto-ExtraBold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 800; src: url('../fonts/Roboto-ExtraBoldItalic.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 900; src: url('../fonts/Roboto-Black.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto'; font-style: italic; font-weight: 900; src: url('../fonts/Roboto-BlackItalic.ttf') format('truetype'); font-display: swap; }
+
+/* Roboto Condensed — dense chrome / labels / compact zones */
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 400; src: url('../fonts/Roboto_Condensed-Regular.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 500; src: url('../fonts/Roboto_Condensed-Medium.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 600; src: url('../fonts/Roboto_Condensed-SemiBold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 700; src: url('../fonts/Roboto_Condensed-Bold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 800; src: url('../fonts/Roboto_Condensed-ExtraBold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 900; src: url('../fonts/Roboto_Condensed-Black.ttf') format('truetype'); font-display: swap; }
+
+:root {
+  /* ── Surfaces (dark mode, canonical) ─────────────────────── */
+  --surface-base:         rgb(16, 21, 32);     /* app background           */
+  --surface-dim:          rgb(12, 16, 24);     /* deepest / page frame     */
+  --surface-bright:       rgb(21, 28, 41);     /* elevated card            */
+  --surface-container:    rgb(26, 35, 53);     /* tile / content card      */
+  --surface-container-hi: rgb(44, 49, 66);     /* raised, hoverable        */
+  --surface-variant:      rgb(38, 48, 65);     /* inputs / chips           */
+  --scrim:                rgba(0, 0, 0, 0.55);
+
+  /* ── Text / On-surface ───────────────────────────────────── */
+  --on-surface:           rgb(255, 255, 255);
+  --on-surface-muted:     rgb(179, 179, 179);
+  --on-surface-dim:       rgb(131, 142, 192);
+  --on-surface-variant:   rgb(68, 77, 98);
+
+  /* ── Brand Primary (deep blue / periwinkle) ─────────────── */
+  --primary-50:   rgb(234, 238, 254);
+  --primary-100:  rgb(202, 215, 239);
+  --primary-200:  rgb(131, 142, 192);
+  --primary-400:  rgb(86, 115, 247);
+  --primary-500:  rgb(81, 106, 152);   /* canonical brand tone */
+  --primary-600:  rgb(44, 80, 245);
+  --primary-700:  rgb(31, 57, 174);
+  --primary-800:  rgb(36, 68, 132);
+  --primary-900:  rgb(24, 44, 135);
+  --primary-950:  rgb(12, 16, 24);
+  --on-primary:   rgb(255, 255, 255);
+
+  /* ── Secondary (Spring Green / Recovery) ────────────────── */
+  --secondary-50:  rgb(236, 255, 233);
+  --secondary-200: rgb(195, 255, 188);
+  --secondary-300: rgb(167, 255, 155);
+  --secondary-500: rgb(70, 255, 113);
+  --secondary-600: rgb(63, 255, 38);
+  --secondary-700: rgb(0, 215, 57);
+  --secondary-950: rgb(6, 45, 19);
+
+  /* ── Tertiary (Cyan / HRV / Info) ───────────────────────── */
+  --tertiary-500: rgb(14, 183, 255);
+  --tertiary-700: rgb(0, 132, 192);
+
+  /* ── Status / Semantic ──────────────────────────────────── */
+  --success:            rgb(70, 255, 113);
+  --success-container:  rgb(6, 45, 19);
+  --on-success:         rgb(6, 45, 19);
+
+  --warning:            rgb(255, 212, 49);
+  --warning-container:  rgb(128, 42, 12);
+  --on-warning:         rgb(52, 29, 6);
+
+  --error:              rgb(255, 71, 74);
+  --error-container:    rgb(83, 19, 19);
+  --on-error:           rgb(255, 255, 255);
+
+  --info:               rgb(14, 183, 255);
+
+  /* ── HR zones ──────────────────────────────────────────── */
+  --hr-low:      rgb(14, 183, 255);   /* Recovery / low */
+  --hr-moderate: rgb(255, 212, 49);   /* Moderate */
+  --hr-high:     rgb(255, 71, 74);    /* High / Anaerobic */
+  --hr-max:      rgb(255, 242, 106);  /* Peak */
+  --hr-recovery: rgb(70, 255, 113);   /* Recovered / Rest */
+
+  /* ── Outline / borders ─────────────────────────────────── */
+  --outline:         rgb(68, 77, 98);
+  --outline-variant: rgb(44, 49, 66);
+  --outline-dim:     rgb(26, 35, 53);
+  --outline-high:    rgb(131, 142, 192);
+  --outline-error:   rgb(255, 71, 74);
+  --divider:         rgba(255, 255, 255, 0.08);
+
+  /* ── Elevation shadows (dark aware) ────────────────────── */
+  --elev-1: 0 1px 2px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  --elev-2: 0 4px 12px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  --elev-3: 0 10px 30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  --elev-glow-primary:  0 0 0 3px rgba(86,115,247,0.25);
+  --elev-glow-success:  0 0 0 3px rgba(70,255,113,0.22);
+  --elev-glow-error:    0 0 0 3px rgba(255,71,74,0.22);
+
+  /* ── Radius scale ─────────────────────────────────────── */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;   /* cards / tiles (canonical) */
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* ── Spacing (4pt base) ──────────────────────────────── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+
+  /* ── Motion ───────────────────────────────────────────── */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emph:     cubic-bezier(0.3, 0, 0.1, 1);
+  --dur-fast: 120ms;
+  --dur-med:  220ms;
+  --dur-slow: 360ms;
+
+  /* ── Type families ────────────────────────────────────── */
+  --font-sans:    "PP Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: "PP Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-brand:   'Poppins', 'Roboto', sans-serif; /* MORPHEUS wordmark      */
+  --font-ui:      "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* ── Type tokens (per Morpheus Typography frame) ─────── */
+  --fs-2xs: 10px;
+  --fs-xs:  12px;
+  --fs-sm:  14px;
+  --fs-md:  16px;
+  --fs-lg:  18px;
+  --fs-xl:  20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+  --fs-4xl: 36px;
+  --fs-5xl: 48px;
+  --fs-6xl: 60px;
+}
+
+/* ── Base element styles ──────────────────────────────────── */
+html, body {
+  background: var(--surface-base);
+  color: var(--on-surface);
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, .display-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-6xl);
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+h2, .headline-lg {
+  font-family: var(--font-display);
+  font-weight: 800;   /* ExtraBold for headline 4xl */
+  font-size: var(--fs-4xl);
+  line-height: 1;
+}
+h3, .headline-md {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-3xl);
+  line-height: 1.05;
+}
+h4, .title-xl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+}
+h5, .title-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  line-height: 1.15;
+}
+h6, .title-md {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-md);
+  line-height: 1.2;
+}
+
+p, .body-md {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: 1.45;
+}
+.body-sm {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+.body-xs {
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--on-surface-muted);
+}
+
+.label-md {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-md);
+}
+.label-sm {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.2px;
+}
+.label-xs {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.brand-wordmark {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: 0.12em;  /* Poppins 33px @ ~4px tracking */
+  text-transform: uppercase;
+}
+
+.mono-stat {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}

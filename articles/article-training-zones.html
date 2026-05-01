@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>Your Morpheus zones, explained — Morpheus</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body { background: #fff; color: #0e1320; font-family: var(--font-display); }
+    :root {
+      --text: #0e1320; --muted: #4b5467; --blue: #2c50f5; --green: #0aa64a;
+      --red: #ff474a; --border: #e7eaf0; --bg: #f5f7fb; --tag-border: #d4dae5;
+      --stat-label-color: #8892a6;
+      --zone-blue: #2c50f5; --zone-green: #0aa64a; --zone-red: #ff474a;
+    }
+    .page-top { width: 100%; height: 132px; background: #0C1018; position: relative; }
+    .article-header { padding: 44px 180px 0; max-width: 1440px; margin: 0 auto; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-bottom: 22px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb-sep { opacity: 0.4; }
+    .article-meta-top { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .category-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .category-label.training { color: #e67e22; }
+    .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); opacity: 0.5; display: inline-block; }
+    .read-time { font-size: 11px; color: var(--muted); }
+    .article-title { font-size: 46px; font-weight: 400; letter-spacing: -0.92px; line-height: 1.06; color: var(--text); margin-bottom: 16px; max-width: 820px; }
+    .article-deck { font-size: 17px; font-weight: 300; line-height: 28px; color: var(--muted); max-width: 660px; margin-bottom: 28px; }
+    .article-byline { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-top: 0.75px solid var(--border); border-bottom: 0.75px solid var(--border); }
+    .byline-left { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: #dce4f7; border: 0.75px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--blue); flex-shrink: 0; }
+    .author-info { display: flex; flex-direction: column; gap: 2px; }
+    .author-name { font-size: 12px; font-weight: 700; color: var(--text); }
+    .author-role { font-size: 10px; color: var(--muted); }
+    .byline-right { display: flex; align-items: center; gap: 14px; }
+    .byline-date { font-size: 11px; color: var(--muted); }
+    .share-btn { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--text); border: 0.75px solid var(--border); padding: 7px 14px; border-radius: 7px; cursor: pointer; background: #fff; }
+    .article-body { display: grid; grid-template-columns: 220px 1fr 44px; gap: 0 36px; max-width: 1440px; margin: 0 auto; padding: 0 180px; align-items: start; }
+    .toc-sidebar { padding-top: 40px; position: sticky; top: 28px; }
+    .toc-title { font-size: 8px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--stat-label-color); margin-bottom: 14px; }
+    .toc-list { list-style: none; }
+    .toc-item { display: flex; gap: 10px; padding: 9px 0; border-top: 0.75px solid var(--border); cursor: pointer; }
+    .toc-item:last-child { border-bottom: 0.75px solid var(--border); }
+    .toc-num { font-size: 9px; font-weight: 700; color: var(--stat-label-color); min-width: 12px; padding-top: 1px; flex-shrink: 0; }
+    .toc-text { font-size: 10.5px; font-weight: 400; color: var(--muted); line-height: 1.5; }
+    .toc-item.active .toc-text { color: var(--blue); font-weight: 500; }
+    .toc-item.active .toc-num { color: var(--blue); }
+    .article-content { padding: 40px 0 64px; }
+    .article-lead { font-size: 20px; font-weight: 400; line-height: 32px; color: var(--text); margin-bottom: 36px; }
+    .article-content h2 { font-size: 22.5px; font-weight: 500; letter-spacing: -0.225px; line-height: 27px; color: var(--text); margin: 44px 0 10px; }
+    .article-content p { font-size: 16px; font-weight: 300; line-height: 26px; color: var(--text); margin-bottom: 16px; }
+    .article-content em { font-style: italic; }
+    .article-content strong { font-weight: 600; }
+    .article-figure { margin: 20px 0 24px; }
+    .article-figure-inner { background: var(--bg); border: 0.75px solid var(--border); border-radius: 7.5px; overflow: hidden; }
+    .article-figure img { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .article-figure figcaption { font-size: 10.5px; font-style: italic; color: var(--muted); text-align: center; padding: 10px 16px; line-height: 18px; }
+    .article-blockquote { border-left: 2.25px solid var(--blue); padding: 4px 0 6px 20px; margin: 24px 0 28px; }
+    .article-blockquote p { font-size: 18px !important; font-weight: 500 !important; letter-spacing: -0.09px; line-height: 25.2px !important; color: var(--text); margin-bottom: 10px !important; }
+    .article-blockquote cite { font-size: 10.5px; font-weight: 400; font-style: normal; color: var(--muted); display: block; }
+
+    /* Zone callout cards */
+    .zone-cards { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+    .zone-card { display: grid; grid-template-columns: 56px 1fr; gap: 16px; background: var(--bg); border: 0.75px solid var(--border); border-radius: 7.5px; padding: 16px 18px; align-items: start; }
+    .zone-badge { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0.02em; color: #fff; text-transform: uppercase; flex-shrink: 0; }
+    .zone-badge.blue { background: var(--zone-blue); }
+    .zone-badge.green { background: var(--zone-green); }
+    .zone-badge.red { background: var(--zone-red); }
+    .zone-card-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .zone-card-subtitle { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .zone-card-text { font-size: 12px; font-weight: 300; line-height: 19px; color: var(--muted); }
+    .zone-card-pct { font-size: 11px; font-weight: 600; color: var(--text); margin-top: 6px; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75px; background: var(--border); border-radius: 7.5px; overflow: hidden; margin: 20px 0 24px; }
+    .stat-cell { background: #fff; padding: 16px 18px 18px; }
+    .stat-label { font-size: 7.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--stat-label-color); margin-bottom: 6px; line-height: 13px; }
+    .stat-value { display: flex; align-items: baseline; gap: 4px; margin-bottom: 5px; }
+    .stat-number { font-size: 24px; font-weight: 800; letter-spacing: -0.48px; color: var(--text); line-height: 24px; }
+    .stat-unit { font-size: 12px; font-weight: 600; color: var(--muted); line-height: 12px; }
+    .stat-context { font-size: 9px; font-weight: 600; line-height: 15.75px; }
+    .stat-context.green { color: var(--green); }
+    .stat-context.blue { color: var(--blue); }
+    .stat-context.red { color: var(--red); }
+    .article-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 32px; padding-top: 24px; border-top: 0.75px solid var(--border); }
+    .tag { background: #fff; border: 0.75px solid var(--tag-border); border-radius: 749px; padding: 4.5px 9.75px; font-size: 9px; font-weight: 500; color: var(--muted); }
+    .author-bio { background: var(--bg); border: 0.75px solid var(--border); border-radius: 7.5px; padding: 18.75px; margin-top: 24px; display: grid; grid-template-columns: 54px 1fr; gap: 15px; align-items: center; }
+    .bio-avatar { width: 54px; height: 54px; border-radius: 50%; background: #dce4f7; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: var(--blue); flex-shrink: 0; }
+    .bio-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .bio-role { font-size: 10.5px; color: var(--muted); margin-bottom: 6px; }
+    .bio-text { font-size: 10.5px; color: var(--muted); line-height: 15.75px; }
+    .social-sidebar { padding-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; position: sticky; top: 28px; }
+    .social-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 0.75px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .social-icon svg { width: 13px; height: 13px; }
+    .keep-reading { background: var(--bg); padding: 56px 180px 64px; border-top: 0.75px solid var(--border); }
+    .kr-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+    .kr-heading { font-size: 22.5px; font-weight: 500; letter-spacing: -0.225px; color: var(--text); }
+    .kr-subtext { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 300; }
+    .kr-link { font-size: 12px; font-weight: 600; color: var(--blue); text-decoration: none; }
+    .kr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .kr-card { background: #fff; border-radius: 10px; overflow: hidden; border: 0.75px solid var(--border); }
+    .kr-card-img { height: 164px; overflow: hidden; }
+    .kr-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .kr-card-body { padding: 18px 20px 20px; }
+    .kr-cat { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+    .kr-cat-label { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .kr-card-title { font-size: 14px; font-weight: 700; line-height: 19px; color: var(--text); margin-bottom: 8px; letter-spacing: -0.14px; }
+    .kr-card-excerpt { font-size: 12px; font-weight: 300; line-height: 20px; color: var(--muted); margin-bottom: 14px; }
+    .kr-author { display: flex; align-items: center; gap: 8px; }
+    .kr-avatar { width: 16px; height: 16px; border-radius: 50%; background: #dce4f7; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 700; color: var(--blue); }
+    .kr-name { font-size: 10px; font-weight: 500; color: var(--muted); }
+    .kr-date { font-size: 10px; color: var(--muted); margin-left: auto; }
+  </style>
+</head>
+<body>
+
+  <div class="banner"><p>Lorem Ipsum Shop Now →</p></div>
+  <div class="page-top"></div>
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../index.html" aria-label="Morpheus home">
+        <img src="../assets/m7-logo-nav.png" alt="M7 Morpheus" />
+      </a>
+      <ul class="nav__menu">
+        <li><a class="nav__link" href="#">Train</a></li>
+        <li><a class="nav__link" href="#">Recover</a></li>
+        <li><a class="nav__link" href="#">Coaches</a></li>
+        <li><a class="nav__link is-active" href="../learn.html">Learn</a></li>
+        <li><a class="nav__link" href="#">Support</a></li>
+      </ul>
+      <a class="nav__cta" href="#">Shop Now</a>
+    </div>
+  </nav>
+
+  <div class="article-header">
+    <div class="breadcrumb">
+      <a href="../learn.html">Learn</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="../learn.html">Training with Morpheus</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Morpheus heart rate zones</span>
+    </div>
+    <div class="article-meta-top">
+      <span class="category-label training">Training</span>
+      <span class="meta-dot"></span>
+      <span class="read-time">9 min read</span>
+    </div>
+    <h1 class="article-title">Your Morpheus zones, explained: the science of training by intensity</h1>
+    <p class="article-deck">Traditional heart rate zones are static, outdated, and disconnected from how your body actually responds to fatigue. Here's how Morpheus's dynamic three-zone system works — and why it changes everything about how you train.</p>
+    <div class="article-byline">
+      <div class="byline-left">
+        <div class="author-avatar">JJ</div>
+        <div class="author-info">
+          <div class="author-name">Joel Jamieson</div>
+          <div class="author-role">Founder of Morpheus</div>
+        </div>
+      </div>
+      <div class="byline-right">
+        <span class="byline-date">March 28, 2026</span>
+        <button class="share-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <aside class="toc-sidebar">
+      <div class="toc-title">In this article</div>
+      <ul class="toc-list">
+        <li class="toc-item active">
+          <span class="toc-num">1</span>
+          <span class="toc-text">Why static zones don't work</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">2</span>
+          <span class="toc-text">How the Morpheus zones work</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">3</span>
+          <span class="toc-text">Blue zone: recovery + aerobic base</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">4</span>
+          <span class="toc-text">Green zone: the conditioning zone</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">5</span>
+          <span class="toc-text">Red zone: the overload zone</span>
+        </li>
+      </ul>
+    </aside>
+
+    <article class="article-content">
+
+      <p class="article-lead">One of the most important things Morpheus enables you to do is train in heart rate zones based on your recovery each day. The three Morpheus zones are built around a concept called <em>dynamic heart rate training</em> — and they're fundamentally different from anything you've used before.</p>
+
+      <h2 id="s1">Why static heart rate zones don't work</h2>
+      <p>The biggest problem with traditional heart rate zone training is that the zones are <em>entirely static</em>. They never change. They're based only on a percentage of your maximum heart rate — and most people use the 220-minus-age formula to get that number.</p>
+      <p>That formula is outdated. Research has shown it to be highly inaccurate for most people — it was developed over 50 years ago with no real research to support it, and it was never intended to be applied across all ages and fitness levels in the first place.</p>
+      <p>But the deeper problem isn't accuracy — it's that even with an accurate max heart rate, static zones have no connection to <strong>recovery</strong>. Your zones are the same whether you're fresh off a rest day or grinding through day four of a hard training block.</p>
+
+      <blockquote class="article-blockquote">
+        <p>Think about lifting weights. When you're tired and sore, the bar feels heavier. It takes more effort to get the same reps. You can't hit the same numbers. Your heart rate zones should work the same way.</p>
+        <cite>— Joel Jamieson, Founder of Morpheus</cite>
+      </blockquote>
+
+      <figure class="article-figure">
+        <div class="article-figure-inner">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2023/03/Train-in-Your-Morpheus-Zones.jpg" alt="Morpheus training zones on app" />
+        </div>
+        <figcaption>Dynamic zones shift daily based on your recovery score — lower when you're fatigued, higher when you're fresh.</figcaption>
+      </figure>
+
+      <h2 id="s2">How the Morpheus zones work</h2>
+      <p>Morpheus uses a three-zone system that adjusts every day based on your recovery score. When your recovery is lower, your zones shift down. When it's higher, they shift up. This means the intensity of every workout is calibrated to where your body actually is — not where a formula assumes it should be.</p>
+      <p>To make the zones as accurate as possible, Morpheus asks you to do two things when setting up the app: select your fitness level (low, moderate, or high), and enter your max heart rate if you know it. If you don't, Morpheus will estimate it and update automatically as you train.</p>
+
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-label">Blue zone target (monthly)</div>
+          <div class="stat-value">
+            <span class="stat-number">75–85</span>
+            <span class="stat-unit">%</span>
+          </div>
+          <div class="stat-context blue">Of total training time</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Green zone target (monthly)</div>
+          <div class="stat-value">
+            <span class="stat-number">15–25</span>
+            <span class="stat-unit">%</span>
+          </div>
+          <div class="stat-context green">Of total training time</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Red zone ceiling (monthly)</div>
+          <div class="stat-value">
+            <span class="stat-number">8–10</span>
+            <span class="stat-unit">%</span>
+          </div>
+          <div class="stat-context red">Maximum for best results</div>
+        </div>
+      </div>
+
+      <h2 id="s3">The Blue Zone: recovery and aerobic base</h2>
+      <p>The Morpheus blue zone is low-to-moderate intensity, and it's designed to accelerate recovery in two powerful ways.</p>
+      <p>First, doing 30-to-45-minute workouts in your blue zone drives blood flow and speeds up the recovery process — making it one of the most underrated tools in any training plan. Second, consistently training in the blue zone over time increases your average HRV and improves your body's ability to adapt to <em>all</em> kinds of stress, because it develops the aerobic system in ways that higher intensities can't.</p>
+
+      <figure class="article-figure">
+        <div class="article-figure-inner">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2022/02/morpheus-zones.jpg" alt="Morpheus blue zone visualization" />
+        </div>
+        <figcaption>The Blue Zone is where aerobic foundation is built and where most of your long-term adaptation happens.</figcaption>
+      </figure>
+
+      <p>A good rule of thumb: if your goal is to increase aerobic fitness and conditioning, roughly 75–85% of your total training time across each month should be in the blue zone. This isn't about going easy — it's about being strategic.</p>
+
+      <h2 id="s4">The Green Zone: the conditioning zone</h2>
+      <p>The green zone is a step up in intensity. When you're in it, you're tapping into more muscle fibers and driving far more oxygen throughout the body — which is central to developing aerobic fitness. Towards the middle and top of the green zone, you'll also start pulling from the anaerobic energy systems.</p>
+      <p>When you do higher-intensity workouts, aim for 20–40% of total workout time in the green zone. Across a full week or month, your overall green zone time should land around 15–25% of total training time.</p>
+
+      <figure class="article-figure">
+        <div class="article-figure-inner">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2022/02/green-zone.jpg" alt="Green zone training" />
+        </div>
+        <figcaption>The Green Zone — where conditioning meets intensity. More demanding than blue, but where significant aerobic gains are made.</figcaption>
+      </figure>
+
+      <h2 id="s5">The Red Zone: the overload zone</h2>
+      <p>The red zone is maximum intensity. It taxes the aerobic system to its limits while pulling energy from anaerobic pathways — and it's essential for driving your fitness to its highest levels. But the key word is careful: too much time in the red zone and your recovery suffers, undoing the work you're putting in.</p>
+      <p>Because of the intensity involved, you generally don't need more than a few minutes of red zone time in a workout to see the benefits. And you don't need to drive your heart rate into the red zone every workout, either. Depending on your fitness level, one to three workouts per week with some red zone time is all that's needed. Averaged across a month, no more than 8–10% of your total training time in red.</p>
+
+      <figure class="article-figure">
+        <div class="article-figure-inner">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2022/02/red-zones.jpg" alt="Red zone training" />
+        </div>
+        <figcaption>The Red Zone is the smallest slice — powerful in small doses, counterproductive in excess.</figcaption>
+      </figure>
+
+      <div class="zone-cards">
+        <div class="zone-card">
+          <div class="zone-badge blue">Blue</div>
+          <div>
+            <div class="zone-card-subtitle">Recovery Zone</div>
+            <div class="zone-card-title">Low to moderate intensity — where your aerobic base is built</div>
+            <div class="zone-card-text">Drives blood flow, speeds recovery, and builds the aerobic foundation that improves everything else. Target 75–85% of monthly training time here.</div>
+            <div class="zone-card-pct">Target: 75–85% of total training time</div>
+          </div>
+        </div>
+        <div class="zone-card">
+          <div class="zone-badge green">Green</div>
+          <div>
+            <div class="zone-card-subtitle">Conditioning Zone</div>
+            <div class="zone-card-title">Moderate to high intensity — where aerobic fitness accelerates</div>
+            <div class="zone-card-text">Taxes more muscle fibers, drives more oxygen delivery, and starts pulling from anaerobic energy systems. Where real conditioning happens.</div>
+            <div class="zone-card-pct">Target: 15–25% of total training time</div>
+          </div>
+        </div>
+        <div class="zone-card">
+          <div class="zone-badge red">Red</div>
+          <div>
+            <div class="zone-card-subtitle">Overload Zone</div>
+            <div class="zone-card-title">Maximum intensity — powerful in small doses</div>
+            <div class="zone-card-text">Maximum load on the aerobic system, pulling from both aerobic and anaerobic pathways. Critical for peak performance — but recovery-costly.</div>
+            <div class="zone-card-pct">Ceiling: 8–10% of total training time</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-tags">
+        <span class="tag">#training</span>
+        <span class="tag">#heart-rate-zones</span>
+        <span class="tag">#cardio</span>
+        <span class="tag">#zone-2</span>
+        <span class="tag">#aerobic</span>
+        <span class="tag">#dynamic-training</span>
+      </div>
+
+      <div class="author-bio">
+        <div class="bio-avatar">JJ</div>
+        <div>
+          <div class="bio-name">Joel Jamieson</div>
+          <div class="bio-role">Founder of Morpheus &amp; 8WeeksOut</div>
+          <div class="bio-text">Strength and conditioning coach to elite combat athletes for over two decades. Writes about HRV, recovery, and the energy systems that determine real-world performance.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="social-sidebar">
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4b5467" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </div>
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4b5467" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </div>
+      <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4b5467" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </div>
+    </aside>
+
+  </div>
+
+  <section class="keep-reading">
+    <div class="kr-header">
+      <div>
+        <div class="kr-heading">Keep reading</div>
+        <div class="kr-subtext">More from the Morpheus 101 series</div>
+      </div>
+      <a class="kr-link" href="#">Browse all →</a>
+    </div>
+    <div class="kr-grid">
+      <div class="kr-card">
+        <div class="kr-card-img">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2021/11/Stress-of-training.jpg" alt="Recovery story" />
+        </div>
+        <div class="kr-card-body">
+          <div class="kr-cat"><span class="kr-cat-label">Recovery</span><span class="meta-dot"></span><span style="font-size:10px;color:var(--muted)">7 min</span></div>
+          <div class="kr-card-title">The story of recovery</div>
+          <div class="kr-card-excerpt">What recovery really means — and why it's the most misunderstood concept in fitness. Everything Morpheus does begins here.</div>
+          <div class="kr-author"><div class="kr-avatar">JJ</div><span class="kr-name">Joel Jamieson</span><span class="kr-date">April 12, 2026</span></div>
+        </div>
+      </div>
+      <div class="kr-card">
+        <div class="kr-card-img">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2021/11/HRV-Score-Over-Time.jpg" alt="HRV" />
+        </div>
+        <div class="kr-card-body">
+          <div class="kr-cat"><span class="kr-cat-label">The Science</span><span class="meta-dot"></span><span style="font-size:10px;color:var(--muted)">8 min</span></div>
+          <div class="kr-card-title">What HRV is actually telling you — and how Morpheus reads it</div>
+          <div class="kr-card-excerpt">HRV isn't just a number. It's a window into your nervous system's ability to respond to and recover from stress.</div>
+          <div class="kr-author"><div class="kr-avatar">JJ</div><span class="kr-name">Joel Jamieson</span><span class="kr-date">April 5, 2026</span></div>
+        </div>
+      </div>
+      <div class="kr-card">
+        <div class="kr-card-img">
+          <img src="https://trainwithmorpheus.com/wp-content/uploads/2021/11/Meditation-Strategy.jpg" alt="Recovery strategies" />
+        </div>
+        <div class="kr-card-body">
+          <div class="kr-cat"><span class="kr-cat-label">Recovery</span><span class="meta-dot"></span><span style="font-size:10px;color:var(--muted)">6 min</span></div>
+          <div class="kr-card-title">3 strategies that make your recovery actually compound</div>
+          <div class="kr-card-excerpt">Train in your zone, keep your weekly average green, and learn to read what your body is telling you.</div>
+          <div class="kr-author"><div class="kr-avatar">JJ</div><span class="kr-name">Joel Jamieson</span><span class="kr-date">March 22, 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <img src="../assets/m7-logo-footer.png" alt="M7 Morpheus" class="footer__logo" />
+        <div class="footer__brand-text">
+          <p class="footer__brand-name">Morpheus Lab.</p>
+          <p class="footer__brand-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+          <div class="footer__apps">
+            <a href="#" class="footer__app"><img src="../assets/googleplay.png" alt="Get it on Google Play" /></a>
+            <a href="#" class="footer__app"><img src="../assets/appstore.png" alt="Download on the App Store" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Product</p>
+        <a href="#">How to Train</a>
+        <a href="#">Coaches</a>
+        <a href="../learn.html">Learn More</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Company</p>
+        <a href="#">About us</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__legal-left">© 2025 Welcome. All right reserved.</span>
+      <div class="footer__legal-center">
+        <span>Privacy Policy</span>
+        <span>Terms of Service</span>
+      </div>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram"><img src="../assets/instagram.svg" width="18" height="18" alt=""></a>
+        <a href="#" aria-label="Facebook"><img src="../assets/facebook.svg" width="18" height="18" alt=""></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
