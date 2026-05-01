@@ -29,7 +29,7 @@ const Nav = ({ active = "Learn" }) => (
       <ul className="nav__menu">
         {["Train", "Recover", "Coaches", "Learn", "Support"].map((l) => (
           <li key={l}>
-            <a href={l === "Learn" ? "Learn.html" : "#"} className={`nav__link${active === l ? " is-active" : ""}`}>{l}</a>
+            <a href={l === "Learn" ? "learn.html" : "#"} className={`nav__link${active === l ? " is-active" : ""}`}>{l}</a>
           </li>
         ))}
       </ul>
@@ -61,7 +61,7 @@ const Footer = () => (
           <ul>
             <li><a href="#">How to Train</a></li>
             <li><a href="#">Coaches</a></li>
-            <li><a href="Learn.html">Learn</a></li>
+            <li><a href="learn.html">Learn</a></li>
             <li><a href="#">FAQs</a></li>
           </ul>
         </div>

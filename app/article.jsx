@@ -9,9 +9,9 @@ const ArticleHero = ({ article }) => (
     <Nav active="Learn" />
     <div className="article-hero-inner">
       <div className="crumbs">
-        <a href="Learn.html">Morpheus 101</a>
+        <a href="learn.html">Morpheus 101</a>
         <span>/</span>
-        <a href="Learn.html">{article.tag.charAt(0) + article.tag.slice(1).toLowerCase()} &amp; Recovery</a>
+        <a href="learn.html">{article.tag.charAt(0) + article.tag.slice(1).toLowerCase()} &amp; Recovery</a>
         <span>/</span>
         <span>{article.title}</span>
       </div>
@@ -230,7 +230,7 @@ const Related = () => {
             <h2 className="section-title">Keep reading</h2>
             <p className="section-sub">Articles on adjacent themes our editors think pair well.</p>
           </div>
-          <a href="Learn.html" className="section-link">Back to Learn
+          <a href="learn.html" className="section-link">Back to Learn
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
