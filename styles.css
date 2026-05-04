@@ -1866,6 +1866,8 @@ ul { list-style: none; }
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  flex: 1;
+  min-width: 0;
 }
 .m-header__wordmark {
   font-family: 'Poppins', sans-serif;
@@ -1873,11 +1875,13 @@ ul { list-style: none; }
   font-size: 14px;
   letter-spacing: 0.18em;
   color: #ffffff;
+  white-space: nowrap;
 }
 .m-header__actions {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 .m-header__cta {
   display: inline-flex;
@@ -2048,25 +2052,26 @@ body.m-menu-open { overflow: hidden; }
     left: auto;
     transform: none;
     width: 100%;
-    padding: 0 20px 56px;
+    padding: 0 24px 56px;
     gap: 16px;
-    text-align: left;
-    align-items: flex-start;
+    text-align: center;
+    align-items: center;
   }
   .hero__title {
-    font-size: 48px;
-    line-height: 52px;
+    font-size: 40px;
+    line-height: 44px;
     flex-direction: column;
     gap: 0;
     white-space: normal;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
   }
   .hero__subtitle {
     width: 100%;
-    max-width: 100%;
+    max-width: 342px;
     font-size: 16px;
     line-height: 22px;
-    text-align: left;
+    text-align: center;
   }
 
   /* Smartest: hide phone, stack text */
@@ -2228,7 +2233,12 @@ body.m-menu-open { overflow: hidden; }
   .faq > summary > span { font-size: 18px; line-height: 24px; }
 
   /* Newsletter */
-  .news { padding: 60px 20px; }
+  .news {
+    padding: 60px 20px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .news__right { justify-self: stretch; width: 100%; }
   .news__title { font-size: 28px; line-height: 34px; }
   .news__sub { max-width: 100%; }
   .news__form { max-width: 100%; }
