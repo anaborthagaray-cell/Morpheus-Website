@@ -12,6 +12,7 @@
   --c-surface-neutral-0:    #0c1018;
   --c-surface-neutral-50:   #101520;
   --c-surface-neutral-100:  #151c29;
+  --c-surface-container:         #1a2335;
   --c-surface-container-high:    #2f3e5a;
   --c-surface-container-highest: #516a98;
   --c-surface-container-lowest:  #0c1018;
@@ -522,6 +523,9 @@ ul { list-style: none; }
   color: var(--c-on-surface-variant);
   max-width: 280px;
 }
+
+/* Mobile-only short subtitle — hidden on desktop */
+.infogrid__subtitle { display: none; }
 
 /* ==========================================================================
    Secondary Frame — wraps sections 06–09 with one unified gradient surface.
@@ -1256,14 +1260,32 @@ ul { list-style: none; }
   align-items: center;
   gap: 8px;
 }
-/* Figma: "RATING AND REVIEWS" = 22/32, color white, no extra letter-spacing */
-.reviews__header .eyebrow { color: #ffffff; letter-spacing: 0; }
+/* Figma: eyebrow = 15/22, color on-surface-variant (#b3b3b3) */
+.reviews__header .eyebrow { color: var(--c-on-surface-variant); letter-spacing: 0; }
 .reviews__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-xl);
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
+}
+
+/* Pagination dots — hidden on desktop, shown on mobile */
+.reviews__dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.reviews__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  flex: 0 0 auto;
+}
+.reviews__dot--active {
+  background: #ffffff;
 }
 
 .reviews__scroll {
@@ -2027,6 +2049,12 @@ body.m-menu-open { overflow: hidden; }
   .news { padding: 80px 32px; }
 }
 
+/* Desktop default — hide mobile-only elements / transparent wrappers */
+.day__stack { display: none; }
+.mission__sub { display: none; }
+.mission__btn-mobile { display: none; }
+.smartest__frame { display: contents; } /* transparent on desktop — no layout effect */
+
 /* ── 768px: Mobile — switch to mobile-first layout ── */
 @media (max-width: 768px) {
 
@@ -2074,16 +2102,58 @@ body.m-menu-open { overflow: hidden; }
     text-align: center;
   }
 
-  /* Smartest: hide phone, stack text */
-  .smartest__phone-img { display: none; }
-  .smartest__top {
-    min-height: auto;
-    padding: 56px 20px 40px;
+  /* Smartest: full-viewport mobile layout */
+  .smartest {
+    display: block;
+    /* Matches Figma "04 05" parent gradient — shared BG for Smartest + Info Grid */
+    background: linear-gradient(220.4deg, rgb(14, 20, 33) 51.607%, rgb(101, 148, 252) 366.35%);
   }
-  .smartest__text { max-width: 100%; gap: 20px; }
+  /* Remove desktop bg texture on mobile */
+  .smartest::before { display: none; }
+  .smartest__frame {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .smartest__top {
+    order: 1;
+    flex-shrink: 0;
+    min-height: auto;
+    padding: 70px 24px 0;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .smartest__phone-img {
+    order: 2;
+    flex: none;
+    display: block;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 100%;
+    /* 118% scale → image 404px tall, offset -47px → content bottom at 357px.
+       Trim to 290px to clip just past the strap glow. */
+    height: 290px;
+    /* 42px gap matches Figma flex gap between title block and Device Img container */
+    margin-top: 42px;
+    background-image: url('assets/phone.png');
+    /* Cap width so the image never exceeds the 390px-equivalent scale on wider phones (e.g. iPhone XR 414px).
+       clamp(lower, preferred, upper): at 390px → 460px; at 414px → still capped at 460px. */
+    background-size: clamp(400px, 118%, 460px) auto;
+    background-position: center -70px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    /* Start fade earlier (72%) so the strap bottom dissolves well before infogrid */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 72%, transparent 96%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 72%, transparent 96%);
+  }
+  .smartest__text { max-width: 100%; gap: 20px; align-items: center; text-align: center; }
+  .smartest__title-pill { justify-self: center; }
   .smartest__title-bg {
     font-size: 40px;
     line-height: 1.36;
+    text-align: center;
   }
   .smartest__title-pill {
     margin-top: 54px; /* 40 × 1.36 ≈ 54.4px */
@@ -2091,162 +2161,555 @@ body.m-menu-open { overflow: hidden; }
     border-radius: 38px;
   }
   .smartest__title-pill-text { font-size: 40px; }
-  .smartest__desc { font-size: 16px; line-height: 22px; }
+  .smartest__desc { font-size: 16px; line-height: 22px; text-align: center; }
+  .smartest__desc br { display: none; }
 
-  /* Info grid: 4-col → 2×2 with borders */
+  /* Info grid: single-column, dark gradient */
+  /* Figma "05 Info Grid": py-52px, inner Row 1 = h-555px justify-between.
+     Total section height = 52 + 555 + 52 = 659px.
+     Background is transparent — inherits the shared "04 05" parent gradient on .smartest. */
   .infogrid {
-    grid-template-columns: 1fr 1fr;
-    padding: 0 16px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-template-columns: unset;
+    padding: 40px 0 52px;
+    min-height: 659px;
     gap: 0;
+    background: transparent;
   }
   .infogrid__col {
-    padding: 24px 16px;
-    text-align: left;
-    align-items: flex-start;
-    border-right: 1px solid rgba(255,255,255,0.08);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    border: none;
   }
   .infogrid__col::before { display: none !important; }
-  .infogrid__col:nth-child(even) { border-right: none; }
-  .infogrid__col:nth-child(3),
-  .infogrid__col:nth-child(4) { border-bottom: none; }
-  .infogrid__heading { font-size: 22px; line-height: 28px; }
-  .infogrid__num { font-size: 16px; }
+  .infogrid__num {
+    font-family: var(--font-display);
+    font-size: 15px;
+    line-height: var(--lh-body-m);
+    color: var(--c-on-surface-variant);
+    opacity: 1;
+  }
+  .infogrid__heading {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--fs-subheading-l);
+    line-height: var(--lh-subheading-l);
+    font-weight: 400;
+    color: var(--c-on-surface);
+    text-align: center;
+    white-space: normal;
+  }
+  /* Suppress desktop <br> tags inside headings on mobile */
+  .infogrid__heading br { display: none; }
+  .infogrid__body { display: none; }
+  /* Short Figma subtitles — shown only on mobile */
+  .infogrid__subtitle {
+    display: block;
+    font-size: var(--fs-body-m);
+    line-height: var(--lh-body-m);
+    color: var(--c-on-surface-variant);
+    font-weight: 300;
+    text-align: center;
+  }
 
-  /* HR Zones */
-  .hrzones { padding: 12px 12px 0; }
-  .hrzones__card { height: 460px; }
-  .hrzones__phone { display: none; }
-  .hrzones__title { font-size: 28px; line-height: 34px; }
-  .hrzones__text { left: 20px; bottom: 28px; gap: 20px; }
+  /* Secondary frame */
+  .secondary-frame {
+    background: linear-gradient(141.732deg, rgb(14, 20, 33) 73.907%, rgb(67, 88, 134) 161.29%);
+  }
+
+  /* HR Zones — no hero image, flex stack: phone → title → CTA */
+  .hrzones { padding: 52px 24px 32px; }
+  .hrzones__card {
+    position: static;
+    height: auto;
+    border-radius: 0;
+    overflow: visible;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .hrzones__hero-img { display: none; }
+  .hrzones__scrim    { display: none; }
+  .hrzones__phone {
+    display: block;
+    position: relative;
+    order: 1;
+    width: 220px;
+    height: 448px;
+    right: auto;
+    top: auto;
+  }
+  .hrzones__text {
+    position: static;
+    left: auto;
+    bottom: auto;
+    order: 2;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    gap: 24px;
+  }
+  .hrzones__title {
+    font-size: var(--fs-heading-s);
+    line-height: var(--lh-heading-s);
+    font-weight: 300;
+    text-align: center;
+    text-shadow: none;
+  }
+  .hrzones__text .btn { align-self: center; }
 
   /* Intensity */
-  .intensity { padding: 12px 12px 0; }
-  .intensity__card { height: 380px; }
-  .intensity__text { width: 100%; padding: 36px 20px 0; }
-  .intensity__title { font-size: 28px; line-height: 34px; }
-  .intensity__desc { font-size: 15px; }
+  /* Intensity section — card floats on secondary-frame with 16px side margins */
+  .intensity { padding: 32px 16px 40px; }
+  .intensity__card {
+    height: 620px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 56px;
+    /* Image fills the full card — it already carries the cobalt-blue gradient background.
+       cover crops to fill the portrait card, centering the device in the lower area. */
+    background-image: url('assets/05%20Right%20intensity.png');
+    background-size: cover;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+  }
+  .intensity__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Scrim: dark at top for text legibility, clear in lower half to show device cleanly */
+    background: linear-gradient(to bottom,
+      rgba(6, 12, 42, 0.82) 0%,
+      rgba(6, 12, 42, 0.55) 20%,
+      rgba(6, 12, 42, 0) 42%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+  .intensity__hero-img { display: none; }
+  .intensity__text {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 32px;
+    gap: 16px;
+  }
+  .intensity__title {
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .intensity__desc {
+    font-size: var(--fs-body-m);
+    line-height: var(--lh-body-m);
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 300;
+    max-width: 280px;
+    margin: 0 auto;
+  }
 
   /* Specs: 4-col → 2×2 cards */
-  .specs { padding: 32px 12px 48px; }
+  /* Figma node 2381:2978 — py:32px px:24px */
+  .specs { padding: 32px 24px; }
   .specs__card {
     grid-template-columns: 1fr 1fr;
     padding: 0;
     min-height: auto;
-    gap: 6px;
+    /* Figma: outer container gap 6px (rows), inner row gap 4px (columns) */
+    row-gap: 6px;
+    column-gap: 4px;
   }
   .specs__item {
-    background: rgba(255,255,255,0.04);
-    border-radius: 14px;
-    padding: 24px 16px;
-    gap: 12px;
+    background: var(--c-surface-container);
+    border-radius: 0;
+    padding: 36px 16px;
+    gap: 6px;
   }
+  /* Outer corners only */
+  .specs__item:nth-child(1) { border-radius: 10px 0 0 0; }
+  .specs__item:nth-child(2) { border-radius: 0 10px 0 0; }
+  .specs__item:nth-child(3) { border-radius: 0 0 0 10px; }
+  .specs__item:nth-child(4) { border-radius: 0 0 10px 0; }
   .specs__item::before { display: none !important; }
-  .specs__heading { font-size: 22px; line-height: 28px; }
-  .specs__body { font-size: 14px; max-width: 100%; }
-
-  /* Science */
-  .science { padding: 56px 20px 40px; }
-  .science__header { width: 100%; }
-  .science__title { font-size: 30px; line-height: 36px; }
-  .science__sub { font-size: 15px; max-width: 100%; }
-  .tabs { width: 100%; }
-  .tabs__tab { width: auto; flex: 1; font-size: 14px; padding: 14px 8px; }
-  .science__card { height: auto; min-height: 460px; }
-  .science__card-inner { padding: 28px 20px; }
-  .science__grid { grid-template-columns: 1fr; gap: 10px; }
-
-  /* Day with Morpheus */
-  .day { padding: 56px 20px 48px; }
-  .day__header { gap: 16px; }
-  .day__title { font-size: 30px; line-height: 36px; }
-  .day__sub { width: 100%; font-size: 15px; }
-  .daytabs {
-    overflow-x: auto;
-    justify-content: flex-start;
-    scrollbar-width: none;
+  /* Figma: Web/Body/L → 18px / 22px / weight 300 */
+  .specs__heading {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 300;
+    letter-spacing: 0;
   }
-  .daytabs::-webkit-scrollbar { display: none; }
-  .daytabs__tab {
-    width: max-content;
-    white-space: nowrap;
-    padding: 14px 12px;
-    flex-shrink: 0;
-    font-size: 13px;
+  /* Figma: Web/Body/S → 15px / 22px / weight 300 */
+  .specs__body {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 300;
+    max-width: 100%;
   }
-  .day__collage {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+
+  /* Eyebrow — mobile: body-s per Figma (SCIENCE / YOUR DAY / OUR MISSION) */
+  .eyebrow {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  /* Carousel — node 2382:2912 */
+  /* Figma node 2382:2912 — py:52px, Photo Strip h:498px, slide w:318px */
+  .carousel { padding: 52px 0 52px; }
+  .carousel__viewport { scroll-padding-left: 24px; }
+  .carousel__track {
+    padding: 0 24px;
     gap: 12px;
   }
-  .day__col--left { height: 240px; }
-  .day__col--center {
+  .carousel__slide {
+    flex: 0 0 318px;
+    height: 498px;
+  }
+  .carousel__controls {
+    width: calc(100% - 48px);
+    margin: 24px 24px 0;
+  }
+  /* Figma: filled circle buttons — 32px, bg surface-container-highest, no border */
+  .carousel__btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--c-surface-container-highest);
+  }
+  .carousel__btn:hover {
+    background: var(--c-surface-container-high);
+    border-color: transparent;
+  }
+
+  /* Science — node 2382:2935 */
+  /* Figma node 2382:2935 — pt:52 pb:48 px:24 gap:36 */
+  .science { padding: 52px 24px 48px; gap: 36px; }
+  .science__header { width: 100%; gap: 0; }
+  .science__header-top { gap: 16px; }
+  .science__header-title-group { gap: 8px; }
+  .science__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
+  /* Figma: Body/M — 16px / 22px / weight 300 (desktop inherits 32px lh — must override) */
+  .science__sub { font-size: var(--fs-body-m); line-height: var(--lh-body-m); font-weight: 300; max-width: 100%; text-align: center; }
+  .tabs { width: 278px; }
+  /* Figma: 15px / weight 300 / py:20 px:6 */
+  .tabs__tab { width: 139px; padding: 20px 6px; font-size: 15px; font-weight: 300; }
+  .science__card { height: auto; min-height: 0; background: transparent; border-radius: 0; overflow: visible; }
+  .science__card-bg,
+  .science__card-scrim { display: none; }
+  .science__card-inner { padding: 0; justify-content: flex-start; }
+  .science__card-header { display: none; }
+  /* Figma: row-gap 20px (between rows), col-gap 12px (between cards per row) */
+  .science__grid { grid-template-columns: 1fr 1fr; gap: 20px 12px; width: 100%; }
+  .scicard {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 14px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: auto;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    text-align: center;
+  }
+  .scicard__icon {
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    color: var(--c-text-dark);
+  }
+  .scicard__text { gap: 4px; }
+  /* Figma: PP Neue Montreal Medium 16px / leading 1.5 */
+  .scicard__title { font-size: 16px; line-height: 1.5; color: var(--c-text-dark); font-weight: 500; }
+  /* Figma: PP Neue Montreal Book 13px / leading 1.4 */
+  .scicard__body { font-size: 13px; line-height: 1.4; color: var(--c-text-dark); }
+
+  /* Day with Morpheus — node 2382:2971 */
+  .day { padding: 32px 24px 52px; gap: 32px; display: flex; flex-direction: column; align-items: center; }
+  .day__header { gap: 16px; margin-bottom: 0; width: 100%; text-align: center; }
+  .day__header-top { gap: 8px; }
+  .day__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
+  .day__sub { width: 100%; font-size: var(--fs-body-m); line-height: var(--lh-body-m); text-align: center; }
+  .daytabs { display: none; }
+  .day__collage { display: none; }
+  .day__stack {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    height: auto;
+    gap: 24px;
+    width: 100%;
   }
-  .day__col--center .day__top { height: 200px; object-fit: cover; width: 100%; }
-  .day__stat { height: 160px; }
-  .day__col--right { display: none; }
+  .day__stack-item {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: #1d273a;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .day__stack-label {
+    position: absolute;
+    bottom: 24px;
+    left: 19px;
+    font-size: var(--fs-body-l);
+    line-height: var(--lh-body-l);
+    color: #ffffff;
+    font-weight: 300;
+  }
 
-  /* Mission */
+  /* Mission — node 2382:2994 */
+  /* Figma node 2382:2994 — 12 Mission Joel */
   .mission {
-    padding: 56px 20px;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 36px;
-    align-items: start;
+    padding: 52px 24px;
+    /* Figma gradient: 212.1deg */
+    background: linear-gradient(212.1deg, rgb(15,21,34) 9.85%, rgb(22,40,98) 183.06%);
   }
-  .mission__text { max-width: 100%; }
-  .mission__title { font-size: 26px; line-height: 32px; }
-  .mission__cols { grid-template-columns: 1fr; gap: 16px; }
-  .mission__card { height: 380px; justify-self: stretch; }
+  .mission__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 100%;
+    text-align: center;
+  }
+  .mission__description { gap: 8px; align-items: center; }
+  .mission__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
+  /* Not in Figma mobile — hide bio paragraph */
+  .mission__sub { display: none; }
+  .mission__cols { display: none; }
+  /* Figma: h-451px, w-100%, rounded-10px */
+  .mission__card {
+    width: 100%;
+    height: 451px;
+    justify-self: stretch;
+    border-radius: 10px;
+  }
+  /* Mobile photo crop: zoom in tighter so face/upper chest fills the frame.
+     Desktop values (142.25% / -15.35% / -33.42%) are derived from a 514×579 card
+     and show too much body at 342×451. At 220% width (scale≈0.55), the displayed
+     image is 752×1128px. left:-60% centres it (-(752-342)/2 = -205px).
+     top:20px places the head at ~10% from the card top, matching reference crop. */
+  /* Mobile photo crop: zoom out so full torso + both arms are visible with breathing room.
+     At 160% (scale 0.4): img = 547×1024px in a 342px card.
+     Eyes (original y≈557) display at 223px → top:-124px places eyes at 22% from card top.
+     Head lands at ~48px (10.6%) with background bokeh visible above.
+     left:-30% centres the 547px img in the 342px card: -(547-342)/2 = -102.5px. */
+  .mission__card img {
+    width: 160%;
+    left: -30%;
+    top: -124px;
+  }
+  /* Figma: button inside card at bottom with 36px inset */
+  .mission__card-info {
+    bottom: 0;
+    padding: 0 24px 36px;
+    gap: 8px;
+  }
+  .mission__card-name {
+    font-size: var(--fs-subheading-l);
+    line-height: var(--lh-subheading-l);
+    font-weight: 500;
+  }
+  .mission__card-role {
+    margin-bottom: 0;
+    font-size: var(--fs-body-m);
+    line-height: var(--lh-body-m);
+    font-weight: 300;
+  }
+  /* Figma: button visible inside card — white bg, dark text, 44px, 10px radius */
+  .mission__card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  /* Standalone button below card — not in Figma mobile */
+  .mission__btn-mobile { display: none; }
 
-  /* Reviews */
-  .reviews { padding: 56px 0; }
-  .reviews__scroll { padding: 0 20px 8px; }
-  .reviews__header { padding: 0 20px; }
-  .reviews__title { font-size: 30px; line-height: 36px; }
-  .review { flex: 0 0 min(300px, 80vw); padding: 24px; gap: 28px; min-height: auto; }
-  .review__text { font-size: 16px; line-height: 22px; }
+  /* Reviews — node 2382:3006 */
+  .reviews {
+    padding: 52px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: linear-gradient(231.5deg, rgb(14,20,33) 22.2%, rgb(67,88,134) 202.2%);
+  }
+  .reviews__header {
+    margin: 0;
+    padding: 0 24px;
+    gap: 8px;
+  }
+  .reviews__title { font-size: 29px; line-height: 36px; font-weight: 300; }
+  .reviews__scroll { padding: 0 0 0 24px; scroll-padding-left: 24px; }
+  .reviews__row { gap: 16px; }
+  .review {
+    flex: 0 0 317px;
+    height: 411px;
+    min-height: unset;
+    padding: 32px;
+    gap: 0;
+  }
+  .review__text { font-size: 22px; line-height: 32px; font-weight: 300; }
+  .review__meta { gap: 14px; align-items: flex-start; }
+  .review__avatar { width: 56px; height: 56px; }
+  .review__date { color: #ffffff; }
+  .reviews__dots { display: flex; }
 
-  /* Pricing */
-  .pricing { padding: 56px 20px; }
-  .pricing__header { max-width: 100%; }
-  .pricing__title { font-size: 30px; line-height: 36px; }
-  .pricing__sub { width: 100%; font-size: 15px; }
+  /* Pricing — node 2383:2912 */
+  .pricing { padding: 52px 24px 16px; }
+  /* Header (title + subtitle) not shown in mobile Figma design */
+  .pricing__header { display: none; }
+  /* Dividers not shown in mobile Figma design */
+  .pricing__divider { display: none; }
   .pricing__card {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 28px 20px;
-  }
-  .pricing__image { object-position: center; max-height: 260px; }
-  .pricing__special { font-size: 36px; line-height: 44px; }
-  .pricing__price-old { font-size: 36px; line-height: 44px; }
-  .pricing__price-main { font-size: 72px; line-height: 92px; }
-  .pricing__price-dollar { font-size: 30px; line-height: 38px; }
-
-  /* FAQs */
-  .faqs { padding: 56px 20px; }
-  .faqs__title { font-size: 30px; line-height: 36px; }
-  .faqs__list { width: 100%; }
-  .faq > summary > span { font-size: 18px; line-height: 24px; }
-
-  /* Newsletter */
-  .news {
-    padding: 60px 20px;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 32px;
+    padding: 32px 24px;
+    min-height: auto;
+    background: #f4f5f5;
   }
-  .news__right { justify-self: stretch; width: 100%; }
-  .news__title { font-size: 28px; line-height: 34px; }
-  .news__sub { max-width: 100%; }
-  .news__form { max-width: 100%; }
+  .pricing__image {
+    width: 306px;
+    height: 177px;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+  .pricing__offer { padding: 0; gap: 8px; width: 100%; }
+  .pricing__special { font-size: 38px; line-height: 44px; font-weight: 500; letter-spacing: -0.5px; }
+  /* Remove padding around price row — no dividers on mobile */
+  .pricing__price { padding: 0; }
+  .pricing__price-old { font-size: 40px; line-height: 46px; opacity: 0.4; }
+  .pricing__price-dollar { font-size: 29px; line-height: 35px; }
+  .pricing__price-main { font-size: 75px; line-height: 97px; letter-spacing: -0.8px; }
+  .pricing__features { gap: 12px; }
+  /* Figma: 16px/22px body-m, icon gap 4px, left-aligned */
+  .pricing__features li { justify-content: flex-start; font-size: 16px; line-height: 22px; gap: 4px; }
+  /* Button is inside .pricing__offer (gap 8px) but Figma places it at card level (gap 32px).
+     Extra margin-top bridges the difference: 8px gap + 24px margin = 32px visual space. */
+  .pricing__offer .btn { margin-top: 24px; }
 
-  /* Footer: already has 720px breakpoint, ensure consistent padding */
+  /* FAQs — node 2383:2935 */
+  /* margin-top: -1px closes the subpixel seam where two adjacent white sections meet */
+  .faqs {
+    margin-top: -1px;
+    padding: 52px 24px;
+    gap: 16px;
+  }
+  .faqs__title { font-size: 29px; line-height: 36px; font-weight: 300; }
+  .faqs__list { width: 100%; gap: 16px; }
+  .faq { border-radius: 11px; }
+  .faq > summary { padding: 16px 28px; }
+  .faq > summary > span { font-size: 16px; line-height: 22px; font-weight: 300; }
+
+  /* Newsletter — node 2383:2949 */
+  .news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 52px 24px;
+    background: #f0f0f0;
+  }
+  .news__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    width: 100%;
+  }
+  .news__eyebrow { display: none; }
+  .news__title {
+    font-size: 29px;
+    line-height: 36px;
+    font-weight: 300;
+    letter-spacing: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .news__sub {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 300;
+    text-align: center;
+  }
+  /* Right col becomes full-width stacked form */
+  .news__right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-self: stretch;
+    width: 100%;
+  }
+  /* Input as standalone field (not inline with button) */
+  .news__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+  }
+  .news__form input {
+    flex: none;
+    width: 100%;
+    height: 64px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: var(--c-text-dark);
+  }
+  .news__form input::placeholder { color: var(--c-muted-dark); }
+  .news__form .btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 14px;
+    padding: 0 24px;
+    flex-shrink: unset;
+  }
+  .news__privacy { display: none; }
+
+  /* Footer */
   .footer { padding: 60px 0 28px; }
   .footer .container { padding: 0 20px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .footer-logo-col { grid-column: 1 / -1; }
+  .footer-brand { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   .footer-bottom .right { flex-wrap: wrap; justify-content: center; }
 }

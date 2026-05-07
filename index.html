@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Morpheus — Train Smarter. Perform Better.</title>
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="styles.css?v=41" />
 </head>
 <body>
 
@@ -100,51 +100,55 @@
 
   <!-- 04 Smartest -->
   <section class="smartest">
-    <div class="smartest__phone-img" aria-hidden="true"></div>
-    <div class="smartest__top">
-      <div class="smartest__text">
-        <h2 class="smartest__title-wrap" aria-label="The world's smartest cardio system">
-          <!-- Background layer: all 3 gradient lines (sits behind pill) -->
-          <span class="smartest__title-bg">
-            <span class="smartest__title-line">The world&rsquo;s</span><br />
-            <span class="smartest__title-line">smartest</span><br />
-            <span class="smartest__title-line">cardio system</span>
-          </span>
-          <!-- Frosted glass pill overlay (covers only the "smartest" line) -->
-          <span class="smartest__title-pill" aria-hidden="true">
-            <span class="smartest__title-pill-text">smartest</span>
-          </span>
-        </h2>
-        <p class="smartest__desc">
-          With 200+ hours per charge, Morpheus<br />
-          covers every workout and recovery—<br />
-          less recharging, more time training and<br />
-          progress, day after day. With 200+ hours.
-        </p>
+    <!-- Mobile wrapper: isolates 100svh block from infogrid below -->
+    <div class="smartest__frame">
+      <div class="smartest__phone-img" aria-hidden="true"></div>
+      <div class="smartest__top">
+        <div class="smartest__text">
+          <h2 class="smartest__title-wrap" aria-label="The world's smartest cardio system">
+            <!-- Background layer: all 3 gradient lines (sits behind pill) -->
+            <span class="smartest__title-bg">
+              <span class="smartest__title-line">The world&rsquo;s</span><br />
+              <span class="smartest__title-line">smartest</span><br />
+              <span class="smartest__title-line">cardio system</span>
+            </span>
+            <!-- Frosted glass pill overlay (covers only the "smartest" line) -->
+            <span class="smartest__title-pill" aria-hidden="true">
+              <span class="smartest__title-pill-text">smartest</span>
+            </span>
+          </h2>
+          <p class="smartest__desc">
+            With 200+ hours per charge, Morpheus covers every workout and recovery—less recharging, more time training.
+          </p>
+        </div>
       </div>
-    </div>
+    </div><!-- /.smartest__frame -->
 
     <!-- 05 Info grid -->
     <ul class="infogrid">
       <li class="infogrid__col">
         <p class="infogrid__num">01.</p>
-        <h3 class="infogrid__heading">Personalized<br /><span style="white-space:nowrap">heart rate training</span></h3>
+        <h3 class="infogrid__heading">Personalized HR training</h3>
         <p class="infogrid__body">Use the Morpheus zone-based interval training and weekly training targets to make sure everyone you coach is getting exactly what they need.</p>
+        <p class="infogrid__subtitle">Zone-based training tailored to you.</p>
       </li>
       <li class="infogrid__col">
         <p class="infogrid__num">02.</p>
-        <h3 class="infogrid__heading">Weekly<br />training goals</h3>
+        <h3 class="infogrid__heading">Weekly <br />training goals</h3>
         <p class="infogrid__body">View key lifestyle and training insights to identify what&rsquo;s limiting your clients&rsquo; recovery—and help them break past health &amp; performance plateaus.</p>
+        <p class="infogrid__subtitle">Track what&rsquo;s limiting your recovery.</p>
       </li>
       <li class="infogrid__col">
         <p class="infogrid__num">03.</p>
-        <h3 class="infogrid__heading">ECG heart<br />rate monitor</h3>
+        <h3 class="infogrid__heading">ECG heart <br />rate monitor</h3>
         <p class="infogrid__body">Morpheus tracks recovery through HRV and other metrics, helping you balance pushing and resting for optimal performance.</p>
+        <p class="infogrid__subtitle">Medical-grade accuracy for workouts.</p>
       </li>
       <li class="infogrid__col">
         <p class="infogrid__num">04.</p>
-        <h3 class="infogrid__heading">Accurate HRV<br />&amp; recovery</h3>
+        <h3 class="infogrid__heading">Accurate HRV <br />&amp; recovery</h3>
         <p class="infogrid__body">Morpheus tracks recovery through HRV and other metrics, helping you balance pushing and resting for optimal performance.</p>
+        <p class="infogrid__subtitle">Balance effort and rest for peak results.</p>
       </li>
     </ul>
   </section>
@@ -192,11 +196,11 @@
       </div>
       <div class="specs__item">
         <h3 class="specs__heading">Bluetooth<br />connectivity</h3>
-        <p class="specs__body">Seamlessly connect with your devices<br />for real-time tracking and data syncing.</p>
+        <p class="specs__body">Connect with your devices for real-time tracking.</p>
       </div>
       <div class="specs__item">
         <h3 class="specs__heading">10+ hours<br />memory</h3>
-        <p class="specs__body">Train without your phone, then upload<br />your workouts into the Morpheus app.</p>
+        <p class="specs__body">Train without your phone, then upload your workouts.</p>
       </div>
     </div>
   </section>
@@ -232,10 +236,10 @@
     <header class="science__header">
       <div class="science__header-top">
         <div class="science__header-title-group">
-          <p class="eyebrow">LOREM IPSUM</p>
+          <p class="eyebrow">SCIENCE</p>
           <h2 class="science__title">The science behind better cardio</h2>
         </div>
-        <p class="science__sub">Morpheus ensures your workouts align with your recovery, maximizing every session while avoiding overtraining.</p>
+        <p class="science__sub">Understand the physiology behind your training and why Morpheus works.</p>
       </div>
       <div class="tabs">
         <button class="tabs__tab is-active" type="button">For Longevity</button>
@@ -253,28 +257,28 @@
         </div>
         <div class="science__grid">
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">HRV</p><p class="scicard__body">Heart rate variability</p></div>
           </div>
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">HR Zones</p><p class="scicard__body">5 training zones</p></div>
           </div>
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">Recovery</p><p class="scicard__body">Daily readiness</p></div>
           </div>
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">Analytics</p><p class="scicard__body">Performance trends</p></div>
           </div>
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">Goals</p><p class="scicard__body">Weekly targets</p></div>
           </div>
           <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Title</p><p class="scicard__body">The world&rsquo;s smartest cardio system</p></div>
+            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="scicard__text"><p class="scicard__title">Sleep</p><p class="scicard__body">Recovery quality</p></div>
           </div>
         </div>
       </div>
@@ -285,10 +289,10 @@
   <section class="day">
     <header class="day__header">
       <div class="day__header-top">
-        <p class="eyebrow">LOREM IPSUM</p>
+        <p class="eyebrow">YOUR DAY</p>
         <h2 class="day__title">Your day with Morpheus</h2>
       </div>
-      <p class="day__sub">Morpheus ensures your workouts align with your recovery, maximizing every session while avoiding overtraining.</p>
+      <p class="day__sub">See how Morpheus tracks you from morning to night.</p>
       <div class="daytabs">
         <button class="daytabs__tab is-active" type="button">Start your day</button>
         <button class="daytabs__tab" type="button">Get your zones</button>
@@ -312,6 +316,15 @@
         <img src="assets/day-middle.png" alt="" />
       </div>
     </div>
+
+    <!-- Mobile-only stacked cards — node 2382:2971 -->
+    <div class="day__stack">
+      <div class="day__stack-item"><span class="day__stack-label">Start your day</span></div>
+      <div class="day__stack-item"><span class="day__stack-label">Get your zones</span></div>
+      <div class="day__stack-item"><span class="day__stack-label">Train at your level</span></div>
+      <div class="day__stack-item"><span class="day__stack-label">Hit your targets</span></div>
+      <div class="day__stack-item"><span class="day__stack-label">Optimize Recovery</span></div>
+    </div>
   </section>
 
   <!-- 12 Mission Joel (dark) -->
@@ -319,8 +332,11 @@
     <div class="mission__text">
       <div class="mission__description">
         <p class="eyebrow eyebrow--white">OUR MISSION</p>
-        <h2 class="mission__title">We turn your recovery and lifestyle data into personalized training zones and weekly goals</h2>
+        <h2 class="mission__title">We turn your recovery data into personalized training zones</h2>
       </div>
+      <!-- Mobile-only subtitle -->
+      <p class="mission__sub">Joel Jamieson is a conditioning expert with 20+ years of experience, working with Olympic medalists, Navy SEALs, UFC champions, and pro teams worldwide.</p>
+      <!-- Desktop-only two-column text -->
       <div class="mission__cols">
         <p>Joel Jamieson is a conditioning expert and online educator with more than 20 years experience who is focused on empowering people to train, live, and perform their best.<br /><br />After working with elite performers worldwide, including Olympic medalists, Navy SEALs, UFC world champions, and dozens of pro teams.</p>
         <p>Joel Jamieson is a conditioning expert and online educator with more than 20 years experience who is focused on empowering people to train, live, and perform their best.<br /><br />After working with elite performers worldwide, including Olympic medalists, Navy SEALs, UFC world champions, and dozens of pro teams.</p>
@@ -332,9 +348,11 @@
       <figcaption class="mission__card-info">
         <p class="mission__card-name">Joel Jamieson</p>
         <p class="mission__card-role">Founder of Morpheus &amp; 8WeeksOut</p>
-        <a href="#" class="btn btn--light">Meet Joel</a>
+        <a href="#" class="btn btn--light mission__card-btn">Meet Joel</a>
       </figcaption>
     </figure>
+    <!-- Mobile-only standalone button -->
+    <a href="#" class="btn btn--light mission__btn-mobile">Meet Joel</a>
   </section>
 
   <!-- 13 Reviews (horizontal scroll) -->
@@ -412,6 +430,11 @@
         </article>
       </div>
     </div>
+    <div class="reviews__dots" aria-hidden="true">
+      <span class="reviews__dot reviews__dot--active"></span>
+      <span class="reviews__dot"></span>
+      <span class="reviews__dot"></span>
+    </div>
   </section>
 
   <!-- 14 Pricing (light mode) -->
@@ -457,8 +480,8 @@
   <section class="news">
     <div class="news__text">
       <p class="news__eyebrow eyebrow eyebrow--blue">Weekly Insights</p>
-      <h2 class="news__title">Train smarter every week.</h2>
-      <p class="news__sub">Cardio tips, recovery science, and zone training strategies — straight to your inbox.</p>
+      <h2 class="news__title">Subscribe to Our Newsletter</h2>
+      <p class="news__sub">Get the latest tips on training, recovery, and performance.</p>
     </div>
     <div class="news__right">
       <form class="news__form" onsubmit="event.preventDefault()">
@@ -506,14 +529,6 @@
             <li><a href="#">Careers</a></li>
             <li><a href="#">Press</a></li>
             <li><a href="#">Support</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5>Stay in the loop</h5>
-          <ul>
-            <li><a href="#">Weekly digest</a></li>
-            <li><a href="#">Research brief</a></li>
-            <li><a href="#">Contact coaches</a></li>
           </ul>
         </div>
       </div>
