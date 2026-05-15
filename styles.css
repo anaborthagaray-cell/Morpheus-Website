@@ -270,7 +270,7 @@ ul { list-style: none; }
   inset: 0;
   background:
     linear-gradient(180deg, rgba(15,21,37,0) 0%, rgb(15,21,37) 92%),
-    linear-gradient(180deg, rgba(21,33,59,0.5) 0%, rgba(10,17,27,0) 42%);
+    linear-gradient(202.45deg, rgba(14,20,33,0) 38.24%, rgb(21,33,59) 91.21%);
 }
 .hero__scrim::after {
   content: '';
@@ -301,7 +301,7 @@ ul { list-style: none; }
   align-items: center;
   gap: 17px;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-display-3);
   line-height: var(--lh-display-3);
   letter-spacing: var(--ls-display-3);
