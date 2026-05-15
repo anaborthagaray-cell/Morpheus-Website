@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learn — Morpheus (Preview)</title>
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/learn.css" />
+</head>
+<body>
+
+<!-- ── Announcement bar ── -->
+<div class="banner" role="region" aria-label="Promo">
+  <p>Free shipping on orders over $99 — <a href="#">Shop Now →</a></p>
+</div>
+
+<!-- ── Hero (dark) ── -->
+<section class="hero">
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html" aria-label="Morpheus home">
+        <img src="assets/m7-logo-nav.svg" alt="" />
+        <span class="nav__wordmark">Morpheus</span>
+      </a>
+      <ul class="nav__menu">
+        <li><a href="#" class="nav__link">Train</a></li>
+        <li><a href="#" class="nav__link">Recover</a></li>
+        <li><a href="#" class="nav__link">Coaches</a></li>
+        <li><a href="learn-preview.html" class="nav__link is-active">Learn</a></li>
+        <li><a href="#" class="nav__link">Support</a></li>
+      </ul>
+      <a href="#" class="nav__cta">Shop Now</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="hero-inner">
+      <h1>What would you like to <em>learn</em> today?</h1>
+      <form class="search" onsubmit="return false">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-input" placeholder="Enter your search term here.." />
+      </form>
+      <div class="filters">
+        <button class="chip active">All</button>
+        <button class="chip">HRV</button>
+        <button class="chip">Training</button>
+        <button class="chip">Recovery</button>
+        <button class="chip">Sleep</button>
+        <button class="chip">Steps</button>
+        <button class="chip">Nutrition</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Featured ── -->
+<section class="light featured-wrap">
+  <div class="container">
+    <a class="featured-card" href="article-preview.html?id=story-of-recovery">
+      <div class="featured-media">
+        <span class="featured-flag">FEATURED</span>
+        <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/7e5c5337-6b81-46f5-9557-3d45e606109e)"></div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-content">
+          <div class="featured-spacer"></div>
+          <div class="featured-reading-info">
+            <div class="meta-row">
+              <span class="tag recovery">RECOVERY</span>
+              <span class="sep-dot"></span>
+              <span>April 12, 2026</span>
+              <span class="sep-dot"></span>
+              <span>7 min read</span>
+            </div>
+            <div class="featured-text">
+              <h3 class="featured-title">The story of recovery — why it matters more than your next workout</h3>
+              <p class="featured-excerpt">What recovery actually means, why it matters more than you think, and how Morpheus turns the balance between stress and recovery into a single number you can act on.</p>
+            </div>
+          </div>
+        </div>
+        <div class="author">
+          <div class="author-left">
+            <div class="author-avatar" style="background-image:url(https://www.figma.com/api/mcp/asset/2d51536a-d20d-4378-baaf-0a7bd440baa9)"></div>
+            <div class="author-info">
+              <div class="author-name">Joel Jamieson</div>
+              <div class="author-meta">Founder of Morpheus</div>
+            </div>
+          </div>
+          <span class="featured-cta">Read Article
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── Popular this week ── -->
+<section class="light">
+  <div class="container section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Popular this week</h2>
+        <p class="section-sub">Most-read across the Morpheus community.</p>
+      </div>
+      <a href="#" class="section-link">Browse all
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="grid three">
+
+      <!-- Card 1 -->
+      <a class="card" href="article-preview.html?id=hrv-guide">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/eee3eed8-320f-4b63-8274-c59d3e7fcffa)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag hrv">HRV</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">Everything you need to know about HRV</h4>
+          <p class="card-excerpt">Over the last few years, heart rate variability, or HRV, has become a widely used metric across a variety of fitness apps.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/2d51536a-d20d-4378-baaf-0a7bd440baa9)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a class="card" href="article-preview.html?id=recovery-workouts">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/c1922980-9448-4131-b5be-d1c2f1788d55)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag training">TRAINING</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">Why you need Recovery workouts</h4>
+          <p class="card-excerpt">There are many ways to try and speed up recovery these days, from massage and soft tissue work, to hydrotherapy, meditation, and more.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/2d51536a-d20d-4378-baaf-0a7bd440baa9)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a class="card" href="article-preview.html?id=sleep-recovery">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/cb5e3d10-e8d6-47b7-a32e-fc1388bf8736)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag sleep">SLEEP</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">How does sleep impact recovery?</h4>
+          <p class="card-excerpt">These days, it's no secret that sleep is important for almost every area of health, fitness, and performance.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/2d51536a-d20d-4378-baaf-0a7bd440baa9)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Recent articles ── -->
+<section class="light">
+  <div class="container section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Recent articles</h2>
+        <p class="section-sub">Everything published in the last 30 days.</p>
+      </div>
+      <a href="#" class="section-link">All archives
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="list">
+
+      <a class="list-item" href="article-preview.html?id=building-recovery-roadmap">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/cd47a51c-f5b0-46d2-a5f4-8fdbe636a0c0)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag training">TRAINING</span><span class="sep-dot"></span><span>10 min</span></div>
+          <h4 class="title">Building your recovery roadmap</h4>
+          <p class="excerpt">You've put in a lot of work to get here—well done! Let's quickly review what you've learned on this 30-day journey.</p>
+        </div>
+      </a>
+
+      <a class="list-item" href="article-preview.html?id=zone-interval-training">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/abf65e7d-2e76-48b9-a1f9-ad52e244b815)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag zbit">ZBIT</span><span class="sep-dot"></span><span>7 min</span></div>
+          <h4 class="title">Zone-based interval training</h4>
+          <p class="excerpt">One of the most important and unique features in Morpheus is also its newest: zone-based intervals.</p>
+        </div>
+      </a>
+
+      <a class="list-item" href="article-preview.html?id=weekly-training-plan">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/13f61402-bd2f-4067-8cfa-5585264b5306)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag training">TRAINING</span><span class="sep-dot"></span><span>8 min</span></div>
+          <h4 class="title">Building a weekly training plan</h4>
+          <p class="excerpt">When people start a new training program or diet, they typically make quick progress. Their strength goes up, the weight on the scale goes down.</p>
+        </div>
+      </a>
+
+      <a class="list-item" href="article-preview.html?id=morpheus-hr-zones">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/1de622b3-5c1d-4cb3-8a69-9a91fdcfe4ff)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag hr-zones">HEART RATE ZONES</span><span class="sep-dot"></span><span>6 min</span></div>
+          <h4 class="title">Morpheus heart rate zones</h4>
+          <p class="excerpt">One of the most important things Morpheus enables you to do is train in heart zones based on your recovery each day.</p>
+        </div>
+      </a>
+
+      <a class="list-item" href="article-preview.html?id=dynamic-hr-training">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/1de622b3-5c1d-4cb3-8a69-9a91fdcfe4ff)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag hr-zones">HEART RATE ZONES</span><span class="sep-dot"></span><span>6 min</span></div>
+          <h4 class="title">Morpheus heart rate zones</h4>
+          <p class="excerpt">One of the most important things Morpheus enables you to do is train in heart zones based on your recovery each day. The three Morpheus zones are based on dynamic heart rate training.</p>
+        </div>
+      </a>
+
+      <a class="list-item" href="article-preview.html?id=intro-hrv">
+        <div class="list-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/d3a0f344-23ab-433e-85a9-8fce7d925dba)"></div>
+        </div>
+        <div class="list-body">
+          <div class="meta"><span class="tag hrv">HRV</span><span class="sep-dot"></span><span>7 min</span></div>
+          <h4 class="title">Intro to Heart Rate Variability</h4>
+          <p class="excerpt">Over the last few years, heart rate variability, or HRV, has become a widely used metric across a variety of fitness apps.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-brand-section">
+        <img src="assets/m7-logo-footer.svg" alt="" class="footer-logo" />
+        <div class="footer-brand-text">
+          <p class="footer-brand-name">Morpheus Lab.</p>
+          <p class="footer-brand-tagline">Train smarter, recover faster.</p>
+          <p class="footer-brand-desc">Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
+          <div class="footer-apps">
+            <a href="#"><img src="https://www.figma.com/api/mcp/asset/88764bfb-545d-4739-8b14-ef69e4da4900" alt="Get it on Google Play" /></a>
+            <a href="#"><img src="https://www.figma.com/api/mcp/asset/b15612dd-b089-4e54-83f1-44d3065c837d" alt="Download on the App Store" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="footer-col-title">Product</p>
+          <ul>
+            <li><a href="#">How to Train</a></li>
+            <li><a href="#">Coaches</a></li>
+            <li><a href="learn-preview.html">Learn More</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Lorem Ipsum</p>
+          <ul>
+            <li><a href="#">Challenges</a></li>
+            <li><a href="#">Morpheus Cardio Club</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Mobile-only app badges (shown below nav on mobile) -->
+      <div class="footer-apps footer-apps-mobile">
+        <a href="#"><img src="https://www.figma.com/api/mcp/asset/4f366ff2-a21b-4549-8b2e-f5eb086316db" alt="Get it on Google Play" /></a>
+        <a href="#"><img src="https://www.figma.com/api/mcp/asset/1e0cfa5d-8c1a-4959-8ada-ce9aa4a0395f" alt="Download on the App Store" /></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Morpheus Lab. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg><span class="footer-social-label">Instagram</span></a>
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg><span class="footer-social-label">Facebook</span></a>
+          <a href="#" aria-label="Twitter"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg><span class="footer-social-label">Twitter</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="chat-fab" aria-label="Help &amp; chat">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+</body>
+</html>

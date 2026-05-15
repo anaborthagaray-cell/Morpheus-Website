@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/learn", "destination": "/learn.html" },
+    { "source": "/learn", "destination": "/learn-preview.html" },
     { "source": "/article", "destination": "/Article.html" }
   ]
 }

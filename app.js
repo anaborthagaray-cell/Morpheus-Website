@@ -1,3 +1,42 @@
+// ── HR Zones Lottie animation ─────────────────────────────────────────────
+function initHRZonesLottie() {
+  var container = document.getElementById("hrzonesLottie");
+  if (!container || typeof lottie === "undefined") return;
+  if (container._lottieInit) return;
+  container._lottieInit = true;
+  var anim = lottie.loadAnimation({
+    container: container,
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/hrzones-lottie.json"
+  });
+  // Crop SVG viewBox to the card background rect bounds (canvas: 400×200)
+  // Card rect center ~[200, 91], size [346×100], roundness 10 — crop with 4px padding
+  anim.addEventListener("DOMLoaded", function () {
+    var svg = container.querySelector("svg");
+    if (!svg) return;
+    // Card rect: x=26.5–372.8, y=41.2–141.2. Add 14px padding on all sides for rounded corners.
+    svg.setAttribute("viewBox", "12 27 376 128");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.style.cssText = "width:100%;height:100%;display:block;";
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHRZonesLottie);
+} else {
+  initHRZonesLottie();
+}
+
+// ── Hero video: pause for reduced-motion preference ──────────────────────
+(function () {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var video = document.querySelector(".hero__video");
+  if (!video) return;
+  video.pause();
+  video.removeAttribute("autoplay");
+})();
+
 /* ==========================================================================
    Morpheus — interactions
    - Hero: cycling headline text
@@ -34,7 +73,7 @@
   });
 })();
 
-// ── Hero cycling text ─────────────────────────────────────────────────────
+// ── Hero cycling text: "Perform Better." ↔ "Recover Faster." ────────────
 (function () {
   const el = document.getElementById("hero-cycle");
   if (!el) return;
@@ -42,8 +81,6 @@
 
   const phrases = ["Perform Better.", "Recover Faster."];
   let i = 0;
-
-  el.style.transition = "opacity 500ms ease-in-out";
 
   setInterval(function () {
     el.style.opacity = "0";
@@ -107,3 +144,21 @@
   updateBar();
   window.requestAnimationFrame(updateBar);
 })();
+
+// ── Scroll reveal — fade-up for section titles and subtitles ─────────────
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(function (el) { observer.observe(el); });
+})();
+
+// Intensity scale-in removed — section now uses product video instead of static image.

@@ -40,58 +40,59 @@ const Nav = ({ active = "Learn" }) => (
 
 const Footer = () => (
   <footer className="footer">
-    <div className="container">
-      <div className="footer-grid">
-        <div className="footer-brand">
-          <span className="wordmark">Morpheus</span>
-          <p>Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
-          <div className="store-row">
-            <a className="store-btn" href="#">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5a1 1 0 0 1 1.5-.87l13.5 7.5a1 1 0 0 1 0 1.74L4.5 21.37A1 1 0 0 1 3 20.5z"/></svg>
-              <span><span className="small">GET IT ON</span><span className="big">Google Play</span></span>
-            </a>
-            <a className="store-btn" href="#">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-              <span><span className="small">Download on the</span><span className="big">App Store</span></span>
-            </a>
+    <div className="footer-content">
+      <div className="footer-top">
+        <div className="footer-brand-section">
+          <img src="assets/m7-logo-footer.svg" alt="" className="footer-logo" />
+          <div className="footer-brand-text">
+            <p className="footer-brand-name">Morpheus Lab.</p>
+            <p className="footer-brand-tagline">Train smarter, recover faster.</p>
+            <p className="footer-brand-desc">Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
+            <div className="footer-apps">
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/88764bfb-545d-4739-8b14-ef69e4da4900" alt="Get it on Google Play" /></a>
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/b15612dd-b089-4e54-83f1-44d3065c837d" alt="Download on the App Store" /></a>
+            </div>
           </div>
         </div>
-        <div>
-          <h5>Product</h5>
-          <ul>
-            <li><a href="#">How to Train</a></li>
-            <li><a href="#">Coaches</a></li>
-            <li><a href="learn.html">Learn</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
+        <div className="footer-apps footer-apps-mobile">
+          <a href="#"><img src="https://www.figma.com/api/mcp/asset/4f366ff2-a21b-4549-8b2e-f5eb086316db" alt="Get it on Google Play" /></a>
+          <a href="#"><img src="https://www.figma.com/api/mcp/asset/1e0cfa5d-8c1a-4959-8ada-ce9aa4a0395f" alt="Download on the App Store" /></a>
         </div>
-        <div>
-          <h5>Company</h5>
-          <ul>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Support</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5>Stay in the loop</h5>
-          <ul>
-            <li><a href="#">Weekly digest</a></li>
-            <li><a href="#">Research brief</a></li>
-            <li><a href="#">Contact coaches</a></li>
-          </ul>
+        <div className="footer-links">
+          <div className="footer-col">
+            <p className="footer-col-title">Product</p>
+            <ul>
+              <li><a href="#">How to Train</a></li>
+              <li><a href="#">Coaches</a></li>
+              <li><a href="learn.html">Learn More</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <p className="footer-col-title">Company</p>
+            <ul>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <p className="footer-col-title">Lorem Ipsum</p>
+            <ul>
+              <li><a href="#">Challenges</a></li>
+              <li><a href="#">Morpheus Cardio Club</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© 2026 Morpheus Lab. All rights reserved.</span>
-        <div className="right">
+        <span className="footer-copy">© 2026 Morpheus Lab. All rights reserved.</span>
+        <div className="footer-legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <div className="social">
-            <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg></a>
-            <a href="#" aria-label="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg></a>
+          <div className="footer-social">
+            <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg><span className="footer-social-label">Instagram</span></a>
+            <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg><span className="footer-social-label">Facebook</span></a>
+            <a href="#" aria-label="Twitter"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style={{display:"none"}}><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg><span className="footer-social-label">Twitter</span></a>
           </div>
         </div>
       </div>
@@ -162,11 +163,16 @@ const Featured = ({ article }) => (
             </div>
           </div>
           <div className="author">
-            <div className="author-avatar" style={{ backgroundImage: `url(${article.avatar})` }}></div>
-            <div className="author-info">
-              <div className="author-name">{article.author}</div>
-              <div className="author-meta">{article.authorHandle}</div>
+            <div className="author-left">
+              <div className="author-avatar" style={{ backgroundImage: `url(${article.avatar})` }}></div>
+              <div className="author-info">
+                <div className="author-name">{article.author}</div>
+                <div className="author-meta">{article.authorHandle}</div>
+              </div>
             </div>
+            <span className="featured-cta">Read Article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
           </div>
         </div>
       </a>
@@ -207,8 +213,8 @@ const Popular = ({ articles }) => (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
-    <div className="grid">
-      {articles.slice(0, 4).map((a) => <Card key={a.id} article={a} />)}
+    <div className="grid three">
+      {articles.slice(0, 3).map((a) => <Card key={a.id} article={a} />)}
     </div>
   </div></section>
 );

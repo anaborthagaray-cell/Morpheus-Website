@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Morpheus — Train Smarter. Perform Better.</title>
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=41" />
+  <link rel="stylesheet" href="styles.css?v=42" />
 </head>
 <body>
 
@@ -50,7 +50,7 @@
       <a class="m-menu__link" href="#">Train</a>
       <a class="m-menu__link" href="#">Recover</a>
       <a class="m-menu__link" href="#">Coaches</a>
-      <a class="m-menu__link" href="learn.html">Learn</a>
+      <a class="m-menu__link" href="learn-preview.html">Learn</a>
       <a class="m-menu__link" href="#">Support</a>
     </nav>
     <div class="m-menu__secondary">
@@ -78,28 +78,36 @@
           <li><a class="nav__link" href="#">Train</a></li>
           <li><a class="nav__link" href="#">Recover</a></li>
           <li><a class="nav__link" href="#">Coaches</a></li>
-          <li><a class="nav__link" href="learn.html">Learn</a></li>
+          <li><a class="nav__link" href="learn-preview.html">Learn</a></li>
           <li><a class="nav__link" href="#">Support</a></li>
         </ul>
         <a class="nav__cta" href="#">Shop Now</a>
       </div>
     </nav>
 
-    <div class="hero__bg"></div>
+    <video class="hero__video" autoplay muted loop playsinline
+           poster="assets/hero-woman.png" aria-hidden="true">
+      <source src="assets/hero-video.mp4" type="video/mp4">
+      <source src="assets/hero-video.webm" type="video/webm">
+    </video>
     <div class="hero__scrim"></div>
     <div class="hero__content">
       <h1 class="hero__title">
         <span class="hero__title-a">Train Smarter.</span>
         <span class="hero__title-b" id="hero-cycle">Perform Better.</span>
       </h1>
-      <p class="hero__subtitle">
-        With 200+ hours per charge, Morpheus covers every workout and recovery—less recharging, more time training and progress, day after day. With 200+ hours.
-      </p>
+      <p class="hero__subtitle">Morpheus is the world's smartest cardio system. Check it out.</p>
+      <a class="hero__btn" href="#smartest">
+        Explore More
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 3.75v10.5M3.75 9l5.25 5.25L14.25 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </section>
 
   <!-- 04 Smartest -->
-  <section class="smartest">
+  <section class="smartest" id="smartest">
     <!-- Mobile wrapper: isolates 100svh block from infogrid below -->
     <div class="smartest__frame">
       <div class="smartest__phone-img" aria-hidden="true"></div>
@@ -117,7 +125,7 @@
               <span class="smartest__title-pill-text">smartest</span>
             </span>
           </h2>
-          <p class="smartest__desc">
+          <p class="smartest__desc reveal" data-delay="1">
             With 200+ hours per charge, Morpheus covers every workout and recovery—less recharging, more time training.
           </p>
         </div>
@@ -126,25 +134,25 @@
 
     <!-- 05 Info grid -->
     <ul class="infogrid">
-      <li class="infogrid__col">
+      <li class="infogrid__col reveal">
         <p class="infogrid__num">01.</p>
         <h3 class="infogrid__heading">Personalized HR training</h3>
         <p class="infogrid__body">Use the Morpheus zone-based interval training and weekly training targets to make sure everyone you coach is getting exactly what they need.</p>
         <p class="infogrid__subtitle">Zone-based training tailored to you.</p>
       </li>
-      <li class="infogrid__col">
+      <li class="infogrid__col reveal" data-delay="1">
         <p class="infogrid__num">02.</p>
         <h3 class="infogrid__heading">Weekly <br />training goals</h3>
         <p class="infogrid__body">View key lifestyle and training insights to identify what&rsquo;s limiting your clients&rsquo; recovery—and help them break past health &amp; performance plateaus.</p>
         <p class="infogrid__subtitle">Track what&rsquo;s limiting your recovery.</p>
       </li>
-      <li class="infogrid__col">
+      <li class="infogrid__col reveal" data-delay="2">
         <p class="infogrid__num">03.</p>
         <h3 class="infogrid__heading">ECG heart <br />rate monitor</h3>
         <p class="infogrid__body">Morpheus tracks recovery through HRV and other metrics, helping you balance pushing and resting for optimal performance.</p>
         <p class="infogrid__subtitle">Medical-grade accuracy for workouts.</p>
       </li>
-      <li class="infogrid__col">
+      <li class="infogrid__col reveal" data-delay="3">
         <p class="infogrid__num">04.</p>
         <h3 class="infogrid__heading">Accurate HRV <br />&amp; recovery</h3>
         <p class="infogrid__body">Morpheus tracks recovery through HRV and other metrics, helping you balance pushing and resting for optimal performance.</p>
@@ -162,23 +170,26 @@
       <img src="assets/04%20HR%20Zones.png" alt="HR Zones training" class="hrzones__hero-img" />
       <div class="hrzones__scrim"></div>
       <div class="hrzones__text">
-        <h2 class="hrzones__title">Train at the right intensity<br />with personalized HR zones</h2>
-        <a class="btn btn--light" href="#">How to Train</a>
+        <h2 class="hrzones__title reveal">Train at the right intensity<br />with personalized HR zones</h2>
+        <a class="btn btn--light reveal" data-delay="1" href="#">How to Train</a>
       </div>
       <div class="hrzones__phone">
         <img src="assets/hrzones-iphone.png" alt="" class="hrzones__phone-frame" />
         <img src="assets/hrzones-screen.png" alt="" class="hrzones__phone-screen" />
       </div>
+      <div class="hrzones__lottie" id="hrzonesLottie" aria-hidden="true"></div>
     </div>
   </section>
 
   <!-- 07 Right Intensity -->
   <section class="intensity">
     <div class="intensity__card">
-      <img src="assets/05%20Right%20intensity.png" alt="Train at the right intensity" class="intensity__hero-img" />
+      <video class="intensity__product-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="assets/intensity-product.mp4" type="video/mp4">
+      </video>
       <div class="intensity__text">
-        <h2 class="intensity__title">Train at the right intensity</h2>
-        <p class="intensity__desc">Morpheus ensures your workouts align with your recovery, maximizing every session while avoiding overtraining.</p>
+        <h2 class="intensity__title reveal">Train at the right intensity</h2>
+        <p class="intensity__desc reveal" data-delay="1">Morpheus ensures your workouts align with your recovery, maximizing every session while avoiding overtraining.</p>
       </div>
     </div>
   </section>
@@ -209,6 +220,7 @@
   <section class="carousel">
     <div class="carousel__viewport" id="carouselViewport">
       <div class="carousel__track">
+        <div class="carousel__slide"><img src="assets/carousel-device-crop.png" alt="" /></div>
         <div class="carousel__slide"><img src="assets/photo1.png" alt="" /></div>
         <div class="carousel__slide"><img src="assets/photo2.png" alt="" /></div>
         <div class="carousel__slide"><img src="assets/photo3.png" alt="" /></div>
@@ -235,11 +247,11 @@
   <section class="science">
     <header class="science__header">
       <div class="science__header-top">
-        <div class="science__header-title-group">
+        <div class="science__header-title-group reveal">
           <p class="eyebrow">SCIENCE</p>
           <h2 class="science__title">The science behind better cardio</h2>
         </div>
-        <p class="science__sub">Understand the physiology behind your training and why Morpheus works.</p>
+        <p class="science__sub reveal" data-delay="1">Understand the physiology behind your training and why Morpheus works.</p>
       </div>
       <div class="tabs">
         <button class="tabs__tab is-active" type="button">For Longevity</button>
@@ -288,11 +300,11 @@
   <!-- 11 Your Day with Morpheus (light mode) -->
   <section class="day">
     <header class="day__header">
-      <div class="day__header-top">
+      <div class="day__header-top reveal">
         <p class="eyebrow">YOUR DAY</p>
         <h2 class="day__title">Your day with Morpheus</h2>
       </div>
-      <p class="day__sub">See how Morpheus tracks you from morning to night.</p>
+      <p class="day__sub reveal" data-delay="1">See how Morpheus tracks you from morning to night.</p>
       <div class="daytabs">
         <button class="daytabs__tab is-active" type="button">Start your day</button>
         <button class="daytabs__tab" type="button">Get your zones</button>
@@ -313,7 +325,10 @@
         </div>
       </div>
       <div class="day__col day__col--right">
-        <img src="assets/day-middle.png" alt="" />
+        <div class="day__testimonial">
+          <p class="day__testimonial-quote">Morpheus has become<br>my daily compass,<br>keeping me on the<br>right track.<br>Morpheus has become<br>my daily compass,<br>keeping me on the<br>right track.<br>Morpheus has become.</p>
+          <p class="day__testimonial-author">Lorem Ipsum</p>
+        </div>
       </div>
     </div>
 
@@ -330,12 +345,12 @@
   <!-- 12 Mission Joel (dark) -->
   <section class="mission">
     <div class="mission__text">
-      <div class="mission__description">
+      <div class="mission__description reveal">
         <p class="eyebrow eyebrow--white">OUR MISSION</p>
         <h2 class="mission__title">We turn your recovery data into personalized training zones</h2>
       </div>
       <!-- Mobile-only subtitle -->
-      <p class="mission__sub">Joel Jamieson is a conditioning expert with 20+ years of experience, working with Olympic medalists, Navy SEALs, UFC champions, and pro teams worldwide.</p>
+      <p class="mission__sub reveal" data-delay="1">Joel Jamieson is a conditioning expert with 20+ years of experience, working with Olympic medalists, Navy SEALs, UFC champions, and pro teams worldwide.</p>
       <!-- Desktop-only two-column text -->
       <div class="mission__cols">
         <p>Joel Jamieson is a conditioning expert and online educator with more than 20 years experience who is focused on empowering people to train, live, and perform their best.<br /><br />After working with elite performers worldwide, including Olympic medalists, Navy SEALs, UFC world champions, and dozens of pro teams.</p>
@@ -358,8 +373,8 @@
   <!-- 13 Reviews (horizontal scroll) -->
   <section class="reviews">
     <header class="reviews__header">
-      <p class="eyebrow eyebrow--white">RATING AND REVIEWS</p>
-      <h2 class="reviews__title">What people are saying</h2>
+      <p class="eyebrow eyebrow--white reveal">RATING AND REVIEWS</p>
+      <h2 class="reviews__title reveal" data-delay="1">What people are saying</h2>
     </header>
     <div class="reviews__scroll">
       <div class="reviews__row">
@@ -440,26 +455,34 @@
   <!-- 14 Pricing (light mode) -->
   <section class="pricing">
     <header class="pricing__header">
-      <h2 class="pricing__title">Start working out today</h2>
-      <p class="pricing__sub">Unlock features in the app by getting your M7, and gain access to everything you need to boost your cardio and accelerate recovery.</p>
+      <div class="pricing__header-top">
+        <p class="eyebrow">PRICING</p>
+        <h2 class="pricing__title reveal">Start working out today</h2>
+      </div>
+      <p class="pricing__sub reveal" data-delay="1">Unlock features in the app by getting your M7, and gain access to everything you need to boost your cardio and accelerate recovery.</p>
     </header>
     <div class="pricing__card">
       <img src="assets/pricing-product.png" alt="Morpheus M7 product" class="pricing__image" />
       <div class="pricing__offer">
-        <p class="pricing__special">Special Offer</p>
-        <div class="pricing__price-wrap">
-          <div class="pricing__divider"></div>
-          <p class="pricing__price">
-            <span class="pricing__price-old">$125</span>
-            <span class="pricing__price-dollar">$</span><span class="pricing__price-main">97</span>
-          </p>
-          <div class="pricing__divider"></div>
+        <div class="pricing__price-block">
+          <p class="pricing__special">Special Offer</p>
+          <div class="pricing__price-content">
+            <div class="pricing__price-center">
+              <div class="pricing__hero-price">
+                <span class="pricing__price-dollar">$</span><span class="pricing__price-main">97</span>
+              </div>
+              <div class="pricing__was-row">
+                <span class="pricing__price-before">before <span class="pricing__price-old">$125</span></span>
+                <span class="pricing__save-badge">Save $28</span>
+              </div>
+            </div>
+            <ul class="pricing__features">
+              <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Includes the M7 HRM for training</li>
+              <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Personalized heart rate zone training</li>
+              <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day money-back guarantee</li>
+            </ul>
+          </div>
         </div>
-        <ul class="pricing__features">
-          <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Includes the M7 HRM for training and HRV</li>
-          <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Personalized heart rate zone training</li>
-          <li><svg viewBox="0 0 10 8" width="12" height="12" fill="none" aria-hidden="true"><path d="M1 4.2L4 7l5-6" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day money-back guarantee</li>
-        </ul>
         <a class="btn btn--primary" href="#">Get Morpheus M7</a>
       </div>
     </div>
@@ -467,7 +490,7 @@
 
   <!-- 15 FAQs -->
   <section class="faqs">
-    <h2 class="faqs__title">Questions?</h2>
+    <h2 class="faqs__title reveal">Questions?</h2>
     <div class="faqs__list">
       <details class="faq"><summary><span>Accordion Header</span><svg class="faq__chev" viewBox="0 0 14 8" width="14" height="8" fill="none" aria-hidden="true"><path d="M1 1l6 6 6-6" stroke="#0C1018" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="faq__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</div></details>
       <details class="faq"><summary><span>Accordion Header</span><svg class="faq__chev" viewBox="0 0 14 8" width="14" height="8" fill="none" aria-hidden="true"><path d="M1 1l6 6 6-6" stroke="#0C1018" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="faq__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</div></details>
@@ -479,74 +502,80 @@
   <!-- 16 Newsletter -->
   <section class="news">
     <div class="news__text">
-      <p class="news__eyebrow eyebrow eyebrow--blue">Weekly Insights</p>
-      <h2 class="news__title">Subscribe to Our Newsletter</h2>
-      <p class="news__sub">Get the latest tips on training, recovery, and performance.</p>
+      <h2 class="news__title">Morpheus Cardio Club<br>Newsletter Suscription</h2>
+      <p class="news__sub">A free daily note from Joel Jamieson — one science‑backed insight on training, recovery, and the cardio system you actually own.</p>
     </div>
     <div class="news__right">
       <form class="news__form" onsubmit="event.preventDefault()">
-        <input type="email" placeholder="Enter your email address" aria-label="Email address" />
-        <button class="btn btn--primary" type="submit">Subscribe</button>
+        <input type="email" placeholder="Enter email address" aria-label="Email address" />
+        <button class="news__btn" type="submit">Join the club</button>
       </form>
-      <p class="news__privacy">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
   <!-- 17 Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-logo-col">
-          <img src="assets/m7-logo-footer.svg" alt="Morpheus" class="footer-brand__logo" />
-        </div>
-        <div class="footer-brand">
-          <span class="wordmark">Morpheus</span>
-          <p>Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
-          <div class="store-row">
-            <a class="store-btn" href="#">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5a1 1 0 0 1 1.5-.87l13.5 7.5a1 1 0 0 1 0 1.74L4.5 21.37A1 1 0 0 1 3 20.5z"/></svg>
-              <span><span class="small">GET IT ON</span><span class="big">Google Play</span></span>
-            </a>
-            <a class="store-btn" href="#">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-              <span><span class="small">Download on the</span><span class="big">App Store</span></span>
-            </a>
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-brand-section">
+          <img src="assets/m7-logo-footer.svg" alt="" class="footer-logo" />
+          <div class="footer-brand-text">
+            <p class="footer-brand-name">Morpheus Lab.</p>
+            <p class="footer-brand-tagline">Train smarter, recover faster.</p>
+            <p class="footer-brand-desc">Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
+            <div class="footer-apps">
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/88764bfb-545d-4739-8b14-ef69e4da4900" alt="Get it on Google Play" /></a>
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/b15612dd-b089-4e54-83f1-44d3065c837d" alt="Download on the App Store" /></a>
+            </div>
           </div>
         </div>
-        <div>
-          <h5>Product</h5>
-          <ul>
-            <li><a href="#">How to Train</a></li>
-            <li><a href="#">Coaches</a></li>
-            <li><a href="learn.html">Learn</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
+        <div class="footer-links">
+          <div class="footer-col">
+            <p class="footer-col-title">Product</p>
+            <ul>
+              <li><a href="#">How to Train</a></li>
+              <li><a href="#">Coaches</a></li>
+              <li><a href="learn-preview.html">Learn More</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Company</p>
+            <ul>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Lorem Ipsum</p>
+            <ul>
+              <li><a href="#">Challenges</a></li>
+              <li><a href="#">Morpheus Cardio Club</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h5>Company</h5>
-          <ul>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Support</a></li>
-          </ul>
+        <!-- Mobile-only app badges (shown below nav) -->
+        <div class="footer-apps footer-apps-mobile">
+          <a href="#"><img src="https://www.figma.com/api/mcp/asset/4f366ff2-a21b-4549-8b2e-f5eb086316db" alt="Get it on Google Play" /></a>
+          <a href="#"><img src="https://www.figma.com/api/mcp/asset/1e0cfa5d-8c1a-4959-8ada-ce9aa4a0395f" alt="Download on the App Store" /></a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Morpheus Lab. All rights reserved.</span>
-        <div class="right">
+        <span class="footer-copy">© 2026 Morpheus Lab. All rights reserved.</span>
+        <div class="footer-legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <div class="social">
-            <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg></a>
-            <a href="#" aria-label="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg></a>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg><span class="footer-social-label">Instagram</span></a>
+            <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg><span class="footer-social-label">Facebook</span></a>
+            <a href="#" aria-label="Twitter"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg><span class="footer-social-label">Twitter</span></a>
           </div>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="app.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <script src="app.js?v=2" defer></script>
 </body>
 </html>
