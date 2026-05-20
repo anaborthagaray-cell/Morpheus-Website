@@ -1503,7 +1503,7 @@ ul { list-style: none; }
   object-fit: contain;
   object-position: left center;
   display: block;
-  padding: 40px 0 40px 40px;
+  padding: 75px 0 75px 69px;
 }
 .pricing__special {
   font-family: "Inter", sans-serif;
