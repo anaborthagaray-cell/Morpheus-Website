@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=53" />
+  <link rel="stylesheet" href="styles.css?v=54" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -37,6 +37,15 @@
         --grid-pad: max(80px, calc(50vw - 720px));
       }
 
+      /* ── Hero: pull 70px from each browser edge ─────────────────────── */
+      /* width:auto lets the block respect the margin without overflowing  */
+      .hero {
+        width: auto;
+        margin-left:  70px;
+        margin-right: 70px;
+        border-radius: 20px;
+      }
+
       /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
       .smartest::before {
         max-width: none;
@@ -59,48 +68,46 @@
         padding-top:   100px;
       }
 
-      /* ── HR Zones: full-width background, content in 1440px column ─── */
-      /* Background image: edge-to-edge (no side padding, no max-width)  */
+      /* ── HR Zones: 70px inset from browser edges, 20px radius ─────── */
+      /* Background image fills the card; content anchored 70px from      */
+      /* each card edge — mirrors the hero's premium-margin feel.         */
       .hrzones {
-        padding-left:  0;
-        padding-right: 0;
+        padding: 14px 70px 0;
       }
       .hrzones__card {
         max-width: none;
-        border-radius: 0;
-        margin: 0 0 14px;
+        border-radius: 20px;
+        margin: 0 0 24px;
       }
-      /* Anchor text/phone/lottie to the 1440px content column           */
       .hrzones__text {
-        left: var(--grid-pad);
+        left: 70px;
       }
       .hrzones__phone {
-        right: var(--grid-pad);
+        right: 70px;
       }
       /* Lottie sits 26px closer to the right edge than the phone        */
       .hrzones__lottie {
-        right: calc(var(--grid-pad) - 26px);
+        right: 44px;
       }
 
-      /* ── Intensity: full-width, title/subtitle in 1440px column ────── */
-      /* Paired with HR Zones — same full-bleed treatment                */
+      /* ── Intensity: same 70px inset + 20px radius, paired with Zones ─ */
+      /* 24px top gap creates clear separation from HR Zones above.       */
       .intensity {
-        padding-left:  0;
-        padding-right: 0;
+        padding: 24px 70px 14px;
       }
       .intensity__card {
         max-width: none;
-        border-radius: 0;
+        border-radius: 20px;
         margin: 0;
       }
-      /* Video covers the full-width card */
+      /* Video covers the full inset card */
       .intensity__product-video {
         object-fit: cover;
       }
-      /* Text overlay respects 1440px column */
+      /* Text overlay uses 70px side padding — aligned with card edges    */
       .intensity__text {
-        padding-left:  var(--grid-pad);
-        padding-right: var(--grid-pad);
+        padding-left:  70px;
+        padding-right: 70px;
         max-width: none;
       }
 
@@ -132,6 +139,11 @@
       /* ── Your Day: wide 1440px column — aligned with Science ────────── */
       .day {
         padding: 52px var(--grid-pad) 140px;
+      }
+      /* Collage grid: left + center scale, right (testimonial) stays at  */
+      /* its designed 273px width — prevents the text box from stretching */
+      .day__collage {
+        grid-template-columns: 467px 1fr 273px;
       }
 
       /* ── Mission Joel: wide 1440px column — aligned with Science + Day */
