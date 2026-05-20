@@ -2,6 +2,9 @@
    Morpheus — Desktop (1440 base). Tokens from Figma variable definitions.
    ========================================================================== */
 
+/* @import must be first — loads Roboto (UI) and Inter (pricing/numbers) */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300&display=swap");
+
 /* ---------- Design tokens ---------- */
 :root {
   /* Colors */
@@ -67,8 +70,6 @@
   --font-display: "PP Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-ui: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@600&family=Inter:wght@300;400;500;600&display=swap");
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2896,4 +2897,61 @@ body.m-menu-open { overflow: hidden; }
   .footer-social { opacity: 1; gap: 16px; }
   .footer-social a svg { display: none; }
   .footer-social-label { display: inline; font-size: 13px; color: var(--on-surface-muted, #b3b3b3); }
+}
+
+/* ==========================================================================
+   LARGE SCREEN FIXES — iMac / wide desktop (≥1600px)
+   Targets only screens wider than the 14-inch MacBook Pro (~1512px CSS width).
+   All rules here are additive and do not affect ≤1512px viewports.
+   ========================================================================== */
+@media (min-width: 1600px) {
+
+  /* ── Fix 1: Full-width section backgrounds ──
+     On screens wider than ~1920px the smartest-bg texture was capped at 1920px,
+     creating a visible seam against the raw section color. Remove the cap and
+     switch to `cover` so the image always fills edge-to-edge. */
+  .smartest::before {
+    max-width: none;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  /* HR Zones and Intensity cards had max-width: 1892px, creating floating-card
+     gaps on either side of the rounded card on wide viewports. Let them fill
+     the section (section already has 14px side padding built in). */
+  .hrzones__card {
+    max-width: none;
+  }
+
+  .intensity__card {
+    max-width: none;
+  }
+
+  /* ── Fix 2: Phone image overlapping infogrid bullets ──
+     The phone-img div was 1288px tall but smartest__top min-height is only 818px,
+     so the image extended 470px into the infogrid. Limiting the div to 800px
+     ensures the image fades out (via the existing mask) well before the
+     infogrid text starts at ~818px. */
+  .smartest__phone-img {
+    height: 800px;
+  }
+
+  /* ── Fix 3: Intensity video — fill the now-wider card properly ──
+     With max-width removed the card can be 2500px+ wide. `object-fit: contain`
+     would letterbox the video, leaving large empty bars. Switch to `cover` so
+     the video fills the full card. The existing dark gradient overlay (::after)
+     keeps the title/subtitle legible regardless of the crop. */
+  .intensity__product-video {
+    object-fit: cover;
+  }
+
+  /* ── Fix 4: Reviews section — reduce excessive left margin ──
+     `calc(50vw - 680px)` yields 600px padding at 2560px, pushing the first
+     review card far from the left edge. Cap the side padding at 200px so the
+     cards start at a reasonable distance from the edge on any wide screen. */
+  .reviews__scroll {
+    padding-left:  max(60px, min(200px, calc(50vw - 680px)));
+    padding-right: max(60px, min(200px, calc(50vw - 680px)));
+    scroll-padding-left: max(60px, min(200px, calc(50vw - 680px)));
+  }
 }
