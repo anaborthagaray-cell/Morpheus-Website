@@ -791,7 +791,8 @@ ul { list-style: none; }
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  scroll-padding-left: 52px;
+  /* Grid-aligned: matches mission/pricing/reviews formula */
+  scroll-padding-left: max(40px, calc(50vw - 680px));
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -800,7 +801,8 @@ ul { list-style: none; }
 .carousel__track {
   display: flex;
   gap: 24px;
-  padding: 0 52px;
+  /* Grid-aligned: matches mission/pricing/reviews formula */
+  padding: 0 max(40px, calc(50vw - 680px));
   width: max-content;
 }
 .carousel__slide {
@@ -817,7 +819,8 @@ ul { list-style: none; }
   display: block;
 }
 .carousel__controls {
-  margin: 32px 52px 0;
+  /* Grid-aligned: matches mission/pricing/reviews formula */
+  margin: 32px max(40px, calc(50vw - 680px)) 0;
   display: flex;
   align-items: center;
   gap: 24px;
