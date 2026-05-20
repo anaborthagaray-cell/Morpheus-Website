@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=54" />
+  <link rel="stylesheet" href="styles.css?v=55" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -37,14 +37,7 @@
         --grid-pad: max(80px, calc(50vw - 720px));
       }
 
-      /* ── Hero: pull 70px from each browser edge ─────────────────────── */
-      /* width:auto lets the block respect the margin without overflowing  */
-      .hero {
-        width: auto;
-        margin-left:  70px;
-        margin-right: 70px;
-        border-radius: 20px;
-      }
+      /* ── Hero: full-width (no side margins at iMac) ────────────────── */
 
       /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
       .smartest::before {
@@ -65,7 +58,7 @@
       .infogrid {
         padding-left:  var(--grid-pad);
         padding-right: var(--grid-pad);
-        padding-top:   100px;
+        padding-top:   160px;
       }
 
       /* ── HR Zones: 70px inset from browser edges, 20px radius ─────── */
@@ -82,12 +75,18 @@
       .hrzones__text {
         left: 70px;
       }
+      /* Phone: +20% size, vertically centered in 960px card             */
+      /* Base: 268×547px top:72px → ×1.2 → 322×656px, top:(960-656)/2  */
       .hrzones__phone {
-        right: 70px;
+        right:  70px;
+        width:  322px;
+        height: 656px;
+        top:    152px;
       }
-      /* Lottie sits 26px closer to the right edge than the phone        */
+      /* Lottie: repositioned to sit below the taller phone              */
       .hrzones__lottie {
         right: 44px;
+        top:   720px;
       }
 
       /* ── Intensity: same 70px inset + 20px radius, paired with Zones ─ */
@@ -99,6 +98,7 @@
         max-width: none;
         border-radius: 20px;
         margin: 0;
+        border: 1px solid #2E395E;
       }
       /* Video covers the full inset card */
       .intensity__product-video {
@@ -135,15 +135,24 @@
       .science {
         padding: 140px var(--grid-pad) 52px;
       }
+      /* Science card: match the 1080px tab row width (5 × 216px)        */
+      .science__card {
+        max-width: 1080px;
+        margin-left:  auto;
+        margin-right: auto;
+      }
 
       /* ── Your Day: wide 1440px column — aligned with Science ────────── */
       .day {
         padding: 52px var(--grid-pad) 140px;
       }
-      /* Collage grid: left + center scale, right (testimonial) stays at  */
-      /* its designed 273px width — prevents the text box from stretching */
+      /* Collage: constrained to 1080px matching tabs + science card      */
+      /* Columns restore original proportions (left 467 · center 273 · right auto) */
       .day__collage {
-        grid-template-columns: 467px 1fr 273px;
+        max-width: 1080px;
+        margin-left:  auto;
+        margin-right: auto;
+        grid-template-columns: 467px 273px 1fr;
       }
 
       /* ── Mission Joel: wide 1440px column — aligned with Science + Day */
@@ -151,6 +160,23 @@
         padding: 140px var(--grid-pad);
         grid-template-columns: 1fr 520px;
         gap: 80px;
+      }
+      /* Typography scale-up for large screens */
+      .mission__title {
+        font-size: 50px;
+        line-height: 55px;
+      }
+      .mission__cols p {
+        font-size: 20px;
+        line-height: 28px;
+      }
+      .mission__card-name {
+        font-size: 46px;
+        line-height: 50px;
+      }
+      .mission__card-role {
+        font-size: 28px;
+        line-height: 36px;
       }
 
       /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
