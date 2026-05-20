@@ -2,8 +2,8 @@
    Morpheus — Desktop (1440 base). Tokens from Figma variable definitions.
    ========================================================================== */
 
-/* @import must be first — loads Roboto (UI) and Inter (pricing/numbers) */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300&display=swap");
+/* @import — Roboto (UI buttons). Inter 28pt is locally hosted via tokens.css @font-face. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@600&display=swap");
 
 /* ---------- Design tokens ---------- */
 :root {
@@ -1506,7 +1506,6 @@ ul { list-style: none; }
   font-family: "Inter", sans-serif;
   font-size: var(--fs-heading-xl);
   font-weight: 400;
-  font-optical-sizing: auto;
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
   background: linear-gradient(90deg, #1a2335 0%, #4c669b 100%);
@@ -1558,7 +1557,6 @@ ul { list-style: none; }
 /* "$" — 40px, vertically centered with 97 */
 .pricing__price-dollar {
   font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
   font-size: 40px;
   font-weight: 400;
   line-height: 1.15;
@@ -1567,7 +1565,6 @@ ul { list-style: none; }
 /* "97" — 120px bold */
 .pricing__price-main {
   font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
   font-size: 120px;
   font-weight: 700;
   line-height: 106px;
@@ -1582,7 +1579,6 @@ ul { list-style: none; }
 /* "before $125" — 22px, muted */
 .pricing__price-before {
   font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 300;
   font-size: 22px;
   line-height: 1.1;
@@ -1597,7 +1593,6 @@ ul { list-style: none; }
 /* Save badge — 22px, light-blue fill */
 .pricing__save-badge {
   font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 300;
   font-size: 22px;
   line-height: 1.1;
@@ -1623,7 +1618,6 @@ ul { list-style: none; }
   gap: 6px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-optical-sizing: auto;
   font-size: var(--fs-body-m);
   line-height: var(--lh-body-m);
   color: var(--c-muted-dark);
