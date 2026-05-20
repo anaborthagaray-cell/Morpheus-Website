@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=52" />
+  <link rel="stylesheet" href="styles.css?v=53" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -30,7 +30,9 @@
   <style>
     @media (min-width: 1600px) {
 
-      /* ── Wide grid token (1440px content) ──────────────────────────── */
+      /* ── Wide grid token ────────────────────────────────────────────── */
+      /* --grid-pad always produces a 1440px content column:              */
+      /*   1600px → 80px | 1920px → 240px | 2560px → 560px              */
       :root {
         --grid-pad: max(80px, calc(50vw - 720px));
       }
@@ -45,41 +47,60 @@
         padding-left:  var(--grid-pad);
         padding-right: var(--grid-pad);
       }
-      /* Phone image: scale up so it fills the composition better */
+      /* Phone image: slightly larger for better visual balance */
       .smartest__phone-img {
-        height: 960px;
+        height: 1060px;
       }
 
-      /* ── Infogrid (4-column features) ───────────────────────────────── */
+      /* ── Infogrid: extra top padding so bullets don't crowd the phone ── */
       .infogrid {
         padding-left:  var(--grid-pad);
         padding-right: var(--grid-pad);
+        padding-top:   100px;
       }
 
-      /* ── HR Zones: 1440px centered card, rounded corners ───────────── */
-      /* Card is contained — no longer full-bleed on iMac */
+      /* ── HR Zones: full-width background, content in 1440px column ─── */
+      /* Background image: edge-to-edge (no side padding, no max-width)  */
+      .hrzones {
+        padding-left:  0;
+        padding-right: 0;
+      }
       .hrzones__card {
-        max-width: 1440px;
-        border-radius: 10px;
+        max-width: none;
+        border-radius: 0;
+        margin: 0 0 14px;
       }
-      /* Text position relative to card — restore base 70px value */
+      /* Anchor text/phone/lottie to the 1440px content column           */
       .hrzones__text {
-        left: 70px;
+        left: var(--grid-pad);
+      }
+      .hrzones__phone {
+        right: var(--grid-pad);
+      }
+      /* Lottie sits 26px closer to the right edge than the phone        */
+      .hrzones__lottie {
+        right: calc(var(--grid-pad) - 26px);
       }
 
-      /* ── Intensity: 1440px centered card, rounded corners ──────────── */
-      .intensity__card {
-        max-width: 1440px;
-        border-radius: 10px;
+      /* ── Intensity: full-width, title/subtitle in 1440px column ────── */
+      /* Paired with HR Zones — same full-bleed treatment                */
+      .intensity {
+        padding-left:  0;
+        padding-right: 0;
       }
-      /* Video covers the contained card without letterboxing */
+      .intensity__card {
+        max-width: none;
+        border-radius: 0;
+        margin: 0;
+      }
+      /* Video covers the full-width card */
       .intensity__product-video {
         object-fit: cover;
       }
-      /* Text padding reset — card is now 1440px, not full-viewport */
+      /* Text overlay respects 1440px column */
       .intensity__text {
-        padding-left:  80px;
-        padding-right: 80px;
+        padding-left:  var(--grid-pad);
+        padding-right: var(--grid-pad);
         max-width: none;
       }
 
@@ -108,17 +129,16 @@
         padding: 140px var(--grid-pad) 52px;
       }
 
-      /* ── Your Day: narrow 1080px column ─────────────────────────────── */
-      /* Formula max(180px, calc(50vw-540px)) → always 1080px content.   */
-      /* 5 tabs × 216px = 1080px — fits exactly. Collage proportions      */
-      /* unchanged from the 1440px base layout.                           */
+      /* ── Your Day: wide 1440px column — aligned with Science ────────── */
       .day {
-        padding: 52px max(180px, calc(50vw - 540px)) 140px;
+        padding: 52px var(--grid-pad) 140px;
       }
 
-      /* ── Mission Joel: narrow 1080px column (matches Figma px-[180px]) ── */
+      /* ── Mission Joel: wide 1440px column — aligned with Science + Day */
       .mission {
-        padding: 140px max(180px, calc(50vw - 540px));
+        padding: 140px var(--grid-pad);
+        grid-template-columns: 1fr 520px;
+        gap: 80px;
       }
 
       /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
@@ -146,8 +166,7 @@
         width: 100%;
       }
 
-      /* ── Footer: full width, fixed 80px margins ──────────────────────── */
-      /* Does not scale with --grid-pad — footer stays wide and grounded. */
+      /* ── Footer: flat 80px, not --grid-pad ──────────────────────────── */
       .footer {
         padding-left:  80px;
         padding-right: 80px;
