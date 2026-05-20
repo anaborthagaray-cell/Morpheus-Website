@@ -2900,58 +2900,148 @@ body.m-menu-open { overflow: hidden; }
 }
 
 /* ==========================================================================
-   LARGE SCREEN FIXES — iMac / wide desktop (≥1600px)
-   Targets only screens wider than the 14-inch MacBook Pro (~1512px CSS width).
-   All rules here are additive and do not affect ≤1512px viewports.
+   LARGE-SCREEN GRID SYSTEM — iMac / wide desktop (≥1600px)
+   ─────────────────────────────────────────────────────────────────────────
+   Inspired by the Oura Ring / Eight Sleep approach:
+     • Section backgrounds remain full-bleed (edge-to-edge)
+     • All inner content is centered in a consistent 1440px "main column"
+     • --grid-pad is the single source of truth for horizontal padding:
+         1600px viewport → 80px   |   1920px → 240px   |   2560px → 560px
+       Formula: max(80px, calc(50vw - 720px))
+       → content column always = viewport − 2 × grid-pad = 1440px
+   ─────────────────────────────────────────────────────────────────────────
+   14-inch MacBook Pro tops out at ~1512px CSS width — safely below this
+   breakpoint, so the 14" layout is completely untouched.
    ========================================================================== */
 @media (min-width: 1600px) {
 
-  /* ── Fix 1: Full-width section backgrounds ──
-     On screens wider than ~1920px the smartest-bg texture was capped at 1920px,
-     creating a visible seam against the raw section color. Remove the cap and
-     switch to `cover` so the image always fills edge-to-edge. */
+  /* ── Grid token ── */
+  :root {
+    --grid-pad: max(80px, calc(50vw - 720px));
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 1 — "The world's smartest cardio system": full-width background,
+     content aligned to the 1440px grid column.
+     ────────────────────────────────────────────────────────────────────── */
+
+  /* Background texture: remove 1920px cap so it covers edge-to-edge */
   .smartest::before {
     max-width: none;
     background-size: cover;
     background-position: center top;
   }
 
-  /* HR Zones and Intensity cards had max-width: 1892px, creating floating-card
-     gaps on either side of the rounded card on wide viewports. Let them fill
-     the section (section already has 14px side padding built in). */
+  /* Content column: override the base formula with grid-pad */
+  .smartest__top {
+    padding-left:  var(--grid-pad);
+    padding-right: var(--grid-pad);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 2 — Bullets overlapping the phone image.
+     Limit the absolutely-positioned phone div height to 820px so it stays
+     within .smartest__top (min-height: 818px). The existing bottom mask
+     fades it out before the infogrid text starts. Infogrid horizontal
+     padding also moves to grid-pad for consistent alignment.
+     ────────────────────────────────────────────────────────────────────── */
+  .smartest__phone-img {
+    height: 820px;
+  }
+
+  .infogrid {
+    padding-left:  var(--grid-pad);
+    padding-right: var(--grid-pad);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 1 (continued) — HR Zones card: full-bleed card, text grid-aligned.
+     max-width: 1892px created a "floating card with gaps" at wide viewports.
+     Text anchor moves from fixed 70px to grid-pad so it lines up with the
+     rest of the page content.
+     ────────────────────────────────────────────────────────────────────── */
   .hrzones__card {
     max-width: none;
   }
+  .hrzones__text {
+    left: var(--grid-pad);
+  }
 
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 3 — "Train at the right intensity" video: full-bleed card, video
+     covers properly. object-fit: contain letterboxes on very wide cards;
+     cover fills the frame. The existing dark gradient overlay keeps text
+     legible regardless of the crop.
+     ────────────────────────────────────────────────────────────────────── */
   .intensity__card {
     max-width: none;
   }
-
-  /* ── Fix 2: Phone image overlapping infogrid bullets ──
-     The phone-img div was 1288px tall but smartest__top min-height is only 818px,
-     so the image extended 470px into the infogrid. Limiting the div to 800px
-     ensures the image fades out (via the existing mask) well before the
-     infogrid text starts at ~818px. */
-  .smartest__phone-img {
-    height: 800px;
-  }
-
-  /* ── Fix 3: Intensity video — fill the now-wider card properly ──
-     With max-width removed the card can be 2500px+ wide. `object-fit: contain`
-     would letterbox the video, leaving large empty bars. Switch to `cover` so
-     the video fills the full card. The existing dark gradient overlay (::after)
-     keeps the title/subtitle legible regardless of the crop. */
   .intensity__product-video {
     object-fit: cover;
   }
-
-  /* ── Fix 4: Reviews section — reduce excessive left margin ──
-     `calc(50vw - 680px)` yields 600px padding at 2560px, pushing the first
-     review card far from the left edge. Cap the side padding at 200px so the
-     cards start at a reasonable distance from the edge on any wide screen. */
-  .reviews__scroll {
-    padding-left:  max(60px, min(200px, calc(50vw - 680px)));
-    padding-right: max(60px, min(200px, calc(50vw - 680px)));
-    scroll-padding-left: max(60px, min(200px, calc(50vw - 680px)));
+  /* Pad the inner text so title / subtitle respect the grid column */
+  .intensity__text {
+    padding-left:  var(--grid-pad);
+    padding-right: var(--grid-pad);
   }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 5 — "What people are saying": align review cards to the grid.
+     Old formula (max(40px, 50vw-680px)) yielded 600px left margin at 2560px.
+     Grid-pad keeps the first card at the same horizontal position as all
+     other page content.
+     ────────────────────────────────────────────────────────────────────── */
+  .reviews__scroll {
+    padding-left:         var(--grid-pad);
+    padding-right:        var(--grid-pad);
+    scroll-padding-left:  var(--grid-pad);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     GRID CONSISTENCY — standardise all remaining sections to grid-pad.
+     Science and Day previously used max(180px, 50vw-540px) → 1080px content
+     at large screens (too narrow). Mission/Pricing used max(40px, 50vw-680px)
+     → 600px side padding at 2560px (content ok, but inconsistent with grid).
+     ────────────────────────────────────────────────────────────────────── */
+
+  /* Science — was: max(180px, calc(50vw - 540px)) */
+  .science {
+    padding: 140px var(--grid-pad) 52px;
+  }
+
+  /* Day with Morpheus — was: max(180px, calc(50vw - 540px)) */
+  .day {
+    padding: 52px var(--grid-pad) 140px;
+  }
+
+  /* Mission Joel — was: max(40px, calc(50vw - 680px)) */
+  .mission {
+    padding: 140px var(--grid-pad);
+  }
+
+  /* Pricing — was: max(40px, calc(50vw - 680px)) */
+  .pricing {
+    padding: 140px var(--grid-pad) 70px;
+  }
+
+  /* FAQs — was: max(180px, calc(50vw - 540px)) */
+  .faqs {
+    padding: 70px var(--grid-pad) 140px;
+  }
+
+  /* Newsletter — was: flat 71px (too narrow at 2560px content stretched full) */
+  .news {
+    padding: 71px var(--grid-pad);
+  }
+
+  /* Footer — was: flat 70px (content stretched across full 2560px) */
+  .footer {
+    padding-left:  var(--grid-pad);
+    padding-right: var(--grid-pad);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     FIX 6 — Inter font: already fixed via HTML <link> preconnect tags and
+     moving @import to top of this file. No additional CSS needed here.
+     ────────────────────────────────────────────────────────────────────── */
 }
