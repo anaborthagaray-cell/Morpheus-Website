@@ -9,46 +9,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=48" />
+  <link rel="stylesheet" href="styles.css?v=49" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
        ───────────────────────────────────────────────────────────────────────
-       Oura Ring / Eight Sleep pattern:
-         • Backgrounds, videos, large images → full bleed (edge-to-edge)
-         • All text / content → centered in a 1440px max-width column
-         • --grid-pad drives the horizontal padding for every section
+       Two content column widths, both centering at any viewport:
 
-       Formula: max(80px, calc(50vw - 720px))
-         1600px → 80px side pad  → 1440px content
-         1920px → 240px side pad → 1440px content
-         2560px → 560px side pad → 1440px content
+       Wide  (1440px): --grid-pad = max(80px, calc(50vw - 720px))
+         1600px → 80px  | 1920px → 240px | 2560px → 560px
+         Sections: smartest, infogrid, hrzones, intensity, carousel,
+                   reviews, science, mission, pricing, newsletter.
+
+       Narrow (1080px): max(180px, calc(50vw - 540px))
+         1600px → 260px | 1920px → 420px | 2560px → 740px
+         Sections: day with Morpheus, FAQs.
 
        14-inch MacBook Pro tops out at ~1512px CSS width → untouched.
   ═══════════════════════════════════════════════════════════════════════ -->
   <style>
     @media (min-width: 1600px) {
 
-      /* ── Grid token ─────────────────────────────────────────────────── */
+      /* ── Wide grid token (1440px content) ──────────────────────────── */
       :root {
         --grid-pad: max(80px, calc(50vw - 720px));
       }
 
-      /* ── Smartest section ───────────────────────────────────────────── */
-      /* Background: remove 1920px cap so texture covers edge-to-edge */
+      /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
       .smartest::before {
         max-width: none;
         background-size: cover;
         background-position: center top;
       }
-      /* Text/content column: align to 1440px grid */
       .smartest__top {
         padding-left:  var(--grid-pad);
         padding-right: var(--grid-pad);
       }
-      /* Phone image: cap height so it never overlaps the infogrid bullets */
+      /* Phone image: scale up so it fills the composition better */
       .smartest__phone-img {
-        height: 820px;
+        height: 960px;
       }
 
       /* ── Infogrid (4-column features) ───────────────────────────────── */
@@ -57,28 +56,30 @@
         padding-right: var(--grid-pad);
       }
 
-      /* ── HR Zones card: full-bleed visual, text grid-aligned ────────── */
+      /* ── HR Zones: 1440px centered card, rounded corners ───────────── */
+      /* Card is contained — no longer full-bleed on iMac */
       .hrzones__card {
-        max-width: none;
-        border-radius: 0;
+        max-width: 1440px;
+        border-radius: 10px;
       }
+      /* Text position relative to card — restore base 70px value */
       .hrzones__text {
-        left: var(--grid-pad);
+        left: 70px;
       }
 
-      /* ── Intensity card: full-bleed visual, text grid-aligned ──────── */
+      /* ── Intensity: 1440px centered card, rounded corners ──────────── */
       .intensity__card {
-        max-width: none;
-        border-radius: 0;
+        max-width: 1440px;
+        border-radius: 10px;
       }
-      /* Cover fills the full-width card without letterboxing */
+      /* Video covers the contained card without letterboxing */
       .intensity__product-video {
         object-fit: cover;
       }
-      /* Text stays in the centered 1440px column */
+      /* Text padding reset — card is now 1440px, not full-viewport */
       .intensity__text {
-        padding-left:  var(--grid-pad);
-        padding-right: var(--grid-pad);
+        padding-left:  80px;
+        padding-right: 80px;
         max-width: none;
       }
 
@@ -96,45 +97,44 @@
       }
 
       /* ── Reviews horizontal scroll ──────────────────────────────────── */
-      /* First card aligns to grid; last card has symmetric trailing space */
       .reviews__scroll {
         padding-left:         var(--grid-pad);
         padding-right:        var(--grid-pad);
         scroll-padding-left:  var(--grid-pad);
       }
 
-      /* ── Science (light) ────────────────────────────────────────────── */
+      /* ── Science ────────────────────────────────────────────────────── */
       .science {
         padding: 140px var(--grid-pad) 52px;
       }
 
-      /* ── Your Day (light) ───────────────────────────────────────────── */
+      /* ── Your Day: narrow 1080px column ─────────────────────────────── */
+      /* Formula max(180px, calc(50vw-540px)) → always 1080px content.   */
+      /* 5 tabs × 216px = 1080px — fits exactly. Collage proportions      */
+      /* unchanged from the 1440px base layout.                           */
       .day {
-        padding: 52px var(--grid-pad) 140px;
+        padding: 52px max(180px, calc(50vw - 540px)) 140px;
       }
 
-      /* ── Mission Joel (dark) ────────────────────────────────────────── */
+      /* ── Mission Joel ───────────────────────────────────────────────── */
       .mission {
         padding: 140px var(--grid-pad);
       }
 
-      /* ── Pricing (light) ────────────────────────────────────────────── */
+      /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
       .pricing {
         padding: 140px var(--grid-pad) 70px;
       }
 
-      /* ── FAQs ────────────────────────────────────────────────────────── */
+      /* ── FAQs: narrow 1080px column ─────────────────────────────────── */
       .faqs {
-        padding: 70px var(--grid-pad) 140px;
+        padding: 70px max(180px, calc(50vw - 540px)) 140px;
       }
 
       /* ── Newsletter ──────────────────────────────────────────────────── */
-      /* Section padding from grid-pad so edges are always symmetric */
       .news {
         padding: 71px var(--grid-pad);
       }
-      /* Cap text block — justify-content:space-between would otherwise
-         push it flush-left and the form flush-right across the full viewport */
       .news__text {
         max-width: 500px;
         width: auto;
@@ -146,10 +146,11 @@
         width: 100%;
       }
 
-      /* ── Footer ──────────────────────────────────────────────────────── */
+      /* ── Footer: full width, fixed 80px margins ──────────────────────── */
+      /* Does not scale with --grid-pad — footer stays wide and grounded. */
       .footer {
-        padding-left:  var(--grid-pad);
-        padding-right: var(--grid-pad);
+        padding-left:  80px;
+        padding-right: 80px;
       }
     }
   </style>
