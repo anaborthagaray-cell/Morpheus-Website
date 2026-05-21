@@ -616,7 +616,8 @@ ul { list-style: none; }
   gap: 32px;
   max-width: 580px;
 }
-/* Figma node 3104-103799: 60px / 55px LH / Light (300) / -1px LS */
+/* Figma node 3104-105832: Display / 60px / 55px LH / Light (300) / -1px LS */
+/* whitespace-nowrap + explicit <br> tags = exact 4-line layout from Figma   */
 .hrzones__title {
   font-family: var(--font-display);
   font-weight: 300;
@@ -625,6 +626,7 @@ ul { list-style: none; }
   letter-spacing: -1px;
   color: #ffffff;
   text-shadow: 0 4.628px 23.08px rgba(0, 0, 0, 0.55);
+  white-space: nowrap; /* prevents accidental re-wrap between explicit breaks */
 }
 /* Dark radial glow anchored behind the text block for readability */
 .hrzones__text::before {
@@ -2514,6 +2516,7 @@ body.m-menu-open { overflow: hidden; }
     font-weight: 400;
     text-align: center;
     text-shadow: none;
+    white-space: normal; /* allow wrapping at mobile widths */
   }
   .hrzones__text .btn { align-self: center; }
   .hrzones__lottie {
