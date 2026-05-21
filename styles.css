@@ -574,7 +574,7 @@ ul { list-style: none; }
 .hrzones__card {
   position: relative;
   max-width: 1892px;
-  height: min(960px, 100dvh);
+  height: 802px;
   margin: 0 auto;
   margin-bottom: 14px;
   border-radius: 10px;
@@ -587,43 +587,45 @@ ul { list-style: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center center;
 }
 .hrzones__scrim {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(21.36deg, rgba(0,0,0,0.6) 13.17%, rgba(0,0,0,0) 67.91%),
-    linear-gradient(270deg, rgba(0,0,0,0) 8%, rgba(0,0,0,0.45) 129%),
-    linear-gradient(269deg, rgba(0,0,0,0) 2%, rgba(0,0,0,0.45) 144%);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(0, 0, 0, 0.90) 0%,
+    rgba(0, 0, 0, 0.56) 100%
+  );
 }
 .hrzones__text {
   position: absolute;
-  left: 70px;
-  bottom: 70px;
+  left: calc(50% - 4px);
+  top: 271px;
   z-index: 3;
   display: flex;
   flex-direction: column;
   gap: 32px;
   max-width: 580px;
 }
-/* Figma node 2986-27561: Web/Heading/L — 40px / 44px / Light (300) / -0.5px */
+/* Figma node 3104-103799: 60px / 55px LH / Light (300) / -1px LS */
 .hrzones__title {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: var(--fs-heading-l);   /* 40px */
-  line-height: var(--lh-heading-l); /* 44px */
-  letter-spacing: -0.5px;
+  font-size: 60px;
+  line-height: 55px;
+  letter-spacing: -1px;
   color: #ffffff;
-  text-shadow: 0 4.628px 30.082px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 4.628px 23.08px rgba(0, 0, 0, 0.55);
 }
 .hrzones__text .btn { align-self: flex-start; border-radius: 10px; }
 .hrzones__phone {
   position: absolute;
-  right: 78px;
-  top: 72px;
-  width: 268px;
-  height: 547px;
+  left: calc(50% - 394px);
+  top: 101px;
+  right: auto;
+  width: 298px;
+  height: 608px;
   z-index: 3;
   /* Subtle shape-aware shadow — follows the phone PNG silhouette */
   filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.30));
@@ -647,9 +649,10 @@ ul { list-style: none; }
 
 .hrzones__lottie {
   position: absolute;
-  right: 52px;
-  top: 518px;
-  width: 320px;
+  left: 0;
+  right: auto;
+  top: 466px;
+  width: 390px;
   aspect-ratio: 376 / 128;
   z-index: 4;
   pointer-events: none;

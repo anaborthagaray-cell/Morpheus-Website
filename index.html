@@ -410,14 +410,9 @@
         height: 885px;
       }
 
-      /* ── Text column: align to standard 1360px content column at iMac ─── */
-      /* Base formula (50vw-590px) places text at 210px at 1600px, creating   */
-      /* ~130px overlap with phone. Switching to the grid formula (50vw-680px) */
-      /* brings text to 120px, matching the standard left edge, and gives the  */
-      /* same ~40px visual layering as the 1440px design.                      */
-      .smartest__top {
-        padding-left: max(40px, calc(50vw - 680px));
-      }
+      /* ── Text column: base formula max(40px, 50vw-590px) already handles   */
+      /* iMac well — 210px at 1600px, 370px at 1920px — no override needed.   */
+      /* Removing the old 50vw-680px override that pushed text too far left.   */
 
       /* ── Infogrid: extra top padding so bullets don't crowd the phone ── */
       .infogrid {
@@ -427,8 +422,6 @@
       }
 
       /* ── HR Zones: 70px inset from browser edges, 20px radius ─────── */
-      /* Background image fills the card; content anchored 70px from      */
-      /* each card edge — mirrors the hero's premium-margin feel.         */
       .hrzones {
         padding: 14px 70px 0;
       }
@@ -437,24 +430,25 @@
         border-radius: 20px;
         margin: 0 0 24px;
       }
-      /* Text/CTA align with the main page grid (var(--grid-pad)) from    */
-      /* the viewport. Card is 70px inset, so offset = grid-pad minus 70px */
-      .hrzones__text {
-        left: calc(var(--grid-pad) - 70px);
-      }
-      /* Phone: +20% size, vertically centered in 960px card             */
-      /* Base: 268×547px top:72px → ×1.2 → 322×656px, top:(960-656)/2  */
+      /* Phone on LEFT — scale up slightly at iMac widths                 */
       .hrzones__phone {
-        right:  calc(var(--grid-pad) - 70px);
-        width:  322px;
-        height: 656px;
-        top:    152px;
+        left:   calc(50% - 440px);
+        right:  auto;
+        width:  330px;
+        height: 672px;
+        top:    65px;
       }
-      /* Lottie: +10% larger (352px), vertically aligned with phone base  */
+      /* Lottie: stays left-aligned below phone area                      */
       .hrzones__lottie {
-        right: calc(var(--grid-pad) - 96px);
-        top:   700px;
-        width: 352px;
+        left:  0;
+        right: auto;
+        top:   480px;
+        width: 430px;
+      }
+      /* Text on RIGHT — scale out from center                            */
+      .hrzones__text {
+        left: calc(50% + 20px);
+        top:  240px;
       }
 
       /* ── Intensity: same 70px inset + 20px radius, paired with Zones ─ */
@@ -698,7 +692,7 @@
   <!-- 06 HR Zones -->
   <section class="hrzones">
     <div class="hrzones__card">
-      <img src="assets/04%20HR%20Zones.png" alt="HR Zones training" class="hrzones__hero-img" />
+      <img src="assets/hrzones-bg.png" alt="HR Zones training" class="hrzones__hero-img" />
       <div class="hrzones__scrim"></div>
       <div class="hrzones__text">
         <h2 class="hrzones__title reveal">Train at the right intensity<br />with personalized HR zones</h2>
