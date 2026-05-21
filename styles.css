@@ -649,9 +649,14 @@ ul { list-style: none; }
 
 .hrzones__lottie {
   position: absolute;
-  left: 0;
+  /* Figma: lottie is 390px wide, centered on the 298px phone.
+     Phone left = calc(50% - 394px), phone width = 298px
+     Phone center x = calc(50% - 394px + 149px) = calc(50% - 245px)
+     Lottie left  = phone-center - lottie-width/2 = calc(50% - 245px - 195px) = calc(50% - 440px)
+     Lottie top   = phone-top + 466px = 101px + 466px = 567px (Figma: 466px from phone-group top) */
+  left: calc(50% - 440px);
   right: auto;
-  top: 466px;
+  top: 567px;
   width: 390px;
   aspect-ratio: 376 / 128;
   z-index: 4;

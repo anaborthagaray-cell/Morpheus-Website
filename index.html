@@ -438,11 +438,14 @@
         height: 672px;
         top:    65px;
       }
-      /* Lottie: stays left-aligned below phone area                      */
+      /* Lottie: centered on iMac phone (330px wide at left:calc(50%-440px))
+         Phone center x = calc(50% - 440px + 165px) = calc(50% - 275px)
+         Lottie left    = calc(50% - 275px - 215px) = calc(50% - 490px)  (430/2=215)
+         Lottie top     = phone-top + 466 * (672/608) = 65 + 515 = 580px */
       .hrzones__lottie {
-        left:  0;
+        left:  calc(50% - 490px);
         right: auto;
-        top:   480px;
+        top:   580px;
         width: 430px;
       }
       /* Text on RIGHT — scale out from center                            */
