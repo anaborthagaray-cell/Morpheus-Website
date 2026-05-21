@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=59" />
+  <link rel="stylesheet" href="styles.css?v=60" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -28,6 +28,150 @@
        14-inch MacBook Pro tops out at ~1512px CSS width → untouched.
   ═══════════════════════════════════════════════════════════════════════ -->
   <style>
+
+    /* ── Nav: fixed after hero removal — floats over all sections ──────── */
+    .nav { position: fixed; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       Joel popup
+       Font weights per Figma: title/subtitle → Inter Medium (500)
+                                body copy     → Inter Light  (300)
+       ═══════════════════════════════════════════════════════════════════════ */
+    .joel-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .joel-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .joel-popup {
+      position: relative;
+      display: flex;
+      gap: 35px;
+      width: min(902px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #f4f5f9;
+      border-radius: 12px;
+      padding: 35px;
+      transform: translateY(16px);
+      transition: transform 0.22s ease;
+    }
+    .joel-overlay.is-open .joel-popup {
+      transform: translateY(0);
+    }
+    .joel-popup__close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.10);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #444;
+      flex-shrink: 0;
+      z-index: 2;
+      transition: background 0.15s;
+    }
+    .joel-popup__close:hover { background: rgba(0, 0, 0, 0.18); }
+    .joel-popup__close svg { display: block; }
+
+    .joel-popup__photo {
+      flex: 0 0 360px;
+      width: 360px;
+      border-radius: 12px;
+      overflow: hidden;
+      align-self: stretch;
+      min-height: 420px;
+      position: relative;
+    }
+    .joel-popup__photo img {
+      position: absolute;
+      width: 164%;
+      left: -27%;
+      top: -24%;
+      max-width: none;
+      height: auto;
+    }
+    .joel-popup__body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 9px;
+      padding-right: 20px; /* clear space for close btn */
+    }
+    .joel-popup__title {
+      font-family: var(--font-display);
+      font-weight: 500;           /* Inter Medium */
+      font-size: 38px;
+      line-height: 44px;
+      letter-spacing: -0.5px;
+      color: #0c1018;
+    }
+    .joel-popup__subtitle {
+      font-family: var(--font-display);
+      font-weight: 500;           /* Inter Medium */
+      font-size: 22px;
+      line-height: 32px;
+      color: #0c1018;
+    }
+    .joel-popup__text {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .joel-popup__text p {
+      font-family: var(--font-display);
+      font-weight: 300;           /* Inter Light — NOT Extra Light */
+      font-size: 18px;
+      line-height: 22px;
+      color: #0c1018;
+    }
+
+    /* ── Joel popup: mobile ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .joel-popup {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        max-height: 88vh;
+        border-radius: 16px;
+        width: 100%;
+      }
+      .joel-popup__photo {
+        flex: none;
+        width: 100%;
+        height: 240px;
+        min-height: 0;
+      }
+      .joel-popup__photo img {
+        width: 130%;
+        left: -15%;
+        top: -8%;
+      }
+      .joel-popup__body  { padding-right: 0; gap: 8px; }
+      .joel-popup__title { font-size: 26px; line-height: 32px; }
+      .joel-popup__subtitle { font-size: 18px; line-height: 26px; }
+      .joel-popup__text p   { font-size: 15px; line-height: 22px; }
+    }
+
     @media (min-width: 1600px) {
 
       /* ── Wide grid token ────────────────────────────────────────────── */
@@ -89,10 +233,11 @@
         height: 656px;
         top:    152px;
       }
-      /* Lottie: 26px closer to edge than phone                          */
+      /* Lottie: +10% larger (352px), vertically aligned with phone base  */
       .hrzones__lottie {
         right: calc(var(--grid-pad) - 96px);
-        top:   720px;
+        top:   700px;
+        width: 352px;
       }
 
       /* ── Intensity: same 70px inset + 20px radius, paired with Zones ─ */
@@ -240,7 +385,7 @@
   </div>
 
   <!-- Mobile-only header: nav bar + full-screen menu overlay.
-       Hidden on desktop via CSS. The desktop glass-pill nav lives inside .hero below. -->
+       Hidden on desktop via CSS. The desktop glass-pill nav is fixed above, before .smartest. -->
   <header class="m-header" aria-hidden="true">
     <div class="m-header__bar">
       <a class="m-header__logo" href="#" aria-label="Morpheus home">
@@ -289,48 +434,25 @@
     <div class="m-menu__home-indicator"><div class="m-menu__home-bar"></div></div>
   </div>
 
-  <!-- 03 Hero (02 Nav floats inside) -->
-  <section class="hero">
-
-    <!-- 02 Nav Bar — glass pill, floats over hero -->
-    <nav class="nav">
-      <div class="nav__inner">
-        <a class="nav__logo" href="#" aria-label="Morpheus home">
-          <img src="assets/m7-logo-nav.svg" alt="" />
-          <span class="nav__wordmark">Morpheus</span>
-        </a>
-        <ul class="nav__menu">
-          <li><a class="nav__link" href="#">Train</a></li>
-          <li><a class="nav__link" href="#">Recover</a></li>
-          <li><a class="nav__link" href="#">Coaches</a></li>
-          <li><a class="nav__link" href="learn-preview.html">Learn</a></li>
-          <li><a class="nav__link" href="#">Support</a></li>
-        </ul>
-        <a class="nav__cta" href="#">Shop Now</a>
-      </div>
-    </nav>
-
-    <video class="hero__video" autoplay muted loop playsinline
-           poster="assets/hero-woman-new.png" aria-hidden="true">
-      <source src="assets/hero-video-new.mp4" type="video/mp4">
-    </video>
-    <div class="hero__scrim"></div>
-    <div class="hero__content">
-      <h1 class="hero__title">
-        <span class="hero__title-a">Train Smarter.</span>
-        <span class="hero__title-b" id="hero-cycle">Perform Better.</span>
-      </h1>
-      <p class="hero__subtitle">Morpheus is the world's smartest cardio system. Check it out.</p>
-      <a class="hero__btn" href="#smartest">
-        Explore
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M9 3.75v10.5M3.75 9l5.25 5.25L14.25 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <!-- 02 Nav Bar — fixed, floats over all sections -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#" aria-label="Morpheus home">
+        <img src="assets/m7-logo-nav.svg" alt="" />
+        <span class="nav__wordmark">Morpheus</span>
       </a>
+      <ul class="nav__menu">
+        <li><a class="nav__link" href="#">Train</a></li>
+        <li><a class="nav__link" href="#">Recover</a></li>
+        <li><a class="nav__link" href="#">Coaches</a></li>
+        <li><a class="nav__link" href="learn-preview.html">Learn</a></li>
+        <li><a class="nav__link" href="#">Support</a></li>
+      </ul>
+      <a class="nav__cta" href="#">Shop Now</a>
     </div>
-  </section>
+  </nav>
 
-  <!-- 04 Smartest -->
+  <!-- 04 Smartest — now the first visible section -->
   <section class="smartest" id="smartest">
     <!-- Mobile wrapper: isolates 100svh block from infogrid below -->
     <div class="smartest__frame">
@@ -799,7 +921,64 @@
     </div>
   </footer>
 
+  <!-- Joel Popup ───────────────────────────────────────────────────────── -->
+  <div class="joel-overlay" id="joelOverlay" aria-hidden="true">
+    <div class="joel-popup" role="dialog" aria-modal="true" aria-labelledby="joelPopupTitle">
+      <button class="joel-popup__close" id="joelClose" aria-label="Close popup">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="joel-popup__photo">
+        <img src="assets/joel.png" alt="Joel Jamieson" />
+      </div>
+      <div class="joel-popup__body">
+        <h2 class="joel-popup__title" id="joelPopupTitle">Meet Joel Jamieson</h2>
+        <h3 class="joel-popup__subtitle">Career Highlights</h3>
+        <div class="joel-popup__text">
+          <p>Joel Jamieson is a conditioning expert and online educator with more than 20 years experience who is focused on empowering people to train, live, and perform their best.</p>
+          <p>After working with elite performers worldwide, including Olympic medalists, Navy SEALs, UFC world champions, and dozens of pro teams, Joel developed Morpheus to give people of all abilities and goals a smarter way to build their conditioning and improve their recovery.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script src="app.js?v=2" defer></script>
+
+  <script>
+    /* ── Joel popup ────────────────────────────────────────────────────── */
+    (function () {
+      var overlay  = document.getElementById('joelOverlay');
+      var closeBtn = document.getElementById('joelClose');
+      var triggers = document.querySelectorAll('.mission__card-btn, .mission__btn-mobile');
+
+      function openPopup() {
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+      function closePopup() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      triggers.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPopup();
+        });
+      });
+      closeBtn.addEventListener('click', closePopup);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closePopup();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closePopup();
+      });
+    })();
+  </script>
 </body>
 </html>
