@@ -401,18 +401,14 @@
       /* iMac override needed. max(180px, calc(50vw-540px)) resolves to */
       /* 260px+ at 1600px → 1080px content column, consistent always.   */
 
-      /* ── Smartest: gradient + padding formula handle all widths ─────────── */
-      /* ::before is display:none globally — no override needed here           */
-      /* Phone wrap: scale up proportionally from 870×804 base (~+10%)         */
-      /* right offset (max(0px, 50vw-720px)) = var(--grid-pad) at iMac — OK   */
-      .smartest__phone-wrap {
-        width:  960px;
-        height: 885px;
-      }
+      /* ── Smartest: phone-wrap stays at base 870×804 at ALL widths ────────── */
+      /* The right anchor max(0px,50vw-720px) already keeps the phone flush    */
+      /* with the 1440px content column right edge at every viewport.          */
+      /* Scaling up (960×885) was pushing the phone LEFT by ~90px, causing     */
+      /* the device to collide with the title at 1920px+. No override needed.  */
 
-      /* ── Text column: base formula max(40px, 50vw-590px) already handles   */
-      /* iMac well — 210px at 1600px, 370px at 1920px — no override needed.   */
-      /* Removing the old 50vw-680px override that pushed text too far left.   */
+      /* ── Text column: base formula max(40px, 50vw-590px) handles all widths */
+      /* 210px at 1600px | 370px at 1920px — tracks left edge of 1440px col.  */
 
       /* ── Infogrid: extra top padding so bullets don't crowd the phone ── */
       .infogrid {
@@ -698,7 +694,7 @@
       <img src="assets/hrzones-bg.png" alt="HR Zones training" class="hrzones__hero-img" />
       <div class="hrzones__scrim"></div>
       <div class="hrzones__text">
-        <h2 class="hrzones__title reveal">Train at the right intensity<br />with personalized HR zones</h2>
+        <h2 class="hrzones__title reveal">Train at the right intensity with personalized HR zones</h2>
         <a class="btn btn--light reveal" data-delay="1" href="#">How to Train</a>
       </div>
       <div class="hrzones__phone">

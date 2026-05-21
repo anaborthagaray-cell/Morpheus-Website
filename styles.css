@@ -592,11 +592,19 @@ ul { list-style: none; }
 .hrzones__scrim {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    rgba(0, 0, 0, 0.90) 0%,
-    rgba(0, 0, 0, 0.56) 100%
-  );
+  /* Layer 1 (top): darken right half where text sits — fades left toward phone */
+  /* Layer 2: overall radial darkening so center stays readable                 */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0)    30%,
+      rgba(0, 0, 0, 0.55) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(0, 0, 0, 0.80) 0%,
+      rgba(0, 0, 0, 0.50) 100%
+    );
 }
 .hrzones__text {
   position: absolute;
@@ -617,6 +625,15 @@ ul { list-style: none; }
   letter-spacing: -1px;
   color: #ffffff;
   text-shadow: 0 4.628px 23.08px rgba(0, 0, 0, 0.55);
+}
+/* Dark radial glow anchored behind the text block for readability */
+.hrzones__text::before {
+  content: '';
+  position: absolute;
+  inset: -60px -80px -60px -100px;
+  background: radial-gradient(ellipse at 40% 40%, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0) 70%);
+  z-index: -1;
+  pointer-events: none;
 }
 .hrzones__text .btn { align-self: flex-start; border-radius: 10px; }
 .hrzones__phone {
