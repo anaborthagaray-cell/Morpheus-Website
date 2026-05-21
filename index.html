@@ -206,6 +206,171 @@
       .joel-popup__text p   { font-size: 15px; line-height: 22px; }
     }
 
+    /* ══════════════════════════════════════════════════════════════════════
+       HERO (SMARTEST) — Figma 2986-27515 / 2986-27529
+       ══════════════════════════════════════════════════════════════════════ */
+
+    /* Two gradient layers (CSS stacks first-listed on top):
+       1. Hero layer  — -70.43° dark navy → electric blue (main hero BG)
+       2. Outer layer — 28.54° mid-blue → near-black (page-level backing)   */
+    .smartest {
+      background:
+        linear-gradient(-70.43deg, rgb(12,16,24) 22.716%, rgb(21,28,41) 68.176%, rgb(16,34,197) 129.02%),
+        linear-gradient( 28.54deg, rgb(29,39,62) 21.826%, rgb(11,17,27) 85.187%);
+      padding-bottom: 180px; /* Figma pb-[180px] — space below infogrid */
+    }
+    .smartest::before { display: none; } /* PNG texture no longer needed */
+
+    /* ── Phone wrap: container for phone + ellipse glow ──────────────────── */
+    /* Figma: phone is 870×804px at the right edge of the hero section        */
+    .smartest__phone-wrap {
+      position: absolute;
+      top: 0; right: 0;
+      width: 870px; height: 804px;
+      max-width: 55%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ellipse glow: 577px radial SVG, offset ml-102/mt-137 within phone wrap */
+    .smartest__ellipse {
+      position: absolute;
+      top: 137px; left: 102px;
+      width: 577px; height: 577px;
+      background: url('assets/hero-ellipse.svg') center / cover no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Phone image fills the wrap, no mask (transparent PNG background)      */
+    .smartest__phone-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      top: auto; right: auto;
+      max-width: unset;
+      background-image: url('assets/phone.png');
+      background-size: contain;
+      background-position: top center;
+      background-repeat: no-repeat;
+      mask-image: none;
+      -webkit-mask-image: none;
+      z-index: 1;
+    }
+
+    /* Text left pad: 130px at 1440px, scales with viewport                  */
+    /* max(40px, 50vw-590px): 1440→130 | 1512→166 | 1600→210 | 1920→370    */
+    .smartest__top {
+      padding-left:  max(40px, calc(50vw - 590px));
+      padding-right: 0;
+    }
+
+    /* ── Title: 72px / 92px LH / -1px LS / white → #3a68ff gradient ──────── */
+    .smartest__title-bg {
+      font-size: 72px;
+      line-height: 92px;
+      letter-spacing: -1px;
+    }
+    /* Gradient: Figma "from-white to-[#3a68ff]" (was #99b1ff — now corrected) */
+    .smartest__title-line {
+      background: linear-gradient(to right, #ffffff 0%, #3a68ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    /* Pill: align to line 2 of title (90.54px per Figma at 92px LH)          */
+    .smartest__title-pill {
+      margin-top: 90.54px;
+    }
+    .smartest__title-pill-text {
+      font-size: 72px;
+      line-height: 92px;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #ffffff 0%, #3a68ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ── Subtitle: 24/32 / #b3b3b3 / 432px wide — no opacity reduction ────── */
+    .smartest__desc {
+      font-size: 24px;
+      line-height: 32px;
+      max-width: 432px;
+      opacity: 1;
+    }
+
+    /* ── Infogrid: 70px horizontal (Figma px-[70px]); section handles bottom  */
+    .infogrid {
+      padding-left:   max(70px, calc(50vw - 650px));
+      padding-right:  max(70px, calc(50vw - 650px));
+      padding-bottom: 0;
+    }
+    /* Numbers: Medium (500), 50% opacity per Figma                           */
+    .infogrid__num {
+      font-weight: 500;
+      opacity: 0.5;
+    }
+
+    /* ── Mobile: remap phone-wrap to carry the mobile phone layout role ────── */
+    @media (max-width: 768px) {
+      .smartest { padding-bottom: 0; } /* mobile infogrid handles own spacing  */
+      .smartest__phone-wrap {
+        order: 2;
+        position: relative;
+        top: auto; right: auto;
+        width: 100%; height: 290px;
+        max-width: 100%;
+        margin-top: 42px;
+      }
+      .smartest__phone-img {
+        position: absolute;
+        inset: 0;
+        width: 100%; height: 100%;
+        max-width: unset;
+        background-size: clamp(400px, 118%, 460px) auto;
+        background-position: center -70px;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 72%, transparent 96%);
+        mask-image:         linear-gradient(to bottom, transparent 0%, black 6%, black 72%, transparent 96%);
+        margin-top: 0;
+      }
+      .smartest__ellipse { display: none; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       GRID ALIGNMENT — Science + Mission → match Pricing / Carousel
+       Pricing uses max(40px, calc(50vw-680px)) → 40px pad at 1440px (1360px content)
+       Previous 650px formula gave 70px → sections were 60px narrower than grid
+       iMac overrides below bring both to var(--grid-pad) → 1440px content at ≥1600px
+       ══════════════════════════════════════════════════════════════════════ */
+    .science {
+      padding-left:  max(40px, calc(50vw - 680px));
+      padding-right: max(40px, calc(50vw - 680px));
+    }
+    .mission {
+      padding-left:  max(40px, calc(50vw - 680px));
+      padding-right: max(40px, calc(50vw - 680px));
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       JOEL CARD — Figma 2986-27738
+       Mask: 691.38 × 1037.323 px at left -72.88 / top -185.11
+       Container: 489 × 544 px
+       ══════════════════════════════════════════════════════════════════════ */
+    .mission__card img {
+      width: 141.38%;   /* 691.38 / 489 */
+      left:  -14.90%;   /* -72.88 / 489 */
+      top:   -34.03%;   /* -185.11 / 544 */
+    }
+    /* Role: Figma body-l = 18px / 22px / Light (was 24px subheading-l)      */
+    .mission__card-role {
+      font-size:   18px;
+      line-height: 22px;
+      font-weight: 300;
+    }
+
     @media (min-width: 1600px) {
 
       /* ── Wide grid token ────────────────────────────────────────────── */
@@ -219,19 +384,13 @@
       /* iMac override needed. max(180px, calc(50vw-540px)) resolves to */
       /* 260px+ at 1600px → 1080px content column, consistent always.   */
 
-      /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
-      .smartest::before {
-        max-width: none;
-        background-size: cover;
-        background-position: center top;
-      }
-      .smartest__top {
-        padding-left:  var(--grid-pad);
-        padding-right: var(--grid-pad);
-      }
-      /* Phone image: slightly larger for better visual balance */
-      .smartest__phone-img {
-        height: 1060px;
+      /* ── Smartest: gradient + padding formula handle all widths ─────────── */
+      /* ::before is display:none globally — no override needed here           */
+      /* padding-left (50vw-590px) is already correct at 1600px+               */
+      /* Phone wrap: scale up proportionally from 870×804 base (~+10%)         */
+      .smartest__phone-wrap {
+        width:  960px;
+        height: 885px;
       }
 
       /* ── Infogrid: extra top padding so bullets don't crowd the phone ── */
@@ -314,10 +473,11 @@
         scroll-padding-left:  var(--grid-pad);
       }
 
-      /* ── Science ────────────────────────────────────────────────────── */
-      /* Base now uses max(70px, calc(50vw-650px)) → 1300px content at   */
-      /* all viewports ≥1440px. No iMac override needed; card is full    */
-      /* content width (no max-width cap). Figma ref: 2986-27647.        */
+      /* ── Science: match Pricing grid at iMac (var(--grid-pad) → 1440px) */
+      .science {
+        padding-left:  var(--grid-pad);
+        padding-right: var(--grid-pad);
+      }
 
       /* ── Your Day: wide 1440px column — aligned with Science ────────── */
       .day {
@@ -332,10 +492,11 @@
         grid-template-columns: 467px 273px 1fr;
       }
 
-      /* ── Mission Joel ───────────────────────────────────────────────── */
-      /* Base now uses max(70px, calc(50vw-650px)) → 1300px at all sizes. */
-      /* Grid: 1fr 489px gap:96px matches Figma 2986-27737 proportions.   */
-      /* Card: 489×544px per Figma. No padding/grid/card override needed. */
+      /* ── Mission: match Pricing grid at iMac (var(--grid-pad) → 1440px) */
+      .mission {
+        padding-left:  var(--grid-pad);
+        padding-right: var(--grid-pad);
+      }
 
       /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
       .pricing {
@@ -449,7 +610,12 @@
   <section class="smartest" id="smartest">
     <!-- Mobile wrapper: isolates 100svh block from infogrid below -->
     <div class="smartest__frame">
-      <div class="smartest__phone-img" aria-hidden="true"></div>
+      <!-- Phone + ellipse glow, wrapped so ellipse position is always
+           relative to the phone container regardless of viewport width -->
+      <div class="smartest__phone-wrap" aria-hidden="true">
+        <div class="smartest__ellipse"></div>
+        <div class="smartest__phone-img"></div>
+      </div>
       <div class="smartest__top">
         <div class="smartest__text">
           <h2 class="smartest__title-wrap" aria-label="The world's smartest cardio system">
@@ -465,7 +631,7 @@
             </span>
           </h2>
           <p class="smartest__desc reveal" data-delay="1">
-            With 200+ hours per charge, Morpheus covers every workout and recovery—less recharging, more time training.
+            With 200+ hours per charge, Morpheus covers every workout and recovery.
           </p>
         </div>
       </div>
@@ -475,7 +641,7 @@
     <ul class="infogrid">
       <li class="infogrid__col reveal">
         <p class="infogrid__num">01.</p>
-        <h3 class="infogrid__heading">Personalized HR training</h3>
+        <h3 class="infogrid__heading">Personalized<br />heart rate training</h3>
         <p class="infogrid__body">Use the Morpheus zone-based interval training and weekly training targets to make sure everyone you coach is getting exactly what they need.</p>
         <p class="infogrid__subtitle">Zone-based training tailored to you.</p>
       </li>
