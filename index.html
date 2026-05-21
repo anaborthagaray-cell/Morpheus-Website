@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=60" />
+  <link rel="stylesheet" href="styles.css?v=61" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -29,8 +29,45 @@
   ═══════════════════════════════════════════════════════════════════════ -->
   <style>
 
-    /* ── Nav: fixed after hero removal — floats over all sections ──────── */
-    .nav { position: fixed; }
+    /* ─────────────────────────────────────────────────────────────────────
+       TYPOGRAPHY: force Inter 28 as the sole display font.
+       --font-display previously listed "PP Neue Montreal" first; if that
+       font is present on a machine it renders with different optical weight
+       than Inter, causing inconsistent appearance across devices. Removing
+       it ensures everyone uses the locally-hosted Inter 28pt files.
+       ───────────────────────────────────────────────────────────────────── */
+    :root {
+      --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                      Helvetica, Arial, sans-serif;
+    }
+
+    /* ── Nav: fixed, positioned below the 45px banner ───────────────────── */
+    /* top = banner height (45px) + original hero offset (17px) = 62px      */
+    /* Width: max(180px, calc(50vw-540px)) → 1080px column at every width   */
+    /* (same formula as Science / Your Day content columns)                  */
+    .nav {
+      position: fixed;
+      top: 62px;
+      padding-left:  max(180px, calc(50vw - 540px));
+      padding-right: max(180px, calc(50vw - 540px));
+    }
+
+    /* ── Nav inner: match Figma border + glass gradient ─────────────────── */
+    /* Figma node 2965-15059:                                                 */
+    /*   border: 0.5px solid white                                            */
+    /*   background: linear-gradient(144.66deg, rgba(255,255,255,0.12) 45.9%,*/
+    /*                                          rgba(255,255,255,0.08) 71.4%)*/
+    .nav__inner {
+      border: 0.5px solid rgba(255, 255, 255, 1);
+      background-image: linear-gradient(
+        144.66deg,
+        rgba(255, 255, 255, 0.12) 45.922%,
+        rgba(255, 255, 255, 0.08) 71.413%
+      );
+    }
+
+    /* ── Nav links: Inter Light (300) per Figma ─────────────────────────── */
+    .nav__link { font-weight: 300; }
 
     /* ═══════════════════════════════════════════════════════════════════════
        Joel popup
@@ -181,11 +218,9 @@
         --grid-pad: max(80px, calc(50vw - 720px));
       }
 
-      /* ── Nav: override padding to use 1440px grid token at iMac ──── */
-      .nav {
-        padding-left:  var(--grid-pad);
-        padding-right: var(--grid-pad);
-      }
+      /* ── Nav: base formula already gives 1080px at all widths — no   */
+      /* iMac override needed. max(180px, calc(50vw-540px)) resolves to */
+      /* 260px+ at 1600px → 1080px content column, consistent always.   */
 
       /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
       .smartest::before {
