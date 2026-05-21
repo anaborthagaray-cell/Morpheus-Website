@@ -615,6 +615,8 @@ ul { list-style: none; }
   width: 268px;
   height: 547px;
   z-index: 3;
+  /* Subtle shape-aware shadow — follows the phone PNG silhouette */
+  filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.30));
 }
 .hrzones__phone-frame {
   position: absolute;
@@ -2895,149 +2897,9 @@ body.m-menu-open { overflow: hidden; }
   .footer-social-label { display: inline; font-size: 13px; color: var(--on-surface-muted, #b3b3b3); }
 }
 
+
 /* ==========================================================================
-   LARGE-SCREEN GRID SYSTEM — iMac / wide desktop (≥1600px)
-   ─────────────────────────────────────────────────────────────────────────
-   Inspired by the Oura Ring / Eight Sleep approach:
-     • Section backgrounds remain full-bleed (edge-to-edge)
-     • All inner content is centered in a consistent 1440px "main column"
-     • --grid-pad is the single source of truth for horizontal padding:
-         1600px viewport → 80px   |   1920px → 240px   |   2560px → 560px
-       Formula: max(80px, calc(50vw - 720px))
-       → content column always = viewport − 2 × grid-pad = 1440px
-   ─────────────────────────────────────────────────────────────────────────
-   14-inch MacBook Pro tops out at ~1512px CSS width — safely below this
-   breakpoint, so the 14" layout is completely untouched.
+   LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
+   All overrides live in the <style> block in index.html — single source of
+   truth. No duplicate rules here to avoid specificity conflicts.
    ========================================================================== */
-@media (min-width: 1600px) {
-
-  /* ── Grid token ── */
-  :root {
-    --grid-pad: max(80px, calc(50vw - 720px));
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 1 — "The world's smartest cardio system": full-width background,
-     content aligned to the 1440px grid column.
-     ────────────────────────────────────────────────────────────────────── */
-
-  /* Background texture: remove 1920px cap so it covers edge-to-edge */
-  .smartest::before {
-    max-width: none;
-    background-size: cover;
-    background-position: center top;
-  }
-
-  /* Content column: override the base formula with grid-pad */
-  .smartest__top {
-    padding-left:  var(--grid-pad);
-    padding-right: var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 2 — Bullets overlapping the phone image.
-     Limit the absolutely-positioned phone div height to 820px so it stays
-     within .smartest__top (min-height: 818px). The existing bottom mask
-     fades it out before the infogrid text starts. Infogrid horizontal
-     padding also moves to grid-pad for consistent alignment.
-     ────────────────────────────────────────────────────────────────────── */
-  .smartest__phone-img {
-    height: 820px;
-  }
-
-  .infogrid {
-    padding-left:  var(--grid-pad);
-    padding-right: var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 1 (continued) — HR Zones card: full-bleed card, text grid-aligned.
-     max-width: 1892px created a "floating card with gaps" at wide viewports.
-     Text anchor moves from fixed 70px to grid-pad so it lines up with the
-     rest of the page content.
-     ────────────────────────────────────────────────────────────────────── */
-  .hrzones__card {
-    max-width: none;
-  }
-  .hrzones__text {
-    left: var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 3 — "Train at the right intensity" video: full-bleed card, video
-     covers properly. object-fit: contain letterboxes on very wide cards;
-     cover fills the frame. The existing dark gradient overlay keeps text
-     legible regardless of the crop.
-     ────────────────────────────────────────────────────────────────────── */
-  .intensity__card {
-    max-width: none;
-  }
-  .intensity__product-video {
-    object-fit: cover;
-  }
-  /* Pad the inner text so title / subtitle respect the grid column */
-  .intensity__text {
-    padding-left:  var(--grid-pad);
-    padding-right: var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 5 — "What people are saying": align review cards to the grid.
-     Old formula (max(40px, 50vw-680px)) yielded 600px left margin at 2560px.
-     Grid-pad keeps the first card at the same horizontal position as all
-     other page content.
-     ────────────────────────────────────────────────────────────────────── */
-  .reviews__scroll {
-    padding-left:         var(--grid-pad);
-    padding-right:        var(--grid-pad);
-    scroll-padding-left:  var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     GRID CONSISTENCY — standardise all remaining sections to grid-pad.
-     Science and Day previously used max(180px, 50vw-540px) → 1080px content
-     at large screens (too narrow). Mission/Pricing used max(40px, 50vw-680px)
-     → 600px side padding at 2560px (content ok, but inconsistent with grid).
-     ────────────────────────────────────────────────────────────────────── */
-
-  /* Science — was: max(180px, calc(50vw - 540px)) */
-  .science {
-    padding: 140px var(--grid-pad) 52px;
-  }
-
-  /* Day with Morpheus — was: max(180px, calc(50vw - 540px)) */
-  .day {
-    padding: 52px var(--grid-pad) 140px;
-  }
-
-  /* Mission Joel — was: max(40px, calc(50vw - 680px)) */
-  .mission {
-    padding: 140px var(--grid-pad);
-  }
-
-  /* Pricing — was: max(40px, calc(50vw - 680px)) */
-  .pricing {
-    padding: 140px var(--grid-pad) 70px;
-  }
-
-  /* FAQs — was: max(180px, calc(50vw - 540px)) */
-  .faqs {
-    padding: 70px var(--grid-pad) 140px;
-  }
-
-  /* Newsletter — was: flat 71px (too narrow at 2560px content stretched full) */
-  .news {
-    padding: 71px var(--grid-pad);
-  }
-
-  /* Footer — was: flat 70px (content stretched across full 2560px) */
-  .footer {
-    padding-left:  var(--grid-pad);
-    padding-right: var(--grid-pad);
-  }
-
-  /* ──────────────────────────────────────────────────────────────────────
-     FIX 6 — Inter font: already fixed via HTML <link> preconnect tags and
-     moving @import to top of this file. No additional CSS needed here.
-     ────────────────────────────────────────────────────────────────────── */
-}

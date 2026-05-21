@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=56" />
+  <link rel="stylesheet" href="styles.css?v=57" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -157,12 +157,40 @@
         grid-template-columns: 467px 273px 1fr;
       }
 
-      /* ── Mission Joel: wide 1440px column — aligned with Science + Day */
-      /* Card stays at its designed 399px width (same as 14" MacBook)    */
+      /* ── Mission Joel: wide 1440px column, slightly larger card for iMac */
+      /* Image percentages recalculated for the 460×580px container:      */
+      /*   Figma src: 624.523×937px at left:-89.67 top:-134.96           */
+      /*   width%: 624.523/460 = 135.77% | left%: -89.67/460 = -19.49%  */
+      /*   top%: -134.96/580 = -23.27%                                   */
       .mission {
         padding: 140px var(--grid-pad);
-        grid-template-columns: 1fr 399px;
-        gap: 80px;
+        grid-template-columns: 1fr 460px;
+        gap: 60px;
+      }
+      .mission__card {
+        height: 580px;
+      }
+      .mission__card img {
+        width: 135.77%;
+        left: -19.49%;
+        top: -23.27%;
+      }
+      /* +2px type scale for the wider iMac layout */
+      .mission__title {
+        font-size: 42px;
+        line-height: 46px;
+      }
+      .mission__cols p {
+        font-size: 18px;
+        line-height: 26px;
+      }
+      .mission__card-name {
+        font-size: 40px;
+        line-height: 46px;
+      }
+      .mission__card-role {
+        font-size: 26px;
+        line-height: 34px;
       }
 
       /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
