@@ -67,7 +67,11 @@
   --fs-body-m:        16px;  --lh-body-m: 22px;
   --fs-caption:       13px;  --lh-caption: 18px;
 
-  --font-display: "PP Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* "PP Neue Montreal" removed: not self-hosted and its weight-300 (Light) renders
+     optically thinner than Inter 28pt Light (300), causing Extra Light appearance.
+     Figma explicitly uses 'Inter_28pt:Light'. Inter is locally hosted via tokens.css
+     @font-face and matches the design source of truth exactly. */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-ui: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
@@ -872,9 +876,12 @@ ul { list-style: none; }
 /* ==========================================================================
    10 Science — LIGHT MODE (fix). White background, dark text.
    ========================================================================== */
+/* Figma 2986-27647: section px-[70px] → 1300px content at 1440px.
+   Formula max(70px, calc(50vw-650px)) keeps content at 1300px at any viewport ≥1440px.
+   (1440→70px, 1600→150px, 1920→310px — all produce 1300px content column) */
 .science {
   width: 100%;
-  padding: 140px max(180px, calc(50vw - 540px)) 52px;
+  padding: 140px max(70px, calc(50vw - 650px)) 52px;
   background: #ffffff;
   color: var(--c-text-dark);
   display: flex;
@@ -1227,20 +1234,23 @@ ul { list-style: none; }
 /* ==========================================================================
    12 Mission Joel — back to dark; clear visual separation from .day above.
    ========================================================================== */
+/* Figma 2986-27737: section px-[70px], text 715px, card 489×544px, gap ~96px.
+   Same max(70px, calc(50vw-650px)) formula → 1300px content at 1440px and above.
+   Grid: 1fr fills remaining space (1300-489-96=715px text block). */
 .mission {
   width: 100%;
-  padding: 140px max(180px, calc(50vw - 540px));
+  padding: 140px max(70px, calc(50vw - 650px));
   background: linear-gradient(217.85deg, rgb(15,21,34) 28.287%, rgb(22,40,98) 139.69%);
   display: grid;
-  grid-template-columns: 1fr 399px;
-  gap: 46px;
+  grid-template-columns: 1fr 489px;
+  gap: 96px;
   align-items: end;
 }
 .mission__text {
   display: flex;
   flex-direction: column;
   gap: 36px;
-  max-width: 648px;
+  max-width: 715px; /* Figma 2986-27737: text block is 715px wide */
 }
 /* Figma: eyebrow + title grouped with 8px gap */
 .mission__description {
@@ -1280,12 +1290,13 @@ ul { list-style: none; }
 }
 .mission__card img {
   position: absolute;
-  /* Figma: mask 624.523×937px at left:-89.67 top:-134.96 in 399×544 container */
-  width: 156.52%;   /* 624.523 / 399 */
+  /* Container now 489×544px. Same absolute crop (624.523px wide at -89.67, -134.96).
+     width%: 624.523/489=127.71 | left%: -89.67/489=-18.34 | top%: -134.96/544=-24.81 */
+  width: 127.71%;
   max-width: none;
   height: auto;
-  left: -22.47%;    /* -89.67 / 399 */
-  top: -24.81%;     /* -134.96 / 544 */
+  left: -18.34%;
+  top: -24.81%;
 }
 .mission__card-scrim {
   position: absolute;
