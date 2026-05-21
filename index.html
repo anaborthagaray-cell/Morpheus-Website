@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=61" />
+  <link rel="stylesheet" href="styles.css?v=62" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -29,18 +29,6 @@
   ═══════════════════════════════════════════════════════════════════════ -->
   <style>
 
-    /* ─────────────────────────────────────────────────────────────────────
-       TYPOGRAPHY: force Inter 28 as the sole display font.
-       --font-display previously listed "PP Neue Montreal" first; if that
-       font is present on a machine it renders with different optical weight
-       than Inter, causing inconsistent appearance across devices. Removing
-       it ensures everyone uses the locally-hosted Inter 28pt files.
-       ───────────────────────────────────────────────────────────────────── */
-    :root {
-      --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-                      Helvetica, Arial, sans-serif;
-    }
-
     /* ── Nav: fixed, positioned below the 45px banner ───────────────────── */
     /* top = banner height (45px) + original hero offset (17px) = 62px      */
     /* Width: max(180px, calc(50vw-540px)) → 1080px column at every width   */
@@ -52,18 +40,27 @@
       padding-right: max(180px, calc(50vw - 540px));
     }
 
-    /* ── Nav inner: match Figma border + glass gradient ─────────────────── */
-    /* Figma node 2965-15059:                                                 */
-    /*   border: 0.5px solid white                                            */
-    /*   background: linear-gradient(144.66deg, rgba(255,255,255,0.12) 45.9%,*/
-    /*                                          rgba(255,255,255,0.08) 71.4%)*/
+    /* ── Nav inner: Figma node 2986-27973 — exact border + glass gradient ── */
+    /* border: 0.5px solid white (confirmed)                                  */
+    /* gradient: 144.659deg → rgba(255,255,255,0.09) → rgba(255,255,255,0.06) */
     .nav__inner {
       border: 0.5px solid rgba(255, 255, 255, 1);
       background-image: linear-gradient(
-        144.66deg,
-        rgba(255, 255, 255, 0.12) 45.922%,
-        rgba(255, 255, 255, 0.08) 71.413%
+        144.659deg,
+        rgba(255, 255, 255, 0.09) 45.922%,
+        rgba(255, 255, 255, 0.06) 71.413%
       );
+    }
+
+    /* ── Nav: smooth scroll-hide transition ─────────────────────────────── */
+    .nav {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav--hidden {
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
     }
 
     /* ── Nav links: Inter Light (300) per Figma ─────────────────────────── */
@@ -980,6 +977,32 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script src="app.js?v=2" defer></script>
+
+  <script>
+    /* ── Nav scroll-hide ────────────────────────────────────────────────── */
+    /* Hide nav on scroll-down (after 80px), reveal on scroll-up.           */
+    /* Uses rAF to debounce scroll events for smooth 60fps behavior.        */
+    (function () {
+      var nav     = document.querySelector('.nav');
+      var lastY   = window.scrollY;
+      var ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () {
+          var y = window.scrollY;
+          if (y > lastY && y > 80) {
+            nav.classList.add('nav--hidden');
+          } else {
+            nav.classList.remove('nav--hidden');
+          }
+          lastY   = y;
+          ticking = false;
+        });
+      }, { passive: true });
+    })();
+  </script>
 
   <script>
     /* ── Joel popup ────────────────────────────────────────────────────── */
