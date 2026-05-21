@@ -428,7 +428,7 @@ ul { list-style: none; }
   grid-column: 1;
   grid-row: 1;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 72.249px;
   line-height: 1.36;
   letter-spacing: -0.7947px;
@@ -466,7 +466,7 @@ ul { list-style: none; }
 
 .smartest__title-pill-text {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 72.249px;
   line-height: 1.36;
   letter-spacing: -0.7947px;
@@ -529,10 +529,10 @@ ul { list-style: none; }
   opacity: 0.45;
 }
 
-/* Figma: 40/44, color white */
+/* Figma: 40/44/Light, color white */
 .infogrid__heading {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-l);
   line-height: var(--lh-heading-l);
   letter-spacing: var(--ls-heading-l);
@@ -603,11 +603,12 @@ ul { list-style: none; }
   gap: 32px;
   max-width: 580px;
 }
+/* Figma node 2986-27561: Web/Heading/L — 40px / 44px / Light (300) / -0.5px */
 .hrzones__title {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 50px;
-  line-height: 55px;
+  font-weight: 300;
+  font-size: var(--fs-heading-l);   /* 40px */
+  line-height: var(--lh-heading-l); /* 44px */
   letter-spacing: -0.5px;
   color: #ffffff;
   text-shadow: 0 4.628px 30.082px rgba(0, 0, 0, 0.25);
@@ -712,7 +713,7 @@ ul { list-style: none; }
 }
 .intensity__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 60px;
   line-height: 55px;
   letter-spacing: -1px;
@@ -767,10 +768,10 @@ ul { list-style: none; }
   width: 1px;
   background: rgba(255,255,255,0.08);
 }
-/* Figma: 40/44, color white */
+/* Figma: 40/44/Light, color white */
 .specs__heading {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-l);
   line-height: var(--lh-heading-l);
   letter-spacing: var(--ls-heading-l);
@@ -901,10 +902,10 @@ ul { list-style: none; }
   align-items: center;
   gap: 8px;
 }
-/* Figma: Science title = 50px / 55px heading-xl */
+/* Figma: Science title = 50px / 55px / Light heading-xl */
 .science__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-xl);
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
@@ -1053,10 +1054,10 @@ ul { list-style: none; }
   align-items: center;
   gap: 8px;
 }
-/* Figma: Day title = 50px / 55px heading-xl */
+/* Figma: Day title = 50px / 55px / Light heading-xl */
 .day__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-xl);
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
@@ -1249,10 +1250,10 @@ ul { list-style: none; }
 }
 /* Figma: "OUR MISSION" = 22/32, color white, no extra letter-spacing */
 .mission__text .eyebrow { color: #ffffff; letter-spacing: 0; }
-/* Figma: 40/44, color white */
+/* Figma: 40/44/Light, color white */
 .mission__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-l);
   line-height: var(--lh-heading-l);
   letter-spacing: var(--ls-heading-l);
@@ -1347,7 +1348,7 @@ ul { list-style: none; }
 .reviews__header .eyebrow { color: var(--c-on-surface-variant); letter-spacing: 0; }
 .reviews__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-xl);
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
@@ -1477,7 +1478,7 @@ ul { list-style: none; }
 }
 .pricing__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-l);
   line-height: var(--lh-heading-l);
   letter-spacing: var(--ls-heading-l);
@@ -1514,7 +1515,7 @@ ul { list-style: none; }
 .pricing__special {
   font-family: "Inter", sans-serif;
   font-size: var(--fs-heading-xl);
-  font-weight: 400;
+  font-weight: 300;
   line-height: var(--lh-heading-xl);
   letter-spacing: var(--ls-heading-xl);
   background: linear-gradient(90deg, #1a2335 0%, #4c669b 100%);
@@ -1650,7 +1651,7 @@ ul { list-style: none; }
 }
 .faqs__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: var(--fs-heading-l);
   line-height: var(--lh-heading-l);
   letter-spacing: var(--ls-heading-l);
@@ -1735,7 +1736,7 @@ ul { list-style: none; }
 }
 .news__title {
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 44px;
   letter-spacing: -0.5px;
   color: #fff;
@@ -2601,7 +2602,7 @@ body.m-menu-open { overflow: hidden; }
   .science__header { width: 100%; gap: 0; }
   .science__header-top { gap: 16px; }
   .science__header-title-group { gap: 8px; }
-  .science__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 400; }
+  .science__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
   /* Figma: Body/M — 16px / 22px / weight 300 (desktop inherits 32px lh — must override) */
   .science__sub { font-size: var(--fs-body-m); line-height: var(--lh-body-m); font-weight: 400; max-width: 100%; text-align: center; }
   .tabs { width: 278px; }
@@ -2643,7 +2644,7 @@ body.m-menu-open { overflow: hidden; }
   .day { padding: 32px 24px 52px; gap: 32px; display: flex; flex-direction: column; align-items: center; }
   .day__header { gap: 16px; margin-bottom: 0; width: 100%; text-align: center; }
   .day__header-top { gap: 8px; }
-  .day__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 400; }
+  .day__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
   .day__sub { width: 100%; font-size: var(--fs-body-m); line-height: var(--lh-body-m); text-align: center; }
   .daytabs { display: none; }
   .day__collage { display: none; }
@@ -2691,7 +2692,7 @@ body.m-menu-open { overflow: hidden; }
     text-align: center;
   }
   .mission__description { gap: 8px; align-items: center; }
-  .mission__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 400; }
+  .mission__title { font-size: var(--fs-heading-s); line-height: var(--lh-heading-s); font-weight: 300; }
   /* Not in Figma mobile — hide bio paragraph */
   .mission__sub { display: none; }
   .mission__cols { display: none; }
@@ -2762,7 +2763,7 @@ body.m-menu-open { overflow: hidden; }
     padding: 0 24px;
     gap: 8px;
   }
-  .reviews__title { font-size: 29px; line-height: 36px; font-weight: 400; }
+  .reviews__title { font-size: 29px; line-height: 36px; font-weight: 300; }
   .reviews__scroll { padding: 0 0 0 24px; scroll-padding-left: 24px; }
   .reviews__row { gap: 16px; }
   .review {
@@ -2803,7 +2804,7 @@ body.m-menu-open { overflow: hidden; }
     padding: 0;
   }
   .pricing__offer { padding: 0; gap: 8px; width: 100%; }
-  .pricing__special { font-size: 38px; line-height: 44px; font-weight: 400; letter-spacing: -0.5px; }
+  .pricing__special { font-size: 38px; line-height: 44px; font-weight: 300; letter-spacing: -0.5px; }
   .pricing__price-dollar { font-size: 29px; margin-top: 12px; }
   .pricing__price-main { font-size: 75px; letter-spacing: -0.8px; }
   .pricing__price-old { font-size: 16px; }
@@ -2818,7 +2819,7 @@ body.m-menu-open { overflow: hidden; }
     padding: 52px 24px;
     gap: 16px;
   }
-  .faqs__title { font-size: 29px; line-height: 36px; font-weight: 400; }
+  .faqs__title { font-size: 29px; line-height: 36px; font-weight: 300; }
   .faqs__list { width: 100%; gap: 16px; }
   .faq { border-radius: 11px; }
   .faq > summary { padding: 16px 28px; }

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=62" />
+  <link rel="stylesheet" href="styles.css?v=63" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -41,10 +41,10 @@
     }
 
     /* ── Nav inner: Figma node 2986-27973 — exact border + glass gradient ── */
-    /* border: 0.5px solid white (confirmed)                                  */
+    /* border: 0.5px solid rgba(255,255,255,0.20) — 20% opacity per design   */
     /* gradient: 144.659deg → rgba(255,255,255,0.09) → rgba(255,255,255,0.06) */
     .nav__inner {
-      border: 0.5px solid rgba(255, 255, 255, 1);
+      border: 0.5px solid rgba(255, 255, 255, 0.20);
       background-image: linear-gradient(
         144.659deg,
         rgba(255, 255, 255, 0.09) 45.922%,
