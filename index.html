@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=58" />
+  <link rel="stylesheet" href="styles.css?v=59" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -161,40 +161,42 @@
         grid-template-columns: 467px 273px 1fr;
       }
 
-      /* ── Mission Joel: wide 1440px column, slightly larger card for iMac */
-      /* Image percentages recalculated for the 460×580px container:      */
-      /*   Figma src: 624.523×937px at left:-89.67 top:-134.96           */
-      /*   width%: 624.523/460 = 135.77% | left%: -89.67/460 = -19.49%  */
-      /*   top%: -134.96/580 = -23.27%                                   */
+      /* ── Mission Joel ───────────────────────────────────────────────── */
+      /* Use the same NARROW padding formula as 14" MacBook               */
+      /* (max(180px, calc(50vw-540px)) → 1080px content at any width)    */
+      /* This eliminates the empty gap between the text block and the     */
+      /* card that appeared when the section was expanded to 1440px.      */
+      /* Typography is NOT changed — base values (40px title, 16px body) */
+      /* are the source of truth and apply identically to 14" and iMac.  */
       .mission {
-        padding: 140px var(--grid-pad);
+        padding: 140px max(180px, calc(50vw - 540px));
         grid-template-columns: 1fr 460px;
-        gap: 60px;
+        gap: 40px;
       }
+      /* Card: slightly taller than base 544px — grows toward center     */
       .mission__card {
-        height: 580px;
+        height: 560px;
       }
+      /* Image repositioned for 460×560px container.                     */
+      /* Figma source: 624.523×937px mask, anchor left:-89.67 top:-134.96 */
+      /* width%: 624.523/460=135.77 | left%: -89.67/460=-19.49          */
+      /* top%: -134.96/560=-24.10                                         */
       .mission__card img {
         width: 135.77%;
         left: -19.49%;
-        top: -23.27%;
+        top: -24.10%;
       }
-      /* +2px type scale for the wider iMac layout */
-      .mission__title {
-        font-size: 42px;
-        line-height: 46px;
-      }
-      .mission__cols p {
-        font-size: 18px;
-        line-height: 26px;
-      }
+      /* Card overlay text: reduce from base values (38px name / 24px role) */
+      /* since the card is physically larger on iMac — smaller text feels  */
+      /* proportionally right and avoids the "too large" label effect.      */
       .mission__card-name {
-        font-size: 40px;
-        line-height: 46px;
+        font-size: 28px;
+        line-height: 34px;
       }
       .mission__card-role {
-        font-size: 26px;
-        line-height: 34px;
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 6px;
       }
 
       /* ── Special Offer (Pricing): 1440px column ─────────────────────── */
