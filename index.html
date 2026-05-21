@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles.css?v=57" />
+  <link rel="stylesheet" href="styles.css?v=58" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════
        LARGE-SCREEN GRID — iMac / wide desktop (≥1600px)
@@ -37,7 +37,11 @@
         --grid-pad: max(80px, calc(50vw - 720px));
       }
 
-      /* ── Hero: full-width (no side margins at iMac) ────────────────── */
+      /* ── Nav: override padding to use 1440px grid token at iMac ──── */
+      .nav {
+        padding-left:  var(--grid-pad);
+        padding-right: var(--grid-pad);
+      }
 
       /* ── Smartest: full-bleed bg, text in 1440px column ────────────── */
       .smartest::before {
