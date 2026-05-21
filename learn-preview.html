@@ -6,6 +6,50 @@
   <title>Learn — Morpheus (Preview)</title>
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/learn.css" />
+
+  <!-- ── Nav: exact home-page match — fixed, 1080px column, space-between ── -->
+  <style>
+    /* ── Layout: replicate home page inline override exactly ──────────────── */
+    /* Home page: display:block, padding 50vw-540px → 1080px content column   */
+    /* learn.css has display:flex;justify-content:center → overridden below    */
+    .nav {
+      position: fixed;
+      top: 62px;                              /* banner(45px) + gap(17px)      */
+      display: block;                         /* override learn.css flex center */
+      padding-left:  max(180px, calc(50vw - 540px));
+      padding-right: max(180px, calc(50vw - 540px));
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── Inner pill: full column width, logo ← links → CTA ────────────────── */
+    /* learn.css has width:max-content → override to 100% (fills padded area)  */
+    .nav__inner {
+      width: 100%;
+      justify-content: space-between;        /* override learn.css default      */
+      border: 0.5px solid rgba(255, 255, 255, 0.20);   /* Figma 20% opacity     */
+      background-image: linear-gradient(
+        144.659deg,                           /* home page angle (not 137.06)   */
+        rgba(255, 255, 255, 0.09) 45.922%,
+        rgba(255, 255, 255, 0.06) 71.413%
+      );
+    }
+
+    /* ── Scroll-hide state ─────────────────────────────────────────────────── */
+    .nav--hidden {
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── Typography: Inter Light (300) per Figma ─────────────────────────── */
+    .nav__link { font-weight: 300; }
+
+    /* ── Hero top spacing: keep original 180px — designed for nav + breathing  */
+    /* room. With fixed nav the layout stays identical: content at 225px from  */
+    /* viewport (45px banner + 180px padding), 110px below nav bottom (115px). */
+    .hero { padding-top: 180px; }
+  </style>
 </head>
 <body>
 
@@ -14,24 +58,26 @@
   <p>Free shipping on orders over $99 — <a href="#">Shop Now →</a></p>
 </div>
 
+<!-- ── Nav: fixed, floats above all sections ── -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="Morpheus home">
+      <img src="assets/m7-logo-nav.svg" alt="" />
+      <span class="nav__wordmark">Morpheus</span>
+    </a>
+    <ul class="nav__menu">
+      <li><a href="#" class="nav__link">Train</a></li>
+      <li><a href="#" class="nav__link">Recover</a></li>
+      <li><a href="#" class="nav__link">Coaches</a></li>
+      <li><a href="learn-preview.html" class="nav__link is-active">Learn</a></li>
+      <li><a href="#" class="nav__link">Support</a></li>
+    </ul>
+    <a href="#" class="nav__cta">Shop Now</a>
+  </div>
+</nav>
+
 <!-- ── Hero (dark) ── -->
 <section class="hero">
-  <nav class="nav">
-    <div class="nav__inner">
-      <a class="nav__logo" href="index.html" aria-label="Morpheus home">
-        <img src="assets/m7-logo-nav.svg" alt="" />
-        <span class="nav__wordmark">Morpheus</span>
-      </a>
-      <ul class="nav__menu">
-        <li><a href="#" class="nav__link">Train</a></li>
-        <li><a href="#" class="nav__link">Recover</a></li>
-        <li><a href="#" class="nav__link">Coaches</a></li>
-        <li><a href="learn-preview.html" class="nav__link is-active">Learn</a></li>
-        <li><a href="#" class="nav__link">Support</a></li>
-      </ul>
-      <a href="#" class="nav__cta">Shop Now</a>
-    </div>
-  </nav>
   <div class="container">
     <div class="hero-inner">
       <h1>What would you like to <em>learn</em> today?</h1>
@@ -324,6 +370,29 @@
 <button class="chat-fab" aria-label="Help &amp; chat">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
+
+<script>
+  /* ── Nav scroll-hide (matches home page behaviour) ── */
+  (function () {
+    var nav     = document.querySelector('.nav');
+    var lastY   = window.scrollY;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY   = y;
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
+</script>
 
 </body>
 </html>

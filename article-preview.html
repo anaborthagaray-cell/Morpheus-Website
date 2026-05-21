@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The story of recovery — Morpheus (Preview)</title>
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/learn.css" />
+
+  <!-- ── Nav: exact home-page match — fixed, 1080px column, space-between ── -->
+  <style>
+    /* ── Layout: replicate home page inline override exactly ──────────────── */
+    .nav {
+      position: fixed;
+      top: 62px;                              /* banner(45px) + gap(17px)      */
+      display: block;                         /* override learn.css flex center */
+      padding-left:  max(180px, calc(50vw - 540px));
+      padding-right: max(180px, calc(50vw - 540px));
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── Inner pill: full column width, logo ← links → CTA ────────────────── */
+    .nav__inner {
+      width: 100%;
+      justify-content: space-between;
+      border: 0.5px solid rgba(255, 255, 255, 0.20);
+      background-image: linear-gradient(
+        144.659deg,
+        rgba(255, 255, 255, 0.09) 45.922%,
+        rgba(255, 255, 255, 0.06) 71.413%
+      );
+    }
+
+    /* ── Scroll-hide state ─────────────────────────────────────────────────── */
+    .nav--hidden {
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── Typography: Inter Light (300) per Figma ─────────────────────────── */
+    .nav__link { font-weight: 300; }
+
+    /* ── Article hero top spacing: keep original 168px ───────────────────── */
+    /* Same logic as learn hero: content at 45+168=213px from viewport top,   */
+    /* 98px below nav bottom (115px). Comfortable breathing room.             */
+    .article-hero { padding-top: 168px; }
+  </style>
+</head>
+<body>
+
+<!-- ── Announcement bar ── -->
+<div class="banner" role="region" aria-label="Promo">
+  <p>Free shipping on orders over $99 — <a href="#">Shop Now →</a></p>
+</div>
+
+<!-- ── Nav: fixed, floats above all sections ── -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="Morpheus home">
+      <img src="assets/m7-logo-nav.svg" alt="" />
+      <span class="nav__wordmark">Morpheus</span>
+    </a>
+    <ul class="nav__menu">
+      <li><a href="#" class="nav__link">Train</a></li>
+      <li><a href="#" class="nav__link">Recover</a></li>
+      <li><a href="#" class="nav__link">Coaches</a></li>
+      <li><a href="learn-preview.html" class="nav__link is-active">Learn</a></li>
+      <li><a href="#" class="nav__link">Support</a></li>
+    </ul>
+    <a href="#" class="nav__cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- ── Article Hero ── -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="crumbs">
+      <a href="learn-preview.html">Morpheus 101</a>
+      <span>/</span>
+      <a href="learn-preview.html">Recovery &amp; Recovery</a>
+      <span>/</span>
+      <span>The story of recovery</span>
+    </div>
+    <span class="tag tag-hero recovery">RECOVERY</span>
+    <h1>The story of recovery</h1>
+    <p class="dek">What recovery actually means, why it matters more than you think, and how Morpheus turns the balance between stress and recovery into a single number you can act on.</p>
+  </div>
+</section>
+
+<!-- ── Article meta bar ── -->
+<section class="light">
+  <div class="article-meta">
+    <div class="container">
+      <div class="article-meta-row">
+        <div class="article-author">
+          <div class="avatar" style="background-image:url(https://www.figma.com/api/mcp/asset/30413949-2a96-40da-b68f-36266fce8359)"></div>
+          <div>
+            <div class="name">Joel Jamieson</div>
+            <div class="byline">Founder of Morpheus</div>
+          </div>
+        </div>
+        <div class="article-meta-right">
+          <div class="article-dateline">April 12, 2026</div>
+          <div class="article-readtime">
+            Read time
+            <span class="value">7 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Article body layout ── -->
+  <div class="article-wrap">
+
+    <!-- Left aside: TOC -->
+    <aside class="article-aside-left">
+      <h5 class="toc-title">On this page</h5>
+      <ul class="toc">
+        <li><a href="#body-adapts" class="active">How the body adapts to stress</a></li>
+        <li><a href="#problem">The problem with recovery</a></li>
+        <li><a href="#recovery-score">The Morpheus recovery score</a></li>
+        <li><a href="#balance-stress">Using Morpheus to balance stress and recovery</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <div class="article-main">
+      <article class="prose">
+
+        <p class="article-lede">
+          Recovery has become a buzzword in fitness over the last few years, but what does it really mean? Does having a higher recovery score mean you can train hard and a lower recovery score means you should stay at home? Is the best way to recover faster to just rest and get more sleep? To get to the bottom of what recovery is and how Morpheus works, we have to go back to two things we talked about in yesterday's lesson: stress and energy.
+        </p>
+
+        <h2 id="body-adapts">How the body adapts to stress (and why it's so important)</h2>
+        <p>
+          At the very heart of fitness (and survival itself) is the concept of adaptability. In simplest terms, adaptation is the process the body goes through to become more fit to handle the demands of its environment. In the wild, this also means it's better equipped to survive. This is how training works.
+        </p>
+        <p>
+          By lifting weights, doing cardiovascular conditioning, practicing a skill, playing a sport, etc., you are creating a specific environment that your body has to adapt to. You lift heavy weights, it gets stronger.
+        </p>
+
+        <figure class="article-figure">
+          <div class="fig-media">
+            <div class="img" style="background-image:url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&auto=format&fit=crop)"></div>
+          </div>
+          <figcaption>Stress is the spark. Recovery is where the work actually happens.</figcaption>
+        </figure>
+
+        <p>
+          You run long distances, it gets more efficient. You practice a specific lift or movement, your technique gets better. This is nothing more than the body's adaptive mechanisms at work. There are two parts to this process: stress and recovery. When you're training, you're putting your body under stress.
+        </p>
+        <p>
+          This means your stress-response system is working hard to crank up energy production. The more force and power your muscles produce, the more energy they need. Once the workout is over, that's when recovery begins.
+        </p>
+        <p>
+          The most important thing to understand about recovery is that just like stress, it's all about energy. In this case, the body needs energy to repair and rebuild stressed muscle tissue.
+        </p>
+        <p>
+          To add new mitochondria (the power plants of our cells). To create and reinforce the neural pathways that improve our technique and skill. This use of energy is what we call recovery. In other words, recovery is the process of using energy to adapt to the stress of our environment. When it comes to fitness, it's this process that turns the workouts we do into improvements in strength, power, hypertrophy, body comp, skill, and performance.
+        </p>
+
+        <blockquote>
+          Recovery is the process of using energy to adapt to the stress of our environment. It's this process that turns the workouts we do into improvements in strength, power, hypertrophy, body comp, skill, and performance.
+          <cite>— Joel Jamieson, founder of Morpheus</cite>
+        </blockquote>
+
+        <h2 id="problem">The problem with recovery</h2>
+        <p>
+          Your body is constantly going through periods where it's put under stress, followed by time where it can recover from that stress. This is what we call a stress-recovery cycle.
+        </p>
+        <p>
+          In a perfect world, you'd have all the energy you need to fully recover and adapt to each period of stress. You'd make constant improvements in your fitness. You'd never feel tired, run down, or lack the motivation to get off the couch. You'd never get sick.
+        </p>
+        <p>
+          The problem is that we don't live in that perfect world. In the real world, our bodies can only produce a fixed amount of energy each day no matter how much we eat or sleep. The mental stress of life can add up quickly. We can convince ourselves that we need to do one high intensity workout after another. It can be all too easy to put our body under more mental and physical stress than it has the energy to adapt to. When this happens, we put ourselves into a recovery debt.
+        </p>
+
+        <figure class="article-figure">
+          <div class="fig-media">
+            <div class="img" style="background-image:url(https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1400&auto=format&fit=crop)"></div>
+          </div>
+          <figcaption>Recovery debt creeps in long before you feel it.</figcaption>
+        </figure>
+
+        <div class="stat-callout">
+          <div class="stat-cell">
+            <div class="label">Hard sessions per week</div>
+            <div class="num">3–4<span class="unit"> max</span></div>
+            <div class="trend">Evidence-based ceiling</div>
+          </div>
+          <div class="stat-cell">
+            <div class="label">Hours of sleep needed</div>
+            <div class="num">7.5<span class="unit"> hrs/night</span></div>
+            <div class="trend neg">For full HRV recovery</div>
+          </div>
+          <div class="stat-cell">
+            <div class="label">Days of recovery debt</div>
+            <div class="num">2–3<span class="unit"> days</span></div>
+            <div class="trend neg">Before noticeable decline</div>
+          </div>
+        </div>
+
+        <p>
+          If a recovery debt is small, it most often leads to frustrating plateaus where you're putting in the work, but not seeing any improvement. Unfortunately, this is where a lot of people in fitness get stuck. Over time, if the balance between stress and recovery isn't fixed, the body will fight back. You'll start to feel more fatigued all the time. You'll be less motivated to go to the gym and more likely to get injured if you do. Sound familiar?
+        </p>
+        <p>
+          Fortunately, there's an easy way to prevent all this…
+        </p>
+
+        <h2 id="recovery-score">The Morpheus recovery score</h2>
+        <p>
+          A lot of people have been led to believe that a low recovery score on an app means their body can't train hard or perform well. They're often confused when they get a low score even though they feel fine — or surprised when they choose to train hard anyway and hit a PR.
+        </p>
+        <p>
+          The reason isn't that the score is wrong. A recovery score is not a predictor of what your body is capable of, or how well it will perform on a given day. The most accurate way to read it — particularly the one Morpheus gives you — is as a gauge of the balance between energy you've spent on stress vs. recovery over the last few days.
+        </p>
+
+        <h2 id="balance-stress">Using Morpheus to balance stress and recovery</h2>
+        <p>
+          Getting yourself into a recovery debt doesn't happen in a single day, or even a week — it creeps up on you without you realizing it. When you keep adding stress on top of stress, without allowing enough time and energy for recovery, that's when bad things happen and you pay the price.
+        </p>
+
+        <h2>What this means for you</h2>
+        <p>
+          When your recovery score is consistently low, it's a sign your body has been spending more time and energy dealing with stress than recovering from it. Because it's during recovery that gains in fitness are actually made, that also means you're leaving results on the table.
+        </p>
+        <p>
+          Using the Morpheus recovery score to guide your training (and your daily lifestyle) is the key to long-term gains in health, fitness, and performance. The rest of this section will teach you how to measure your recovery each day and use Morpheus to improve it.
+        </p>
+
+      </article>
+
+      <!-- Author card -->
+      <div class="article-end">
+        <div class="author-card">
+          <div class="avatar" style="background-image:url(https://www.figma.com/api/mcp/asset/30413949-2a96-40da-b68f-36266fce8359)"></div>
+          <div>
+            <div class="name">Joel Jamieson</div>
+            <div class="role">Founder of Morpheus</div>
+            <div class="bio">Strength and conditioning coach to elite combat athletes for over two decades. Writes about HRV, recovery, and the energy systems that determine real-world performance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right aside: action buttons -->
+    <aside class="article-aside-right">
+      <button class="aside-btn" aria-label="Like">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </button>
+      <button class="aside-btn" aria-label="Save">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      </button>
+      <button class="aside-btn" aria-label="Share">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4"/><path d="m15.4 6.5-6.8 4"/></svg>
+      </button>
+      <button class="aside-btn" aria-label="Copy link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      </button>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ── Keep reading ── -->
+<section class="related light">
+  <div class="related-inner">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Keep reading</h2>
+        <p class="section-sub">Articles on adjacent themes our editors think pair well.</p>
+      </div>
+      <a href="learn-preview.html" class="section-link">Back to Learn
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="grid three">
+
+      <a class="card" href="article-preview.html?id=hrv-guide">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/e69a16f0-be10-46bd-a09c-b08d84c02895)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag hrv">HRV</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">Everything you need to know about HRV</h4>
+          <p class="card-excerpt">Over the last few years, heart rate variability, or HRV, has become a widely used metric across a variety of fitness apps.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/30413949-2a96-40da-b68f-36266fce8359)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="article-preview.html?id=recovery-workouts">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/0472026e-d7de-49cc-9668-97d6898d38bb)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag training">TRAINING</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">Why you need Recovery workouts</h4>
+          <p class="card-excerpt">There are many ways to try and speed up recovery these days, from massage and soft tissue work, to hydrotherapy, meditation, and more.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/30413949-2a96-40da-b68f-36266fce8359)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="article-preview.html?id=sleep-recovery">
+        <div class="card-media">
+          <div class="img" style="background-image:url(https://www.figma.com/api/mcp/asset/679ca6c5-4b15-4f57-a684-221f683b2778)"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="tag sleep">SLEEP</span>
+            <span class="sep-dot"></span>
+            <span>6 min</span>
+          </div>
+          <h4 class="card-title">How does sleep impact recovery?</h4>
+          <p class="card-excerpt">These days, it's no secret that sleep is important for almost every area of health, fitness, and performance.</p>
+          <div class="card-footer">
+            <div class="avatar-xs" style="background-image:url(https://www.figma.com/api/mcp/asset/30413949-2a96-40da-b68f-36266fce8359)"></div>
+            <span>Joel Jamieson</span>
+            <span style="margin-left:auto">April 12, 2026</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-brand-section">
+        <img src="assets/m7-logo-footer.svg" alt="" class="footer-logo" />
+        <div class="footer-brand-text">
+          <p class="footer-brand-name">Morpheus Lab.</p>
+          <p class="footer-brand-tagline">Train smarter, recover faster.</p>
+          <p class="footer-brand-desc">Train with your body, not against it. Morpheus turns HRV, sleep, and workout load into one daily verdict: push, maintain, or rest.</p>
+          <div class="footer-apps">
+            <a href="#"><img src="https://www.figma.com/api/mcp/asset/88764bfb-545d-4739-8b14-ef69e4da4900" alt="Get it on Google Play" /></a>
+            <a href="#"><img src="https://www.figma.com/api/mcp/asset/b15612dd-b089-4e54-83f1-44d3065c837d" alt="Download on the App Store" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="footer-col-title">Product</p>
+          <ul>
+            <li><a href="#">How to Train</a></li>
+            <li><a href="#">Coaches</a></li>
+            <li><a href="learn-preview.html">Learn More</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Lorem Ipsum</p>
+          <ul>
+            <li><a href="#">Challenges</a></li>
+            <li><a href="#">Morpheus Cardio Club</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Mobile-only app badges -->
+      <div class="footer-apps footer-apps-mobile">
+        <a href="#"><img src="https://www.figma.com/api/mcp/asset/4f366ff2-a21b-4549-8b2e-f5eb086316db" alt="Get it on Google Play" /></a>
+        <a href="#"><img src="https://www.figma.com/api/mcp/asset/1e0cfa5d-8c1a-4959-8ada-ce9aa4a0395f" alt="Download on the App Store" /></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Morpheus Lab. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg><span class="footer-social-label">Instagram</span></a>
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.1.3-2 2-2h2V2h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4z"/></svg><span class="footer-social-label">Facebook</span></a>
+          <a href="#" aria-label="Twitter"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M18 2h3l-7.5 8.6L22 22h-7l-5-6.5L4 22H1l8-9.2L1 2h7l4.5 6L18 2z"/></svg><span class="footer-social-label">Twitter</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="chat-fab" aria-label="Help &amp; chat">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<script>
+  /* ── Nav scroll-hide (matches home page behaviour) ── */
+  (function () {
+    var nav     = document.querySelector('.nav');
+    var lastY   = window.scrollY;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (y > lastY && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else {
+          nav.classList.remove('nav--hidden');
+        }
+        lastY   = y;
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

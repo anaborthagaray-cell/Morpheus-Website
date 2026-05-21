@@ -819,7 +819,7 @@ ul { list-style: none; }
 }
 .carousel__slide {
   flex: 0 0 480px;
-  height: 560px;
+  height: 592px; /* Figma 3046-4632: h-[592px] */
   border-radius: 10px;
   overflow: hidden;
   scroll-snap-align: start;
@@ -881,7 +881,7 @@ ul { list-style: none; }
    (1440→70px, 1600→150px, 1920→310px — all produce 1300px content column) */
 .science {
   width: 100%;
-  padding: 140px max(70px, calc(50vw - 650px)) 52px;
+  padding: 140px max(70px, calc(50vw - 650px)) 70px; /* Figma 2986-27698: pb-[70px] */
   background: #ffffff;
   color: var(--c-text-dark);
   display: flex;
@@ -953,7 +953,7 @@ ul { list-style: none; }
 .science__card {
   position: relative;
   width: 100%;
-  height: 745px;
+  height: 592px; /* Figma 2986-27659: h-[592px] */
   border-radius: 10px;
   overflow: hidden;
   isolation: isolate;
@@ -966,16 +966,17 @@ ul { list-style: none; }
 .science__card-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(12,16,24,0.1) 30%, rgba(12,16,24,0.7) 100%);
+  /* Figma 2986-27659: 176.462deg, transparent → rgba(7,8,20,0.80) at 60% */
+  background: linear-gradient(176.462deg, rgba(0,0,0,0) 11.121%, rgba(7,8,20,0.80) 60.182%);
 }
 .science__card-inner {
   position: relative;
   z-index: 2;
-  padding: 80px;
+  padding: 0 70px 70px; /* Figma: px-[70px] pb-[70px], grid anchored to bottom */
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end; /* Figma: justify-end — bullets sit at bottom */
 }
 .science__card-header { display: flex; flex-direction: column; gap: 8px; max-width: 520px; }
 /* Figma: 29px / 34.8 */
@@ -1039,7 +1040,7 @@ ul { list-style: none; }
    ========================================================================== */
 .day {
   width: 100%;
-  padding: 52px max(180px, calc(50vw - 540px)) 140px;
+  padding: 70px max(180px, calc(50vw - 540px)) 140px; /* Figma 2986-27698: pt-[70px] */
   background: #ffffff;
   color: var(--c-text-dark);
   display: flex;
@@ -1513,7 +1514,7 @@ ul { list-style: none; }
   gap: 0;
   align-items: stretch;
   width: 100%;
-  height: 567px;
+  height: 592px; /* Figma 3044-4585: h-[592px] */
 }
 .pricing__image {
   width: 100%;

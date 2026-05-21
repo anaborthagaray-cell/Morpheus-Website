@@ -343,6 +343,20 @@
     }
 
     /* ══════════════════════════════════════════════════════════════════════
+       SPECS — Figma 2986-27559: gap-[140px] between secondary-frame sections
+       Intensity ends with padding-bottom:0, carousel starts with padding-top:20px.
+       Giving specs 140px top + 120px bottom (carousel's 20px makes up the rest).
+       ══════════════════════════════════════════════════════════════════════ */
+    .specs {
+      padding-top:    140px;
+      padding-bottom: 120px; /* + carousel's existing 20px top = 140px gap */
+    }
+    /* Carousel: drop the 20px top — specs bottom already provides the gap    */
+    .carousel {
+      padding-top: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
        GRID ALIGNMENT — Science + Mission → match Pricing / Carousel
        Pricing uses max(40px, calc(50vw-680px)) → 40px pad at 1440px (1360px content)
        Previous 650px formula gave 70px → sections were 60px narrower than grid
@@ -389,12 +403,20 @@
 
       /* ── Smartest: gradient + padding formula handle all widths ─────────── */
       /* ::before is display:none globally — no override needed here           */
-      /* padding-left (50vw-590px) is already correct at 1600px+               */
       /* Phone wrap: scale up proportionally from 870×804 base (~+10%)         */
       /* right offset (max(0px, 50vw-720px)) = var(--grid-pad) at iMac — OK   */
       .smartest__phone-wrap {
         width:  960px;
         height: 885px;
+      }
+
+      /* ── Text column: align to standard 1360px content column at iMac ─── */
+      /* Base formula (50vw-590px) places text at 210px at 1600px, creating   */
+      /* ~130px overlap with phone. Switching to the grid formula (50vw-680px) */
+      /* brings text to 120px, matching the standard left edge, and gives the  */
+      /* same ~40px visual layering as the 1440px design.                      */
+      .smartest__top {
+        padding-left: max(40px, calc(50vw - 680px));
       }
 
       /* ── Infogrid: extra top padding so bullets don't crowd the phone ── */
@@ -485,7 +507,7 @@
 
       /* ── Your Day: wide 1440px column — aligned with Science ────────── */
       .day {
-        padding: 52px var(--grid-pad) 140px;
+        padding: 70px var(--grid-pad) 140px; /* Figma 2986-27698: pt-[70px] */
       }
       /* Collage: constrained to 1080px matching tabs + science card      */
       /* Columns restore original proportions (left 467 · center 273 · right auto) */
@@ -772,10 +794,6 @@
       <div class="science__card-bg"></div>
       <div class="science__card-scrim"></div>
       <div class="science__card-inner">
-        <div class="science__card-header">
-          <p class="science__card-title">Longevity</p>
-          <p class="science__card-sub">The world&rsquo;s smartest cardio system.</p>
-        </div>
         <div class="science__grid">
           <div class="scicard">
             <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
