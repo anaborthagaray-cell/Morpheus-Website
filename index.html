@@ -222,12 +222,15 @@
     .smartest::before { display: none; } /* PNG texture no longer needed */
 
     /* ── Phone wrap: container for phone + ellipse glow ──────────────────── */
-    /* Figma: phone is 870×804px at the right edge of the hero section        */
+    /* Figma: phone is 870×804px, right-aligned to the 1440px content column  */
+    /* right = max(0px, calc(50vw - 720px)) keeps the phone anchored to the  */
+    /* column right edge at every viewport width:                             */
+    /*   1440px → 0px | 1512px → 36px | 1728px → 144px | 1920px → 240px    */
     .smartest__phone-wrap {
       position: absolute;
-      top: 0; right: 0;
+      top: 0;
+      right: max(0px, calc(50vw - 720px));
       width: 870px; height: 804px;
-      max-width: 55%;
       pointer-events: none;
       z-index: 1;
     }
@@ -388,6 +391,7 @@
       /* ::before is display:none globally — no override needed here           */
       /* padding-left (50vw-590px) is already correct at 1600px+               */
       /* Phone wrap: scale up proportionally from 870×804 base (~+10%)         */
+      /* right offset (max(0px, 50vw-720px)) = var(--grid-pad) at iMac — OK   */
       .smartest__phone-wrap {
         width:  960px;
         height: 885px;
