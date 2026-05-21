@@ -1265,19 +1265,19 @@ ul { list-style: none; }
 .mission__card {
   position: relative;
   width: 100%;
-  height: 580px;
+  height: 544px;
   border-radius: 10px;
   overflow: hidden;
   justify-self: end;
 }
 .mission__card img {
   position: absolute;
-  /* Figma: image div 731×1097px at left:-78.91 top:-193.52 in 514×579 container */
-  width: 142.25%;   /* 731.196 / 514 */
+  /* Figma: mask 624.523×937px at left:-89.67 top:-134.96 in 399×544 container */
+  width: 156.52%;   /* 624.523 / 399 */
   max-width: none;
   height: auto;
-  left: -15.35%;    /* -78.91 / 514 */
-  top: -33.42%;     /* -193.52 / 579 */
+  left: -22.47%;    /* -89.67 / 399 */
+  top: -24.81%;     /* -134.96 / 544 */
 }
 .mission__card-scrim {
   position: absolute;
