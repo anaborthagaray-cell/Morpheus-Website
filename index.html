@@ -212,12 +212,13 @@
 
     /* Two gradient layers (CSS stacks first-listed on top):
        1. Hero layer  — Figma 3104-103764: -51.527° deep navy → near-black
-          rgb(22,40,98) at 27.54% → rgb(12,16,24) at 39.913%
-          (replaces old electric-blue; transition is tight/rapid)
+          rgb(22,40,98) fills upper-right (behind phone/product), fades to
+          near-black toward lower-left (text area). Stops extended to match
+          the reference screenshot where blue covers the full right quadrant.
        2. Outer layer — 28.543° mid-blue → near-black (unchanged)           */
     .smartest {
       background:
-        linear-gradient(-51.527deg, rgb(22,40,98) 27.54%, rgb(12,16,24) 39.913%),
+        linear-gradient(-51.527deg, rgb(22,40,98) 0%, rgb(22,40,98) 28%, rgb(12,16,24) 58%),
         linear-gradient( 28.543deg, rgb(29,39,62) 21.826%, rgb(11,17,27) 85.187%);
       padding-bottom: 180px; /* Figma pb-[180px] — space below infogrid */
     }
@@ -711,7 +712,7 @@
   <section class="intensity">
     <div class="intensity__card">
       <video class="intensity__product-video" autoplay muted loop playsinline aria-hidden="true">
-        <source src="assets/intensity-product.mp4" type="video/mp4">
+        <source src="assets/intensity-product-new.mp4" type="video/mp4">
       </video>
       <div class="intensity__text">
         <h2 class="intensity__title reveal">Train at the right intensity</h2>
