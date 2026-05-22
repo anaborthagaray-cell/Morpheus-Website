@@ -211,12 +211,14 @@
        ══════════════════════════════════════════════════════════════════════ */
 
     /* Two gradient layers (CSS stacks first-listed on top):
-       1. Hero layer  — -70.43° dark navy → electric blue (main hero BG)
-       2. Outer layer — 28.54° mid-blue → near-black (page-level backing)   */
+       1. Hero layer  — Figma 3104-103764: -51.527° deep navy → near-black
+          rgb(22,40,98) at 27.54% → rgb(12,16,24) at 39.913%
+          (replaces old electric-blue; transition is tight/rapid)
+       2. Outer layer — 28.543° mid-blue → near-black (unchanged)           */
     .smartest {
       background:
-        linear-gradient(-70.43deg, rgb(12,16,24) 22.716%, rgb(21,28,41) 68.176%, rgb(16,34,197) 129.02%),
-        linear-gradient( 28.54deg, rgb(29,39,62) 21.826%, rgb(11,17,27) 85.187%);
+        linear-gradient(-51.527deg, rgb(22,40,98) 27.54%, rgb(12,16,24) 39.913%),
+        linear-gradient( 28.543deg, rgb(29,39,62) 21.826%, rgb(11,17,27) 85.187%);
       padding-bottom: 180px; /* Figma pb-[180px] — space below infogrid */
     }
     .smartest::before { display: none; } /* PNG texture no longer needed */
