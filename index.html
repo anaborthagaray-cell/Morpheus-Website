@@ -786,22 +786,10 @@
     </header>
 
     <article class="science__card">
-      <div class="science__card-bg"></div>
+      <div class="science__card-bg" id="scienceCardBg"></div>
       <div class="science__card-scrim"></div>
       <div class="science__card-inner">
         <div class="science__grid">
-          <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">HRV</p><p class="scicard__body">Heart rate variability</p></div>
-          </div>
-          <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">HR Zones</p><p class="scicard__body">5 training zones</p></div>
-          </div>
-          <div class="scicard">
-            <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <div class="scicard__text"><p class="scicard__title">Recovery</p><p class="scicard__body">Daily readiness</p></div>
-          </div>
           <div class="scicard">
             <div class="scicard__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
             <div class="scicard__text"><p class="scicard__title">Analytics</p><p class="scicard__body">Performance trends</p></div>
@@ -1121,6 +1109,34 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script src="app.js?v=2" defer></script>
+
+  <script>
+    /* ── Science section tab background switcher ───────────────────────── */
+    (function () {
+      var TABS = [
+        { img: "assets/science-bg-longevity.jpg",   pos: "center 72%" },
+        { img: "assets/science-bg-performance.jpg", pos: "center center" }
+      ];
+      var cardBg = document.getElementById('scienceCardBg');
+      var tabs   = document.querySelectorAll('.tabs .tabs__tab');
+
+      function setTab(idx) {
+        tabs.forEach(function (t, i) {
+          t.classList.toggle('is-active', i === idx);
+        });
+        cardBg.style.backgroundImage    = "url('" + TABS[idx].img + "')";
+        cardBg.style.backgroundPosition = TABS[idx].pos;
+        cardBg.style.backgroundSize     = "cover";
+      }
+
+      tabs.forEach(function (tab, idx) {
+        tab.addEventListener('click', function () { setTab(idx); });
+      });
+
+      /* Set initial background to match the default active tab (Longevity) */
+      setTab(0);
+    })();
+  </script>
 
   <script>
     /* ── Nav scroll-hide ────────────────────────────────────────────────── */
